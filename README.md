@@ -1,2 +1,0 @@
-# sfn.io
-sfn game
