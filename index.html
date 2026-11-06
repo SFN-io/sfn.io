@@ -2,8 +2,16 @@
 <html lang="ar">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#0b1424">
+<meta name="description" content="sfn.io — سفينة وحدة، طوّرها، وسيطر على البحر">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="sfn.io">
 <title>sfn.io</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Changa:wght@400;500;600;700&family=Tajawal:wght@500;700;800&display=swap">
@@ -141,7 +149,8 @@ body.attract .game-ui{opacity:0;pointer-events:none!important}
 .skb b{font-family:var(--f-pix);font-size:10px;color:var(--g-dim);position:absolute;top:5px;left:50%;transform:translateX(-50%);font-weight:500;display:none}
 .skb::after{content:"";position:absolute;inset:0;background:conic-gradient(rgba(0,0,0,.66) calc(var(--cd,0)*360deg),transparent 0);pointer-events:none;border-radius:50%}
 .skb.ready{border-color:rgba(255,207,58,.85);box-shadow:0 0 0 2px rgba(255,207,58,.25),0 4px 12px rgba(0,0,0,.35)}
-@media (hover:hover){.skb b{display:block}.skb i{margin-top:6px}#slashBtn{display:none}}
+@media (hover:hover){.skb b{display:block}.skb i{margin-top:6px}}
+.cm-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.cm-top h4{flex:1}#slashBtn{font-family:ui-monospace,monospace;font-size:18px;padding:2px 12px}
 
 #chatMenu{position:fixed;z-index:8;right:calc(14px + var(--sar));bottom:calc(152px + var(--sab));width:min(330px,calc(100vw - 100px));max-height:calc(100vh - 140px);overflow:auto;padding:10px;direction:rtl;pointer-events:auto}
 #chatMenu h4{margin:0 0 6px;font-size:14px;font-weight:600;color:#ffe27a;display:flex;justify-content:space-between}
@@ -166,6 +175,16 @@ body.attract .game-ui{opacity:0;pointer-events:none!important}
 #toast{position:fixed;z-index:20;left:50%;top:calc(170px + var(--sat));transform:translateX(-50%);padding:7px 16px;font-size:15px;direction:rtl;max-width:min(90vw,540px);text-align:center;transition:opacity .4s;pointer-events:none;background:var(--g-bg2)}
 #toast.off{opacity:0}
 
+#notes{position:fixed;z-index:35;top:calc(8px + var(--sat));left:50%;transform:translateX(-50%);width:min(430px,calc(100vw - 20px));display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.note-b{display:flex;align-items:center;gap:10px;background:rgba(10,11,14,.93);color:#f2f2f2;border-radius:14px;padding:9px 14px;box-shadow:0 8px 24px rgba(0,0,0,.45);font-size:15px;line-height:1.3;direction:rtl;animation:nin .28s ease-out;transition:opacity .35s,transform .35s;border:1px solid rgba(255,255,255,.07)}
+.note-b .pxi{width:24px;height:24px}
+.note-b div{min-width:0}
+.note-b small{display:block;color:#a9b0bb;font-size:12px;margin-top:1px}
+.note-b.out{opacity:0;transform:translateY(-12px)}
+@keyframes nin{from{opacity:0;transform:translateY(-16px)}}
+@media (max-width:760px){.note-b{font-size:13px;padding:7px 11px;border-radius:12px}.note-b .pxi{width:20px;height:20px}}
+html.en body *:not(canvas){direction:ltr!important}
+html.en .setnav button,html.en #lbList .nm,html.en .tl button{text-align:left!important}
 /* ---------- command bar ---------- */
 #cmd{position:fixed;z-index:30;left:50%;bottom:calc(20px + var(--sab));transform:translateX(-50%);width:min(380px,calc(100vw - 32px));padding:8px 12px;display:flex;align-items:center;gap:8px;direction:ltr}
 #cmd span{font-family:var(--f-pix);font-size:21px;font-weight:600;color:var(--g-dim)}
@@ -252,6 +271,147 @@ body.attract .game-ui{opacity:0;pointer-events:none!important}
 .fpal .er{grid-column:1/5;width:auto;background:var(--paper-dk);font-weight:600;font-size:13px}
 canvas.pet{width:48px;height:48px;image-rendering:pixelated;background:#fff3cf;border-radius:6px;border:2px solid var(--wood)}
 
+/* ---------- menus: dark, balanced (overrides the parchment base above) ---------- */
+.modal{background:rgba(3,8,18,.62);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);padding:14px;
+  --paper:#16233a;--paper-dk:#1e2d47;--ink:#eef2f8;--ink-soft:#97a8be;--wood:#2b3d58;--wood-dk:#0a111d;--wood-lt:#3a5578;--green:#5fd36a;color:var(--ink)}
+.modal .panel.wood{background:linear-gradient(180deg,#18253c,#0f1828);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.55);padding:16px 20px 20px;color:var(--ink)}
+.modal .panel header{margin-bottom:12px}
+.modal .panel h2{font-family:var(--f-display);font-weight:700;font-size:26px;color:#ffe27a}
+.modal .panel h2 small{font-size:13px;font-weight:400;color:var(--ink-soft);margin-top:3px}
+.modal .x{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:var(--ink);border-radius:10px;padding:6px 18px;font-size:15px;font-weight:600;flex:none}
+#book .panel{width:min(880px,100%);height:min(86vh,720px);display:flex;flex-direction:column;overflow:hidden;padding:0}
+#book .panel header{padding:16px 20px 0;margin:0 0 12px}
+#book .tabs{margin:0;padding:6px;gap:4px;border:0;background:rgba(0,0,0,.25);border-radius:12px;margin:0 16px 12px;flex:none}
+.modal .tabs button{background:transparent;border:0;border-radius:9px;padding:7px 14px;color:var(--ink-soft);font-size:15px;font-weight:500;flex:1 0 auto}
+.modal .tabs button:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+.modal .tabs button[aria-selected="true"]{background:#ffcf3a;color:#1a1206;text-shadow:none;font-weight:700}
+#bookBody{flex:1;min-height:0;overflow:auto;padding:0 20px 20px;scrollbar-width:thin;scrollbar-color:#33465f transparent}
+.modal .grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.modal .card{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:12px 14px;gap:8px;color:var(--ink)}
+.modal .card h4{font-size:17px;font-weight:600;align-items:baseline}
+.modal .card h4 .pix{font-size:14px;color:#ffcf3a;font-weight:500}
+.modal .card p{font-size:13px;line-height:1.4;color:var(--ink-soft);flex:1}
+.modal .card .fx{font-size:14px;color:var(--ink-soft)}
+.modal .card .fx b{color:#8ff07a}
+.modal .card.on{border-color:rgba(95,211,106,.7);box-shadow:inset 0 0 0 1px rgba(95,211,106,.5)}
+.modal .card.max{opacity:.8}
+.modal .buy{grid-column:auto;border:0;border-radius:10px;background:linear-gradient(180deg,#ffe066,#f0b422);box-shadow:inset 0 -3px 0 #b9831a;color:#1a1206;padding:8px 10px;font-size:16px;margin-top:auto}
+.modal .buy:disabled{background:rgba(255,255,255,.07);box-shadow:none;color:#7d8ca1}
+.modal .buy .coin{box-shadow:inset -2px -2px 0 var(--gold-dk),0 0 0 1.5px #3a2406}
+.modal .note{font-size:13px;color:var(--ink-soft);line-height:1.45}
+.modal .note b{color:var(--ink)}
+.modal .prog{height:6px;border-radius:3px;background:rgba(255,255,255,.08);border:0}
+.modal .prog i{background:linear-gradient(90deg,#3fae4c,#8ff07a)}
+.modal .codex .it,.modal .adm section{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.09);border-radius:12px;color:var(--ink)}
+.modal .page small,.modal .legend{color:var(--ink-soft)}
+.modal .stats{font-size:14px;color:var(--ink)}
+.modal .btn{border:0;border-radius:9px;padding:5px 14px;background:#ffcf3a;color:#1a1206;box-shadow:inset 0 -2px 0 #b9831a;font-size:14px}
+.modal .btn.alt{background:rgba(255,255,255,.1);color:var(--ink);box-shadow:none}
+.modal .btn.danger{background:#c4412b;color:#fff;box-shadow:none}
+.modal .btn.up{background:#2f8a3c;color:#fff}.modal .btn.down{background:#a8352a;color:#fff}
+.modal input[type=text],.modal select,.modal textarea{background:#0a111d!important;color:var(--ink)!important;border:1px solid rgba(255,255,255,.16)!important;border-radius:8px}
+.modal .bigbtn{border:0;border-radius:12px;background:linear-gradient(180deg,#ffe066,#f0b422);color:#1a1206;box-shadow:inset 0 -4px 0 #b9831a}
+.modal .bigbtn:disabled{background:rgba(255,255,255,.08);color:#7d8ca1;box-shadow:none}
+.modal .streak i,.modal .mgdots i{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:var(--ink)}
+.modal .streak i.on{background:#ffcf3a;color:#1a1206}
+.modal .mgtrack{border-color:#0a111d}
+.modal .sw{background:#33465f;border-color:#0a111d}.modal .sw::after{background:#eef2f8;border-color:#0a111d}
+.modal .sw[aria-pressed="true"]{background:#3fae4c}
+.modal .fgrid{background:#0a111d}
+.modal canvas.pet{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.modal .card canvas.sk,.yard .card canvas{border:1px solid rgba(255,255,255,.12);border-radius:10px}
+.yard .card.leg{background:linear-gradient(135deg,rgba(192,112,255,.14),rgba(255,255,255,.03))}
+.yard .st{font-size:12px;color:var(--ink-soft)}.yard .st b{color:var(--ink)}
+.yard .lg{color:#d8a8ff}
+#bigMap{border:1px solid rgba(255,255,255,.12)}
+.buyn{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px;font-size:14px;color:var(--ink-soft)}
+.buy .bn{background:rgba(0,0,0,.18);border-radius:6px;padding:0 6px;font-size:13px}
+.capbar{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;background:rgba(255,207,58,.1);border:1px solid rgba(255,207,58,.35);border-radius:12px;padding:10px 14px;margin-bottom:12px;font-size:14px;color:var(--ink)}
+.capbar b{color:#ffe27a}.capbar span{flex:1;min-width:180px;color:var(--ink-soft)}
+.modal .admin h2,.admin h2{color:#ff8a7a}
+@media (max-width:760px){
+  .modal{padding:8px}
+  #book .panel{height:calc(100vh - 16px)}
+  #book .panel header{padding:12px 14px 0;margin-bottom:8px}
+  #book .tabs{margin:0 10px 10px;overflow-x:auto}
+  .modal .tabs button{flex:none;padding:6px 11px;font-size:14px}
+  #bookBody{padding:0 12px 14px}
+  .modal .grid{grid-template-columns:1fr 1fr;gap:8px}
+  .modal .card{padding:10px;border-radius:12px}
+  .modal .card h4{font-size:15px}.modal .card p{font-size:12px}
+  .modal .buy{font-size:14px;padding:7px 6px}
+  .modal .panel h2{font-size:22px}
+}
+@media (max-width:380px){.modal .grid{grid-template-columns:1fr}}
+@media (max-width:760px){.yard{grid-template-columns:1fr 1fr;gap:8px}.yard .st{font-size:10px}.yard .st b{font-size:13px}.yard .card h4{font-size:14px}}
+
+/* settings screen */
+#settings .panel{width:min(920px,100%);height:min(86vh,680px);display:flex;flex-direction:column;overflow:hidden;padding:0}
+#settings .panel header{padding:16px 20px 12px;margin:0;border-bottom:1px solid rgba(255,255,255,.07)}
+.setwrap{flex:1;min-height:0;display:flex;direction:rtl}
+.setnav{width:220px;flex:none;padding:12px;display:flex;flex-direction:column;gap:3px;border-inline-end:1px solid rgba(255,255,255,.07);overflow:auto}
+.setnav button{display:flex;align-items:center;gap:10px;background:transparent;border:0;color:var(--ink-soft);padding:9px 12px;border-radius:10px;font-size:16px;text-align:right}
+.setnav button .pxi{width:22px;height:22px}
+.setnav button:hover{background:rgba(255,255,255,.05);color:var(--ink)}
+.setnav button[aria-selected="true"]{background:rgba(255,207,58,.14);color:#ffe27a;font-weight:600}
+.setbody{flex:1;min-width:0;overflow:auto;padding:14px 20px 24px;scrollbar-width:thin;scrollbar-color:#33465f transparent}
+.sgrp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:4px 14px;margin-bottom:14px}
+.sgrp h5{margin:10px 0 2px;font-size:13px;font-weight:500;color:var(--ink-soft)}
+.sgrp.danger{border-color:rgba(224,65,43,.35)}
+.srow{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.srow:last-child{border-bottom:0}
+.srow.col{flex-direction:column;align-items:stretch;gap:8px}
+.sl{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sl b{font-weight:500;font-size:16px;color:var(--ink)}
+.sl small{font-size:13px;color:var(--ink-soft);line-height:1.35}
+.sc{display:flex;align-items:center;gap:8px;flex:none}
+.sc input[type=range]{width:min(200px,38vw);accent-color:#ffcf3a}
+.sc input[type=text]{width:150px;padding:6px 10px;font-size:15px}
+.sv{min-width:28px;text-align:center;color:var(--ink-soft);font-size:14px}
+.seg{display:flex;background:rgba(0,0,0,.3);border-radius:10px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;color:var(--ink-soft);padding:5px 14px;border-radius:8px;font-size:14px}
+.seg button[aria-pressed="true"]{background:#ffcf3a;color:#1a1206;font-weight:600}
+.tag{font-size:13px;padding:3px 10px;border-radius:9px;background:rgba(255,255,255,.08);color:var(--ink-soft)}
+.tag.ok{background:rgba(95,211,106,.16);color:#8ff07a}
+.prof{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding:14px;border-radius:14px;background:linear-gradient(135deg,rgba(255,207,58,.12),rgba(255,255,255,.03));border:1px solid rgba(255,207,58,.2)}
+.prof .pxi.big{width:52px;height:52px;background-color:rgba(0,0,0,.25);border-radius:12px;padding:6px;box-sizing:border-box}
+.prof b.pnm{display:block;font-size:22px;color:#ffe27a;direction:ltr;text-align:right}
+.prof small{color:var(--ink-soft);font-size:13px}
+#setBody .stats{padding:6px 0 12px}
+#setBody textarea{width:100%;box-sizing:border-box;padding:8px;font-size:13px;direction:ltr;resize:vertical;font-family:ui-monospace,monospace}
+.keys{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;padding:8px 0 12px;font-size:14px;color:var(--ink-soft)}
+.keys kbd{display:inline-block;min-width:22px;text-align:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-bottom-width:3px;border-radius:6px;padding:0 6px;margin-inline-end:6px;color:var(--ink);font-family:ui-monospace,monospace;font-size:13px}
+.langs{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 0 14px}
+.langs button{display:flex;flex-direction:column;gap:2px;align-items:center;padding:16px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--ink)}
+.langs button b{font-size:20px}.langs button small{color:var(--ink-soft)}
+.langs button[aria-pressed="true"]{border-color:#ffcf3a;background:rgba(255,207,58,.12)}
+.about{text-align:center;padding:14px 0 18px}.about .logo{font-size:56px}.about .ver{color:var(--ink-soft);font-size:14px;margin-top:4px}
+#setBody details{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}#setBody details:last-child{border:0}
+#setBody summary{cursor:pointer;font-size:16px;color:var(--ink)}
+#setBody details p{font-size:14px;color:var(--ink-soft);line-height:1.55;margin:8px 0 0}
+#hurt{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0;background:radial-gradient(ellipse at center,rgba(200,20,10,0) 55%,rgba(200,20,10,.55) 100%)}
+#fps{position:fixed;z-index:9;left:50%;bottom:calc(4px + var(--sab));transform:translateX(-50%);font:12px ui-monospace,monospace;color:#9cf27a;background:rgba(0,0,0,.45);padding:1px 6px;border-radius:5px;pointer-events:none}
+.lg-set{position:absolute;top:calc(14px + var(--sat));right:calc(14px + var(--sar));width:46px;height:46px;border-radius:12px;display:grid;place-items:center;padding:0}
+.lg-set .pxi{width:26px;height:26px}
+/* left-handed: mirror controls */
+body.lefty #skillBar{right:auto;left:calc(14px + var(--sal));flex-direction:row-reverse}
+body.lefty #rail{right:auto;left:calc(14px + var(--sal))}
+body.lefty #mini{left:auto;right:calc(12px + var(--sar))}
+body.lefty #compass{left:auto;right:calc(196px + var(--sar))}
+body.lefty #feed{left:auto;right:calc(12px + var(--sar))}
+body.lefty #chatMenu{right:auto;left:calc(14px + var(--sal))}
+@media (max-width:760px){
+  .setwrap{flex-direction:column}
+  .setnav{width:auto;flex-direction:row;overflow-x:auto;border:0;border-bottom:1px solid rgba(255,255,255,.07);padding:8px}
+  .setnav button{flex:none;padding:7px 10px;font-size:14px;gap:6px}
+  .setnav button .pxi{width:18px;height:18px}
+  .setbody{padding:12px 12px 20px}
+  #settings .panel{height:calc(100vh - 16px)}
+  .srow{gap:8px}.sl b{font-size:15px}.sl small{font-size:12px}
+  .sc input[type=range]{width:110px}.sc input[type=text]{width:110px}
+  body.lefty #mini{right:calc(8px + var(--sar))}body.lefty #compass{right:calc(104px + var(--sar))}body.lefty #feed{right:calc(8px + var(--sar))}
+  body.lefty #rail{left:calc(6px + var(--sal))}body.lefty #skillBar{left:calc(8px + var(--sal))}
+}
 /* ---------- login ---------- */
 #login{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;gap:18px;padding:16px;direction:rtl;flex-wrap:wrap;overflow:auto;
   background:radial-gradient(ellipse at center,rgba(6,14,30,.15),rgba(4,10,24,.7))}
@@ -273,6 +433,15 @@ canvas.pet{width:48px;height:48px;image-rendering:pixelated;background:#fff3cf;b
 .lg-top .dt{width:7px;height:7px;border-radius:50%}
 .lg-top .nm{direction:ltr;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 
+/* island ownership */
+.owncard{display:flex;gap:18px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:14px}
+.owncard.on{border-color:rgba(255,215,90,.45)}
+.owncard canvas{width:180px;height:180px;border-radius:12px;image-rendering:pixelated;flex:none}
+.owncard>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}
+.owncard h3{margin:0;font-size:24px;color:#ffe27a;display:flex;align-items:center;gap:8px}
+.perks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;font-size:15px;color:var(--ink)}
+.perks li{display:flex;align-items:center;gap:8px}
+@media (max-width:760px){.owncard{flex-direction:column;align-items:center}.owncard canvas{width:140px;height:140px}}
 /* shipyard */
 .yard{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
 .yard .card canvas{width:100%;height:auto;aspect-ratio:2/1;image-rendering:pixelated;background:linear-gradient(#9fd2ec 0 55%,#3d8fc1 55%);border-radius:4px;border:2px solid var(--wood-dk)}
@@ -341,7 +510,7 @@ canvas.pet{width:48px;height:48px;image-rendering:pixelated;background:#fff3cf;b
 
 <canvas id="game" aria-label="البحر"></canvas>
 
-<div id="legacy" aria-hidden="true">
+<div id="legacy" aria-hidden="true"><button id="yardBtn"><span id="yardDot"></span></button><button id="missChip"><span id="missN"></span></button><button id="gearBtn"></button>
   <button id="autoBtn"></button><div id="shipList"></div><button id="sideTab"></button>
   <div id="modePick"></div><div id="teamWrap"><div id="teamPick"></div></div>
   <button id="formBtn"><span id="formName"></span></button>
@@ -350,7 +519,7 @@ canvas.pet{width:48px;height:48px;image-rendering:pixelated;background:#fff3cf;b
 
 <div id="pcard" class="g game-ui hudp">
   <div class="pc1"><span id="pcName">—</span><span id="title"></span></div>
-  <div class="pc2"><span class="shp">⛵ <b id="shipName"></b></span><span id="pcZone"></span><span>⚔ <b class="pix" id="pow">0</b></span></div>
+  <div class="pc2"><span class="shp"><i class="pxi ic-ship"></i> <b id="shipName"></b></span><span id="pcZone"></span><span><i class="pxi ic-sword"></i> <b class="pix" id="pow">0</b></span></div>
   <div class="hpb"><i id="hpFill"></i><span id="hpTxt"></span></div>
   <div id="coinBox"><i class="coin"></i><span id="coins">0</span><span id="rate"></span></div>
   <div class="chips"><span class="chip2" id="teamLine" hidden></span><span class="chip2" id="conChip" hidden></span></div>
@@ -387,25 +556,22 @@ canvas.pet{width:48px;height:48px;image-rendering:pixelated;background:#fff3cf;b
 </div>
 
 <div id="rail" class="game-ui">
-  <button class="rb g" id="yardBtn" aria-label="السفن"><span class="ic">⚓</span><small>السفن</small></button>
-  <button class="rb g" id="missChip" aria-label="المهمات"><span class="ic">📜</span><small>المهمات</small><span class="badge" id="missN">0/3</span></button>
-  <button class="rb g" id="gearBtn" aria-label="القائمة"><span class="ic">☰</span><small>القائمة</small></button>
-  <button class="rb g" id="chatBtn" aria-label="الدردشة والتيم"><span class="ic">💬</span><small>تيم</small></button>
-  <button class="rb g" id="mapBtn" aria-label="الخريطة"><span class="ic">🗺</span><small>الخريطة</small></button>
-  <button class="rb g" id="zIn" aria-label="تقريب">+</button>
-  <button class="rb g" id="zOut" aria-label="تبعيد">−</button>
-  <button class="rb g" id="slashBtn" aria-label="سطر الأوامر">/</button>
+  <button class="rb g" id="chatBtn" aria-label="الدردشة والتيم"><span class="ic"><i class="pxi ic-team"></i></span><small>تيم</small></button>
+  <button class="rb g" id="setBtn" aria-label="الإعدادات"><span class="ic"><i class="pxi ic-gear"></i></span><small>الإعدادات</small></button>
+  <button class="rb g" id="mapBtn" aria-label="الخريطة"><span class="ic"><i class="pxi ic-map"></i></span><small>الخريطة</small></button>
+  <button class="rb g" id="zIn" aria-label="تقريب"><i class="pxi ic-plus"></i></button>
+  <button class="rb g" id="zOut" aria-label="تبعيد"><i class="pxi ic-minus"></i></button>
 </div>
 <div id="zoomLbl" class="g pix" hidden></div>
 
 <div id="skillBar" class="game-ui">
-  <button class="skb" data-skill="volley" aria-label="رشقة"><b>1</b><i>💥</i><span>رشقة</span></button>
-  <button class="skb" data-skill="wind" aria-label="رياح"><b>2</b><i>💨</i><span>رياح</span></button>
-  <button class="skb" data-skill="repair" aria-label="تصليح"><b>3</b><i>🔧</i><span>تصليح</span></button>
-  <button class="skb" data-skill="shield" aria-label="درع"><b>4</b><i>🛡</i><span>درع</span></button>
+  <button class="skb" data-skill="volley" aria-label="رشقة"><b>1</b><i class="pxi ic-volley"></i><span>رشقة</span></button>
+  <button class="skb" data-skill="wind" aria-label="رياح"><b>2</b><i class="pxi ic-wind"></i><span>رياح</span></button>
+  <button class="skb" data-skill="repair" aria-label="تصليح"><b>3</b><i class="pxi ic-repair"></i><span>تصليح</span></button>
+  <button class="skb" data-skill="shield" aria-label="درع"><b>4</b><i class="pxi ic-shield"></i><span>درع</span></button>
 </div>
 <div id="chatMenu" class="g" hidden>
-  <h4>اطلب تيم <small>اللاعبين القريبين منك</small></h4>
+  <div class="cm-top"><h4>اطلب تيم <small>اللاعبين القريبين منك</small></h4><button class="gbtn" id="slashBtn" aria-label="سطر الأوامر">/</button></div>
   <div class="tl" id="teamList"></div>
   <h4 style="margin-top:10px">رسائل سريعة</h4>
   <div class="ph" id="phrases"></div>
@@ -413,7 +579,7 @@ canvas.pet{width:48px;height:48px;image-rendering:pixelated;background:#fff3cf;b
 <button id="actBtn" class="game-ui" hidden></button>
 <div id="tut" class="g game-ui" hidden><span id="tutTxt"></span><button id="tutSkip">تخطي</button></div>
 <button id="dock" class="game-ui" hidden>ارسُ في <span id="dockName"></span><kbd>E</kbd></button>
-<div id="toast" class="g off"></div>
+<div id="toast" class="g off" hidden></div><div id="notes" aria-live="polite"></div>
 
 <div id="cmd" class="g" hidden><span>/</span><input id="cmdIn" type="text" autocomplete="off" spellcheck="false" aria-label="سطر الأوامر"></div>
 
@@ -443,7 +609,13 @@ canvas.pet{width:48px;height:48px;image-rendering:pixelated;background:#fff3cf;b
   </div>
 </div>
 
+<div class="modal" id="settings" hidden>
+  <div class="panel wood"><header><h2>الإعدادات</h2><button class="x" data-close>تم</button></header>
+    <div class="setwrap"><nav class="setnav" id="setNav" aria-label="أقسام الإعدادات"></nav><div class="setbody" id="setBody"></div></div></div>
+</div>
+<div id="fps" hidden></div><div id="hurt" aria-hidden="true"></div>
 <div id="login">
+  <button class="lg-set g" id="lgSet" aria-label="الإعدادات"><i class="pxi ic-gear"></i></button>
   <div class="lg-card g">
     <div class="logo">sfn.io<small>سفينة وحدة · طوّرها · سيطر على البحر</small></div>
     <label for="nameIn">اسم القبطان</label>
@@ -456,6 +628,63 @@ canvas.pet{width:48px;height:48px;image-rendering:pixelated;background:#fff3cf;b
 </div>
 
 <script>
+const EN={"اللعبة تحفظ اسمك وتقدمك على جهازك، وفي حسابك إذا كان الحفظ السحابي مفعّل":"The game saves your name and progress on your device, and in your account if cloud save is on","خرجت من المنطقة الآمنة — مدافعك تطلق تلقائي على أي عدو في مداها":"You left the safe zone — your cannons fire automatically at any enemy in range","عندك سفينة وحدة بس — كل ما كبّرتها زادت مدافعها ومداها ومتانتها":"You have a single ship — the bigger you make it, the more cannons, range and durability it gets","تبيع سفنك وتطويراتك وفلوس هذي الرحلة، وتبدأ من جديد بقارب صيد":"You sell your ships, upgrades and this voyage's coins, and start over with a fishing boat","المباني هنا تعطيك ميزات دائمة — تطوير السفينة نفسها في تبويب":"Buildings here give you permanent perks — ship upgrades are in the tab","سفينة تبحر حولك، والباقي احتياط يضيف مدافعه لسفينة القيادة":"ship sails around you, the rest are reserve and add cannons to the flagship","غرقت سفينتك! رجعت للميناء — فلوسك وسفينتك وتطويراتك محفوظة":"Your ship sank! Back to port — your coins, ship and upgrades are safe","الكوينز والعناصر داخل اللعبة افتراضية وما لها قيمة مالية":"Coins and items in the game are virtual and have no monetary value","تجمعها من حطام السفن اللي تغرق قريب منك ومن كنوز الزعماء":"Collected from wrecks of ships sinking near you and from boss treasure","الشراء التلقائي شغّال — يصرف الكوينز على السفن أول بأول":"Auto-buy is on — spends coins on ships as they come","الكنوز النادرة تطلع من اللؤلؤ والصناديق والكنوز الذهبية":"Rare treasures come from pearls, chests and golden treasures","الدوائر حدود المناطق · كل ما بعدت زادت الكنوز والخطر":"Circles mark zone borders · the farther you go, the richer and more dangerous","إذا ما سمعت شي على الجوال، تأكد إن صوت الجهاز مرفوع":"If you hear nothing on mobile, make sure the device volume is up","ترجع كل الإعدادات لوضعها الأصلي بدون ما يتأثر تقدمك":"Resets all settings to default without affecting your progress","سفينة وحدة: طوّرها في الجزر · اطلب تيم من زر التيم":"One ship: upgrade it at islands · ask for a team with the team button","يمسح فلوسك وسفنك وتطويراتك من هذا الجهاز ومن حسابك":"Erases your coins, ships and upgrades from this device and your account","انسخ الكود واحفظه عندك عشان تنقل تقدمك لجهاز ثاني":"Copy the code and keep it to move your progress to another device","تقدمك ينحفظ تلقائياً في حسابك ويرجع لك من أي جهاز":"Your progress saves automatically to your account and follows you to any device","دخلت المنطقة الآمنة حول الميناء: ما فيه قتال هنا":"You entered the safe zone around the port: no fighting here","مقابلها تاخذ نجوم بحرية، وكل نجمة تزيد كل أرباحك":"In return you get sea stars, and every star boosts all your earnings","أو المسافة لما يكون المؤشر داخل المنطقة الخضراء":"or Space when the marker is inside the green zone","كل ما رجعت يوم ورا يوم كبرت هدية الصندوق اليومي":"Come back day after day and the daily chest grows","وقفت الشراء التلقائي — الحين تقدر توفّر للجزيرة":"Auto-buy stopped — now you can save up for the island","حرّك سفينتك: اسحب بالماوس أو بإصبعك، أو استخدم":"Move your ship: drag with the mouse or your finger, or use","بيتوفر نموذج تواصل داخل اللعبة مع نسخة المتجر":"An in-game contact form will be available in the store version","تشتري السفن وتبدّل بينها لما ترسي في أي جزيرة":"Buy ships and switch between them when docked at any island","ما نجمع بيانات شخصية ثانية ولا نشاركها مع أحد":"We don't collect any other personal data and never share it","مكانه بدائرة ذهبية في الخريطة وسهم على الشاشة":"Marked with a golden circle on the map and an arrow on screen","أغرقت سفينة الكنز! الكنوز الذهبية تطفو حولك":"You sank the treasure ship! Golden treasure is floating around you","الأسعار تتغير كل يوم، وكل جزيرة لها أسعارها":"Prices change daily, and every island has its own prices","السفن اللي اشتريتها قبل تقدر ترجع لها ببلاش":"Ships you bought before can be boarded again for free","الكاميرا تبعد وتقرب حسب حجم سفينتك والمعركة":"The camera zooms in and out based on your ship size and the battle","يمنع استخدام أسماء مسيئة أو التلاعب باللعبة":"Offensive names and cheating are not allowed","انسخ كود الحفظ عشان تنقل تقدمك لجهاز ثاني":"Copy your save code to move your progress to another device","شراء السفن والتطوير في أي جزيرة ترسي فيها":"Buy ships and upgrades at any island you dock at","لقيت قارورة زجاج! جواها خريطة كنز — علامة":"You found a glass bottle! There's a treasure map inside — mark","اشترِ رخيص من جزيرة وبِعه غالي في ثانية":"Buy cheap at one island and sell high at another","كل الرسومات والأصوات مصنوعة داخل اللعبة":"All art and sound are made inside the game","اكتملت مهمة! استلم مكافأتك من القائمة":"Mission complete! Claim your reward from the menu","تم نسخ كود الحفظ — احفظه في مكان آمن":"Save code copied — keep it somewhere safe","سفينة وحدة · طوّرها · سيطر على البحر":"One ship · upgrade it · rule the sea","صرت المطلوب! كل الصيادين يدورون عليك":"You're WANTED! Every hunter is after you","أغرقك — انتقم منه وخذ مكافأة مضاعفة":"sank you — take revenge for a double reward","ظهرت سفينة الكنز الذهبية في المنطقة":"The golden treasure ship appeared in zone","ارسُ في جزيرة واشترِ تطوير لسفينتك":"Dock at an island and buy an upgrade for your ship","على الضرر والمتانة والسرعة والكنوز":"to damage, durability, speed and treasure","تطويرك وصل الحد! تقدر الحين تشتري":"Upgrades maxed! You can now buy","تم إصلاح سفينتك بالكامل · المنطقة":"Your ship is fully repaired · Zone","انتشلت الكنز الغارق من قاع البحر":"You raised the sunken treasure from the seabed","أنت المطلوب — المكافأة على راسك":"You're WANTED — bounty on your head","كل صفحة تكملها تعطيك شكل حصري و":"Every page you complete gives an exclusive skin and","ما فيه أهداف مناسبة لقوتك الحين":"No targets matching your power right now","الأشكال وسجل الكنوز يبقون معك":"Skins and the treasure log stay with you","الاسم لازم يكون حرفين أو أكثر":"Name must be at least 2 characters","خلّصت الموسم الماضي في المركز":"You finished last season in place","من المرسى عشان يرتفع الحد إلى":"from the shipyard to raise the cap to","واحد يرافقك على سفينة القيادة":"One rides with you on the flagship","ورا بعض — كل يوم الصندوق أكبر":"in a row — the chest grows every day","ينقل المهارات والأزرار لليسار":"Moves skills and buttons to the left","أبحر بسفنك عشان ترتفع خبرتها":"Sail your ships to raise their mastery","إذا غرقت سفينتك تضيع الحمولة":"If your ship sinks you lose the cargo","اختفت سفينة الأشباح مع الفجر":"The ghost ship vanished at dawn","الجوال يهتز لما تنضرب سفينتك":"Your phone vibrates when your ship is hit","على كل الأرباح للجولة الجاية":"to all earnings next run","كل ضابط له اسم ويرتفع مستواه":"Each officer has a name and levels up","اختر لون واضغط على المربعات":"Pick a color and tap the squares","شعاع نار يحرق كل اللي قدامه":"A fire beam burns everything in front","كل التعديلات تنحفظ في حسابك":"All changes are saved to your account","كنوز أكثر وفرصة أعلى للنادر":"More treasure and higher rare chance","أو الأسهم، أو اسحب بالماوس":"or the arrow keys, or drag with the mouse","اختفت سفينة الكنز في الأفق":"The treasure ship vanished over the horizon","الغوص والصيد أسهل، ومكسبهم":"Diving and fishing get easier, and pay","الوقت بين كل رمية والثانية":"Time between each shot","تقدمك ينحفظ في هذا المتصفح":"Your progress is saved in this browser","حد التطوير لسفينتك الحالية":"Upgrade cap for your current ship","دوامة تسحب الأعداء وتطحنهم":"A whirlpool that pulls in and grinds enemies","مجموع الكوينز اللي جمعتها":"Total coins collected","مدى سحب الكنوز إلى سفينتك":"Treasure pull range to your ship","وتزيد فرصة الكنوز النادرة":"and raises rare treasure chance","أسرع على الأجهزة الضعيفة":"Faster on weaker devices","أسماء اللاعبين فوق السفن":"Player names above ships","عاصفة! الكنوز أندر وأغلى":"Storm! Treasure is rarer and richer","على الخريطة والسهم يدلّك":"on the map and the arrow guides you","كل راكب يزيد قيمة الكنوز":"Each crew member raises treasure value","لازم اطلع، يعطيك العافية":"gotta go, thanks for the help","أشكال النجوم: نجم البحر":"Star skins: Starfish","أغرق سفينة القيادة حقته":"sank the flagship of","الكنوز طافية حول المكان":"Treasure is floating around the spot","بدأت من جديد بقارب واحد":"Started over with one boat","تقدر تحذف كل بياناتك من":"You can delete all your data from","ضباب كثيف — الرؤية قلّت":"Thick fog — visibility dropped","طلبات التيم من اللاعبين":"Team requests from players","عوّضها في الجولة الجاية":"Make it up next run","غادر البحر، انلغى العقد":"left the sea, contract cancelled","كل سفينة أكبر ترفع الحد":"Each bigger ship raises the cap","مهرجان البحر! كل الكنوز":"Sea festival! All treasure","هنا تقدر تشوف وش ينتظرك":"Here you can see what awaits you","اضغط مرة ثانية للتأكيد":"Press again to confirm","الأشكال والسجل والنجوم":"Skins, log and stars","الجزر لبست ألوان جديدة":"The islands got new colors","العلم يرفرف فوق سفينتك":"The flag flies above your ship","المدافع والموج والكنوز":"Cannons, waves and treasure","انسخ الكود واحفظه عندك":"Copy the code and keep it","تطويرك وصل الحد — اجمع":"Upgrades maxed — collect","شراء السفن الأكبر أرخص":"Bigger ships are cheaper","طاقمك ما وقف وأنت غايب":"Your crew kept working while you were away","كنز نادر جديد في السجل":"New rare treasure in the log","نجمة · كل أرباحك الحين":"star · all your earnings now","اطلب تيم من لاعب قريب":"Ask a nearby player for a team","اللاعبين القريبين منك":"Players near you","تحتاج تيم عشان تطيّحه":"You need a team to take it down","تم تعيين كل التطويرات":"All upgrades set","ثواني يكبر مع المستوى":"seconds, grows with level","لقيت خريطة كنز! علامة":"You found a treasure map! Mark","متأكد؟ اضغط مرة ثانية":"Sure? Press again","من المرسى في أي جزيرة":"from the shipyard at any island","انسخ الكود من المربع":"Copy the code from the box","باقي شوي وأدخل التوب":"almost in the top","رجعت الإعدادات للأصل":"Settings reset","سحبها الأخطبوط للقاع":"The octopus dragged it under","سرعة سفينتك في البحر":"Your ship's speed at sea","يعطيك العافية يا وحش":"thanks, beast","أفعى البحر العملاقة":"Giant Sea Serpent","إعادة ضبط الإعدادات":"Reset settings","اطلب تيم من أي لاعب":"Ask any player for a team","امتلك سفينة أسطورية":"Own a legendary ship","بلعب لحالي شوي، باي":"gonna play solo a bit, bye","خلصت التعليمات! هذي":"Tutorial done! This is","سفينة الكنز الذهبية":"Golden Treasure Ship","فرصة الكنوز النادرة":"Rare treasure chance","ما عندك كوينز كفاية":"Not enough coins","ما فيه أحد قريب منك":"No one near you","مضاعف النجوم الحالي":"Current star multiplier","من السجل! انفتح شكل":"from the log! Unlocked skin","، بس انتبه للأعداء":", but watch out for enemies","أنت الأول في البحر":"You're number one at sea","اشترِه من أي جزيرة":"Buy it at any island","الصق كود الحفظ هنا":"Paste your save code here","رجع تقدمك من الكود":"Progress restored from code","في الموسم الأسبوعي":"in the weekly season","قيمة كل كنز تلتقطه":"Value of every treasure you pick up","مطلوبين قبضت عليهم":"Wanted captains caught","نجوم بتاخذها الحين":"Stars you'd get now","الدعم وحول اللعبة":"Support & About","الكل يتسابق عليها":"Everyone races for it","الكود غلط أو ناقص":"Invalid or incomplete code","انتهت الجولة: فاز":"Round over: winner","تكشف الخريطة أبعد":"Reveals more of the map","فاز فريقك بالجولة":"Your team won the round","قذائف شبحية تخترق":"Ghost shots that pierce","كبّر سفينتك وتعال":"grow your ship and come back","مناطق ما اكتشفتها":"Unexplored areas","وين الكنز الذهبي؟":"where's the golden treasure?","أذرع أخطبوط تمسك":"Octopus arms that grab","أطول سلسلة إغراق":"Longest sinking streak","أولاً عشان تنفتح":"first to unlock","إمبراطور الأعماق":"Emperor of the Deep","اختفى في الأعماق":"vanished into the deep","اقبض على المطلوب":"Catch the wanted captain","الخطوط والمكتبات":"Fonts & libraries","الغوص على اللؤلؤ":"Pearl diving","الكنوز هنا كثيرة":"lots of treasure here","الكوينز · الحالي":"coins · current","انفتح لك شكل خاص":"Special skin unlocked","تذكير حد التطوير":"Upgrade cap reminder","تكميل سجل الكنوز":"Complete the treasure log","تم حفظ المستويات":"Levels saved","جرّب مهارة: اضغط":"Try a skill: press","دخلت بوتات جديدة":"New bots joined","سفينتك وصلت حدها":"Your ship hit its cap","شوفها في الخريطة":"See it on the map","صار معك في التيم":"joined your team","طلّعت لؤلؤ بقيمة":"You found pearls worth","ما طلع شي هالمرة":"Nothing this time","متانة بدن سفينتك":"Your ship's hull durability","مدى مدافع سفينتك":"Your ship's cannon range","مشكلة أو اقتراح؟":"Problem or suggestion?","مين اللي يطاردني":"who's chasing me","وانتظار المهارات":"and skill cooldown","أعد الإبحار مرة":"Set sail again","أقسام الإعدادات":"Settings sections","ارسم علم سفينتك":"Draw your ship's flag","ارسُ عشان تبدّل":"Dock to switch","استرجع من الكود":"Restore from code","الكنوز الملتقطة":"Treasures collected","الكنوز هنا أغلى":"Treasure is worth more here","المهمات اليومية":"Daily missions","تطويرات لسفينتك":"upgrades for your ship","جاري تحميل حفظك":"Loading your save","رجّع علم الفريق":"Restore team flag","رشقة! ضرر مضاعف":"Volley! Double damage","فيه قارورة جنبك":"There's a bottle next to you","قبض على المطلوب":"caught the wanted captain","قوة وتدخل التوب":"power to enter the top","للأجهزة الضعيفة":"for weaker devices","ما وراء الخرائط":"Beyond the maps","مسح التقدم كامل":"Wipe all progress","مكسب هذي الرحلة":"This voyage's earnings","نصائح التعليمات":"Tutorial tips","نفّذت العقد على":"Completed the contract on","وضع اليد اليسرى":"Left-handed mode","وضع عمى الألوان":"Colorblind mode","اشترِ الكرافيل":"Buy the Caravel","التصليح الذاتي":"Self-repair","الحمولة مليانة":"Cargo is full","الدردشة العامة":"Global chat","الدردشة والتيم":"Chat & team","الصيد بالسنارة":"Rod fishing","القرصان الأسود":"The Black Pirate","اللعبة للترفيه":"The game is for entertainment","المطلوب الجديد":"New wanted captain","النجوم البحرية":"Sea stars","امتلك كل السفن":"Own all ships","انتقال للميناء":"Teleport to port","انتقلت للمنطقة":"Moved to zone","انسخ كود الحفظ":"Copy save code","انفتح شكل جديد":"New skin unlocked","انكشفت الخريطة":"Map revealed","تشغيل الموسيقى":"Play music","جودة الرسوميات":"Graphics quality","رجع علم الفريق":"Team flag restored","سفينة الأساطير":"Ship of Legends","سفينتك الجديدة":"Your new ship","سياسة الخصوصية":"Privacy policy","شروط الاستخدام":"Terms of use","على كل الأرباح":"to all earnings","على هذا الجهاز":"On this device","غُص على اللؤلؤ":"Dive for pearls","فتح كل الأشكال":"Unlock all skins","لاعبين بالكثير":"players max","مدى جذب الكنوز":"Treasure pull range","يفتح في مناسبة":"Unlocks on an occasion","يلا بس لا تخون":"let's go, just don't betray me","أخبار المعارك":"Battle news","أسطورة البحار":"Legend of the Seas","أعد التعليمات":"Replay tutorial","أغرق أول زعيم":"Sink your first boss","أغرقت المطلوب":"You sank the wanted captain","إصلاح السفينة":"Repair ship","إعادة الإبحار":"Set sail again","ابي العب سولو":"wanna play solo","البحر المسكون":"Haunted Sea","السفينة سليمة":"Ship is healthy","المحار الملكي":"Royal Oyster","المحيط العميق":"Deep Ocean","المياه الضحلة":"Shallow Waters","اهتزاز الشاشة":"Screen shake","بحر بدون غزاة":"Sea without raiders","بحّار من جديد":"Sailor again","تمثال المقدمة":"Figurehead","جزيرة السلاحف":"Turtle Island","جزيرة المرجان":"Coral Island","جزيرة الميناء":"Port Island","حذف كل التقدم":"Delete all progress","حرشفة لوياثان":"Leviathan Scale","حفظ المستويات":"Save levels","حمولة التجارة":"Trade cargo","حيوان السفينة":"Ship pet","سفينة أسطورية":"Legendary ship","سفينة الأشباح":"Ghost Ship","طلع من اللعبة":"left the game","عداد الإطارات":"Frame counter","فانوس الأشباح":"Ghost Lantern","كنوز من البحر":"Treasures of the sea","لاعبين ثانيين":"Other players","لبّسه لسفينتك":"Put it on your ship","لكل التطويرات":"to all upgrades","ما ينفع ترجعه":"Can't be undone","مجموع الكوينز":"Total coins","مغناطيس عملاق":"Giant Magnet","مفتاح الأعماق":"Key of the Deep","مكافأة الطاقم":"Crew bonus","نسخة احتياطية":"Backup","وأرباح الغياب":"and offline earnings","أسطورة الصيد":"Fishing Legend","أعدت الإبحار":"You set sail again","أو زر الرشقة":"or the Volley button","إنهاء الجولة":"End round","احد يبي تيم؟":"anyone want a team?","ارمِ السنارة":"Cast the rod","استدعاء غزاة":"Summon raiders","افتح الصندوق":"Open the chest","اكتب رقم مثل":"Type a number like","الأفعى طلعت؟":"is the serpent out?","الأقوى الحين":"Strongest now","الشكل الحالي":"Current skin","الكل ضد الكل":"Free for all","الملف الشخصي":"Profile","اليوم الوطني":"National Day","بحر البراكين":"Volcano Sea","بوصلة نحاسية":"Brass Compass","بيوت البحارة":"Sailors' Houses","تتجدد كل يوم":"Refreshes daily","تجديد اليومي":"Refresh daily","تجميد الغزاة":"Freeze raiders","تعطيك دخل كل":"Gives income every","جرّب بعد شوي":"Try again shortly","جزيرة الدانة":"Dana Island","جزيرة النخيل":"Palm Island","جنود الحماية":"Guardians","خريطة الكنوز":"Treasure Map","خور الصيادين":"Fishermen's Creek","زعماء عمالقة":"Giant bosses","سفينتك الحين":"Your current ship","سوري معي تيم":"sorry, got a team","صائد الجوائز":"Bounty Hunter","صاحب الخرائط":"Map Master","صوت الموسيقى":"Music volume","ضرر كل قذيفة":"Damage per shot","طلع من التيم":"left the team","عين الأخطبوط":"Octopus Eye","قبلت عقد على":"Accepted a contract on","كبّرت سفينتي":"upgraded my ship","كتم كل الصوت":"Mute all sound","متانة سفينتك":"Your ship's durability","مجموع المكسب":"Total earned","مصنع البارود":"Gunpowder Factory","مضاعف السرعة":"Speed multiplier","مضاعفك بعدها":"Your multiplier after","مفاتيح اللعب":"Controls","مين أغرق مين":"who sank who","هلا بالنوخذة":"welcome, captain","ورشة التطوير":"Upgrade Workshop","وصلت المنطقة":"You reached zone","وصّل المنطقة":"Reach zone","يطلب تيم معك":"wants to team with you","أحداث فورية":"Live events","أرقام الضرر":"Damage numbers","أعد الإبحار":"Set sail again","أو زر الرسو":"or the Dock button","إتقان السفن":"Ship mastery","إعادة الضبط":"Reset","إغراق مزدوج":"Double sink","إلغاء العقد":"Cancel contract","اسم القبطان":"Captain name","الصوت العام":"Master volume","الكراكن طلع":"the kraken is out","انتسخ الكود":"Code copied","انتشل الكنز":"Raise the treasure","انحذف تقدمك":"Your progress was deleted","بداية جديدة":"Fresh start","بوتات جديدة":"New bots","تغيير الاسم":"Change name","تيم ولا لا؟":"team or not?","جزيرة الريح":"Wind Island","جزيرة القمر":"Moon Island","خبير الكنوز":"Treasure Expert","خريطة البحر":"Sea Map","خريطة ممزقة":"Torn Map","خليج العنبر":"Amber Bay","داخل اللعبة":"In-game","دخل ثابت كل":"Fixed income every","ذهب الصحراء":"Desert Gold","رأس المنارة":"Lighthouse Cape","رأس النوخذة":"Captain's Head","رسائل سريعة":"Quick messages","سطر الأوامر":"Command line","سفن أغرقتها":"Ships you sank","سفن ما تغرق":"Unsinkable ships","سفينة الشمس":"Sun Ship","سفينة الكنز":"Treasure Ship","سفينة حربية":"Man-o'-War","سوّ تيم فيه":"Make a team of","سيد الأعماق":"Lord of the Deep","شعب الفيروز":"Turquoise Reef","شوف وش بسوي":"watch what I do","صفقات تجارة":"Trade deals","صندوق اليوم":"Today's chest","صياد الغزاة":"Raider Hunter","صياد اللؤلؤ":"Pearl Hunter","صياد الوحوش":"Monster Hunter","ضرر المدافع":"Cannon damage","عقدك الحالي":"Your current contract","على الخريطة":"on the map","عمى الألوان":"Colorblind","فتح الخريطة":"Open map","قاتل الوحوش":"Monster Slayer","قبطان مستقل":"Free Captain","قطة السفينة":"Ship's Cat","قلادة مرجان":"Coral Necklace","قنينة رسالة":"Message Bottle","قوقعة الرعد":"Thunder Shell","قيمة الكنوز":"Treasure value","كشف الخريطة":"Reveal map","كنوز منتشلة":"Treasures raised","لؤلؤة سوداء":"Black Pearl","لؤلؤة وردية":"Pink Pearl","لوحة المشرف":"Admin panel","متصل بحسابك":"Linked to your account","متوسط شرائك":"Your avg. buy price","مجزرة بحرية":"Sea Massacre","مرساة صغيرة":"Small Anchor","مستوى الصوت":"Volume","مسمار نحاسي":"Brass Nail","من تيمك غرق":"from your team sank","منطقة الخطر":"Danger zone","ناقوس سفينة":"Ship's Bell","نقاط الموسم":"Season points","نوخذة محترف":"Pro Captain","يوم التأسيس":"Founding Day","أبعد منطقة":"Farthest zone","أشرعة أسرع":"Faster Sails","أفعى البحر":"Sea Serpent","أمير البحر":"Sea Prince","إنجاز جديد":"New achievement","احفظ العلم":"Save flag","ارجع بعدين":"back later","استولى على":"captured","الإنجليزية":"English","الاختصارات":"Shortcuts","انحفظ علمك":"Flag saved","انسخ الكود":"Copy code","انضم لتيمك":"joined your team","بارود أقوى":"Stronger Powder","بحر الجليد":"Ice Sea","بطل الموسم":"Season Champion","بلعب لحالي":"playing solo","تاج المحيط":"Ocean Crown","تاجر البحر":"Sea Merchant","تحتاج مكسب":"Need earnings of","تذخير سريع":"Fast Reload","تغيّر اسمك":"Name changed","تقدر تشتري":"You can buy","تيمك مليان":"Your team is full","جرّب الصوت":"Test sound","جرّب بعدين":"try later","جزر مختلفة":"Different islands","جزر مكتشفة":"Islands discovered","حد يساعدني":"someone help me","حفظ التقدم":"Saving progress","خاتم ياقوت":"Ruby Ring","خالد الموج":"Eternal Wave","خنجر مرصّع":"Jeweled Dagger","دانة كبيرة":"Big Pearl","دخل اللعبة":"joined the game","دفتر نوخذة":"Captain's Logbook","دمعة حورية":"Mermaid's Tear","رأس اللؤلؤ":"Pearl Cape","رعب البحار":"Terror of the Seas","روح الفريق":"Team Spirit","روح للمرسى":"Go to shipyard","زوم تلقائي":"Auto zoom","سجل الكنوز":"Treasure log","سفن خسرتها":"Ships lost","سفن معادية":"Enemy ships","سفينة أكبر":"A bigger ship","سمكة ذهبية":"Golden Fish","سوق اللؤلؤ":"Pearl Market","سيد المحيط":"Lord of the Ocean","شباك الجذب":"Pull Nets","صدفة بحرية":"Seashell","صنعت تمثال":"You crafted","ضرر ومتانة":"Damage & durability","عقد كهرمان":"Amber Necklace","عملة قديمة":"Old Coin","في المنطقة":"in zone","قماش أشرعة":"Sail Canvas","قوة للمركز":"power for place","كنوز ذهبية":"Golden treasures","كنوز غارقة":"Sunken treasures","كوينز هدية":"Gift coins","لا يعني لا":"no means no","لاعبين معك":"players with you","لغة اللعبة":"Game language","مرات الغرق":"Times sunk","من كل مادة":"of each material","منظار بعيد":"Long Spyglass","منظار قديم":"Old Spyglass","نجمة بحرية":"Starfish","نقل التقدم":"Transfer progress","هذي جزيرتك":"This is your island","وصلت إتقان":"Mastery reached","أسد البحر":"Sea Lion","إحصائياتك":"Your stats","ابحث غيري":"find someone else","ارجع اقوى":"I'll come back stronger","الإشعارات":"Notifications","الإعدادات":"Settings","الإنجازات":"Achievements","التطويرات":"Upgrades","التعليمات":"Tutorial","الرسوميات":"Graphics","الكلاسيكي":"Classic","انتقمت من":"Got revenge on","بدأ المطر":"It started raining","بدن مقوّى":"Reinforced Hull","بِع بضاعة":"Sell goods","جزر محتلة":"Captured islands","جمر البحر":"Sea Ember","حجر القمر":"Moonstone","حقق إنجاز":"got the achievement","حوض السفن":"Shipyard Dock","حياك الله":"welcome","خريطة كنز":"Treasure map","ريشة نورس":"Gull Feather","صار مستوى":"is now level","صندوق كنز":"Treasure chest","صياد ماهر":"Skilled Fisher","ضوء القمر":"Moonlight","عرض البحر":"Sea parade","عشان تكمل":"to continue","في الرحلة":"on the voyage","في المرسى":"at the shipyard","قلب البحر":"Heart of the Sea","قلت لك لا":"I said no","كتم الصوت":"Mute","كملت صفحة":"Page complete","كمّل صفحة":"Complete a page","كود الحفظ":"Save code","لا يا شيخ":"no way","لكل مستوى":"per level","من المرسى":"from the shipyard","نجم البحر":"Starfish","نسوي تيم؟":"team up?","هدف العقد":"Contract target","هرب السمك":"The fish got away","هلا والله":"hey there","وكنز نادر":"and a rare treasure","وين الناس":"where is everyone","أبحر شوي":"Sail a bit","ابي فلوس":"need money","استلمتها":"Claimed","اطلب تيم":"Ask for team","الانتشال":"Salvage","الاهتزاز":"Vibration","التيم فل":"team's full","القراصنة":"Pirates","الكهرمان":"Amber","الكيبورد":"Keyboard","المؤثرات":"Effects","المستكشف":"Explorer","المكافأة":"Reward","المهارات":"Skills","الموسيقى":"Music","انا تعال":"me, come","انت ضعيف":"you're weak","اوك تعال":"ok come","بطلع شوي":"leaving for a bit","بِع الكل":"Sell all","تاج غارق":"Sunken Crown","تم الحفظ":"Saved","تيم معك؟":"team with you?","جرة فخار":"Clay Jar","حفظ الآن":"Save now","زر التيم":"team button","عندي تيم":"got a team","قارب صيد":"Fishing Boat","كنز ذهبي":"Golden treasure","لؤلؤ خام":"Raw pearl","مطر كنوز":"Treasure rain","ملياردير":"Billionaire","من السجل":"from the log","والمتانة":"and durability","وين رحت؟":"where'd you go?","يجهز بعد":"ready in","يفتح شكل":"unlocks skin","يلا نروح":"let's go","ابي تيم":"need a team","ارسُ في":"Dock at","الأشكال":"Skins","الأعماق":"The Deep","الإصدار":"Version","الجائزة":"Prize","الحمولة":"Cargo","الخريطة":"Map","السفينة":"Ship","الصناعة":"Crafting","الطبّاخ":"The Cook","العاصفة":"The Storm","العربية":"Arabic","القائمة":"Menu","الكراكن":"Kraken","المدفعي":"The Gunner","المرجان":"Coral","المطلوب":"Wanted","المنارة":"Lighthouse","المنطقة":"Zone","المهمات":"Missions","النوخذة":"The Navigator","الهاوية":"The Abyss","انا انا":"me me","بالجولة":"the round","باي باي":"bye bye","بدون حد":"No cap","بعته بـ":"Sold for","بمناسبة":"for","بو ناصر":"Abu Nasser","خذه معك":"Take it with you","خلاص لا":"enough, no","ضرر أقل":"Less damage","قضى على":"took out","لا تقرب":"don't come close","لا تهجم":"don't attack","لا شكرا":"no thanks","لوياثان":"Leviathan","محاولات":"tries","مستويات":"levels","معي ناس":"got people","مليونير":"Millionaire","وركّبته":"and fitted it","يا ساتر":"good grief","أسطوري":"Legendary","احتلال":"Capture","احتليت":"You captured","اركبها":"Board it","اكتشفت":"Discovered","الأداء":"Performance","التحكم":"Controls","الجودة":"Quality","الحركة":"Movement","الحساب":"Account","الخريف":"Autumn","الخليج":"The Gulf","الربيع":"Spring","الركاب":"Crew","الشتاء":"Winter","الشعاب":"The Reefs","الصفحة":"Page","الضباط":"Officers","الطاقم":"Crew","العقود":"Contracts","المخزن":"Warehouse","المرسى":"Shipyard","الملكي":"Royal","المواد":"Materials","الموسم":"Season","انتشال":"Salvage","انتقال":"Travel","انفتحت":"unlocked","بإصبعك":"your finger","بخسارة":"at a loss","براحتك":"suit yourself","بو علي":"Abu Ali","جزيرتك":"Your island","ركّبها":"Fit it","ساعة و":"h and","سفينتك":"Your ship","سلحفاة":"Turtle","سن قرش":"Shark Tooth","فرقاطة":"Frigate","قانوني":"Legal","قراصنة":"Pirates","قريباً":"Soon","كرافيل":"Caravel","لك شكل":"a skin for you","متتالي":"in a row","مستكشف":"Explorer","مكافأة":"Reward","مهرجان":"Festival","مو انا":"not me","مُفعّل":"On","واشترِ":"and buy","يا ليل":"oh man","أعداء":"Enemies","إتقان":"Mastery","إضافة":"Add","إغلاق":"Close","إنجاز":"Achievement","استلم":"Claim","اشترِ":"Buy","اصطدت":"You caught","اصنعه":"Craft it","اكتشف":"Discover","البحر":"Sea","التقط":"Collect","التوب":"Top","الحين":"now","الدعم":"Support","الرسو":"Docking","الزوم":"Zoom","السفن":"Ships","السوق":"Market","الشفق":"Twilight","الصوت":"Sound","الصيد":"Fishing","الصيف":"Summer","الطقس":"Weather","العرض":"Display","العلم":"Flag","الغوص":"Diving","الغيص":"The Diver","القوة":"Power","اللعب":"Gameplay","اللغة":"Language","اليشم":"Jade","اليوم":"Today","انتشل":"Raise","ببغاء":"Parrot","بحّار":"Sailor","برميل":"Barrel","بعدين":"later","تبديل":"Switch","تبعيد":"Zoom out","تشغيل":"Play","تصغير":"Minimize","تصفير":"Reset","تصليح":"Repair","تعيين":"Set","تفعيل":"Enable","تقريب":"Zoom in","تكبير":"Expand","توابل":"Spices","ثلاثي":"Triple!","ثواني":"seconds","جزيرة":"Island","جمجمة":"Skull","حورية":"Mermaid","خطيرة":"is dangerous","خفيفة":"Light","خليفة":"Khalifa","دائري":"Ring","دقيقة":"minute","رباعي":"Quadruple!","ركّبه":"Fit it","زعماء":"Bosses","سفينة":"Ship","سلسلة":"Streak","سنبوك":"Sambuk","شكراً":"Thanks","صندوق":"Chest","عاصفة":"Storm","عالية":"High","غليون":"Galleon","قبطان":"Captain","كوينز":"coins","لؤلؤة":"Pearl","لابسه":"Wearing","للأبد":"forever","مبارك":"Mubarak","متانة":"Durability","مدافع":"Cannons","مرزوق":"Marzouq","مركّب":"Fitted","مستوى":"Level","مشغول":"busy","مقفلة":"Locked","ممحاة":"Eraser","منطقة":"Zone","نوخذة":"Navigator","هاكر؟":"hacker?","هامور":"Grouper","وظّفه":"Hire","يب يب":"yep yep","يحتاج":"Needs","أبحر":"Set sail","أبشر":"on it","أغرق":"sank","أيام":"days","اجمع":"Collect","احتل":"Capture","اصطد":"Catch","اضغط":"Press","الكل":"All","اوكي":"okay","باقي":"left:","بخور":"Incense","بربح":"at a profit","بغلة":"Baghlah","تخطي":"Skip","تمام":"ok","تنين":"Dragon","تيم؟":"team?","تيمك":"Your team","جاسم":"Jassim","حديد":"Iron","حطام":"Wreck","حياك":"welcome","خسرت":"you lost","راشد":"Rashid","رجعت":"Back","رخصة":"License","رشقة":"Volley","رقّه":"Upgrade it","ركاب":"Crew","ركبت":"You boarded","رياح":"Wind","زعيم":"Boss","ساعة":"hour","سالم":"Salem","سرعة":"Speed","سعيد":"Saeed","سلام":"peace","سمكة":"Fish","سوري":"sorry","شاغر":"Empty","شعري":"Poetic","شيّد":"Build","صافي":"Clear","ضباب":"Fog","طوّر":"Upgrade","ظهرت":"appeared","عقدة":"knots","عندك":"You have","عيسى":"Eisa","غانم":"Ghanem","غرقت":"sank","غروب":"Sunset","قبول":"Accept","قماش":"Cloth","كنعد":"Kanaad","لأول":"for the first time","ماشي":"fine","مافي":"nope","مرات":"times","مربع":"square","مقفل":"Locked","منجز":"Done","مواد":"Materials","نادر":"Rare","نجمة":"star","نجوم":"stars","نخلة":"Palm","هلال":"Crescent","يوسف":"Yousef","؟؟؟":"???","أحد":"Someone","أنت":"You","أول":"First","انا":"me","باي":"bye","بدأ":"started","بعت":"Sold","بوم":"Boom","تمر":"Dates","تيم":"Team","جزر":"Islands","حذف":"Delete","حفظ":"Save","حمد":"Hamad","خشب":"Wood","درع":"Shield","رفض":"Decline","سفن":"Ships","سقط":"fell","سهم":"Arrow","صيد":"Fishing","ضرر":"Damage","طيب":"okay","ظهر":"appeared","عقد":"Contract","على":"on","غوص":"Dive","غيص":"Diver","فاز":"won","فجر":"Dawn","فهد":"Fahad","قرد":"Monkey","قوة":"Power","كتم":"Mute","كفو":"nice","لون":"Color","ليل":"Night","لين":"up to","مدى":"Range","مرة":"time","مطر":"Rain","معك":"with you","نسر":"Eagle","هلا":"hi","يلا":"let's go","يوم":"Day","أو":"or","تم":"Done","خط":"Font","لا":"no","يب":"yep","،":",","ث":"s","ش":"N","ع":"E","م":"m","و":"and","كل قطعة تصنعها تتركب على سفينتك وتبان عليها، وتقدر تصنعها كلها":"Every part you craft gets fitted on your ship and shows on it, and you can craft them all","حوت عملاق يطارد سفينة قريبة منك":"A giant whale is chasing a ship near you","شوفه في سجل الكنوز من المرسى":"See it in the treasure log at the shipyard","الحوت العملاق بلع سفينة":"The giant whale swallowed the ship of","ظل ضخم تحت سفينتك":"A huge shadow under your ship","وتركّب على سفينتك":"and fitted it on your ship","مركّب على سفينتك":"Fitted on your ship","فانوس المؤخرة":"Stern Lantern","كنز نادر جديد":"New rare treasure","مدفع المقدمة":"Bow Chaser","تمثال حورية":"Mermaid Figurehead","شعار الشراع":"Sail Emblem","عش المراقبة":"Crow's Nest","كمية الشراء":"Buy amount","مدى المدافع":"Cannon range","مهمة مكتملة":"Mission complete","ابعد بسرعة":"get away fast","مهمة اليوم":"Today's mission","دروع حديد":"Iron Armor","الحوت":"Whale","صنعت":"You crafted","؟":"?","المكافآت اليومية وأرباح الغياب متوقفة لين يرجع وقت جهازك لوضعه الطبيعي":"Daily rewards and offline earnings are paused until your device time is back to normal","غرقت سفينتك! رجعت لأقرب جزيرة لك — فلوسك وسفينتك وتطويراتك محفوظة":"Your ship sank! Back to your nearest island — your coins, ship and upgrades are safe","ما عندك جزر للحين — كل جزيرة تشتريها يزيد سعر اللي بعدها":"You don't own any islands yet — each island you buy raises the price of the next","حولها منطقة آمنة، وتبدأ منها لما تدخل اللعبة":"It has a safe zone around it, and you start from it when you play","دائرة منطقة آمنة حولها — ما فيه قتال داخلها":"A safe-zone circle around it — no fighting inside","دخلت منطقة آمنة: ما فيه قتال هنا":"You entered a safe zone: no fighting here","تصير منطقة آمنة ونقطة انطلاقك":"it becomes a safe zone and your starting point","إذا غرقت ترجع لأقرب جزيرة لك":"If you sink you return to your nearest island","تبدأ منها لما تدخل اللعبة":"You start from it when you play","وقت الجهاز رجع لورا":"Device time went backwards","علمك يرفرف فوقها":"Your flag flies over it","اشترِ الجزيرة":"Buy the island","نقطة انطلاقك":"your starting point","جزيرة حرّة":"Unclaimed island","من تبويب":"from the tab","الجزيرة":"Island","اشترى":"bought","جزرك":"Your islands","صارت":"Now","ملكك":"Yours","بـ":"for","لك":"yours"};
+const AR_RUN=/[\u0600-\u06FF\u064B-\u065F]+(?:[ ،؟!:·\-—]+[\u0600-\u06FF\u064B-\u065F]+)*/g,trCache=new Map();
+function trRun(r){if(EN[r]!==undefined)return EN[r];const w=r.split(' '),out=[];let i=0;
+  while(i<w.length){let hit=null,j=w.length;for(;j>i;j--){const k=w.slice(i,j).join(' ');if(EN[k]!==undefined){hit=EN[k];break}const k2=k.replace(/[،؟!:]+$/,'');if(k2!==k&&EN[k2]!==undefined){hit=EN[k2]+k.slice(k2.length);break}}
+    if(hit!==null){out.push(hit);i=j}else{out.push(w[i]);i++}}return out.join(' ')}
+function L(s){if(window.__lang!=='en'||typeof s!=='string'||!/[\u0600-\u06FF]/.test(s))return s;let v=trCache.get(s);
+  if(v===undefined){v=s.replace(AR_RUN,trRun).replace(/،/g,',').replace(/؟/g,'?');if(trCache.size>4000)trCache.clear();trCache.set(s,v)}return v}
+(function(){const P=CanvasRenderingContext2D.prototype;for(const fn of ['fillText','strokeText']){const o=P[fn];P[fn]=function(t,...a){return o.call(this,L(String(t)),...a)}}
+  const om=P.measureText;P.measureText=function(t){return om.call(this,L(String(t)))}})();
+/* ================= pixel icon set (replaces emoji) ================= */
+const ICP={k:'#160f08',w:'#f6eedc',W:'#c9bfa8',g:'#ffcf3a',G:'#b9831a',y:'#fff1a8',r:'#e0412b',R:'#8f1f14',b:'#6cc0f0',B:'#2a6fb0',n:'#9a6430',N:'#5b3014',s:'#d5dde6',S:'#7d8796',e:'#6fe07a',E:'#2f8a3c',p:'#c08af0',P:'#6a2fa0',o:'#ff9a3a',c:'#bfefff',C:'#5fb8d8'};
+const ICONS={
+ anchor:["....kkkk....","...kssssk...","...ks..sk...","...kssssk...","....kssk....","..kkkssskk..","..kssssssk..","....kssk....","k...kssk...k","sk..kssk..ks",".sk.kssk.ks.","..sssssssk..","...kkkkkk..."],
+ scroll:["..kkkkkkkk..",".kyyyyyyyyk.",".kNkkkkkkNk.","..kwwwwwwk..","..kwkkkkwk..","..kwwwwwwk..","..kwkkkwwk..","..kwwwwwwk..","..kwkkkkwk..","..kwwwwwwk..",".kNkkkkkkNk.",".kyyyyyyyyk.","..kkkkkkkk.."],
+ menu:["............","............",".kkkkkkkkkk.",".kwwwwwwwwk.",".kkkkkkkkkk.","............",".kkkkkkkkkk.",".kwwwwwwwwk.",".kkkkkkkkkk.","............",".kkkkkkkkkk.",".kwwwwwwwwk.",".kkkkkkkkkk."],
+ chat:["............",".kkkkkkkkkk.","kwwwwwwwwwwk","kwwwwwwwwwwk","kwwkwwkwwkwk","kwwwwwwwwwwk","kwwwwwwwwwwk",".kkkwwkkkkk.","...kwk......","...kk.......","............"],
+ map:["............","kkkkkkkkkkkk","kyyykyyykyyk","kyyykyrykyyk","kyyykyyrkyyk","kybykyrykyyk","kbbbkyyykygk","kybykyyykyyk","kyyykyyykyyk","kkkkkkkkkkkk","............"],
+ plus:["............","....kkkk....","....kwwk....","....kwwk....",".kkkkwwkkkk.",".kwwwwwwwwk.",".kwwwwwwwwk.",".kkkkwwkkkk.","....kwwk....","....kwwk....","....kkkk....","............"],
+ minus:["............","............","............","............",".kkkkkkkkkk.",".kwwwwwwwwk.",".kwwwwwwwwk.",".kkkkkkkkkk.","............","............","............","............"],
+ volley:[".....y......","..y..o..y...","...yooo.y...",".y.oyyyo....","..oyywyyo.y.","yooywwwyoo..","..oyywyyo...",".y.oyyyo.y..","...kooo.....","..kkk.k..y..",".kSSSk......","kSSSSk......"],
+ wind:["............",".kkkkkkk....","kccccccck...",".kkkkkkcck..","......kcck..","kkkkkkkcck..","cccccccck...","kkkkkk......","..kkkkkkk...",".kcccccccck.","..kkkkkkkk..","............"],
+ repair:["....kkk.....","...kssk.....","..kssk......","..ksskk.....","..kssssk....","...kkssnk...","......knnk..",".......knnk.","........knnk",".........knk","..........k.","............"],
+ shield:[".kkkkkkkkkk.","kbbbbbwbbbbk","kbBBBbwbBBbk","kbBBBbwbBBbk","kwwwwwwwwwwk","kbBBBbwbBBbk","kbBBBbwbBBbk",".kbBBbwbBbk.",".kbbbbwbbbk.","..kbbbwbbk..","...kkbwkk...","....kkkk...."],
+ sword:["..........kk",".........kwk","........kwk.",".......kwk..","......kwk...",".kk..kwk....",".kgkkwk.....","..kgwk......","..kkgk......",".kNkkgk.....","kNk..kk.....","kk.........."],
+ skull:["...kkkkkk...","..kwwwwwwk..",".kwwwwwwwwk.",".kwkkwwkkwk.",".kwkkwwkkwk.",".kwwwwwwwwk.","..kwwkkwwk..","..kkwwwwkk..","...kwkwkk...","...kkkkkk...","............","............"],
+ ship:[".....k......",".....kw.....","....kwwk....","....kwwwk...","...kwwwwwk..","...kwwwwwwk.",".....k......","kkkkkkkkkkkk","knnnnnnnnnnk",".knNnNnNnnk.","..kkkkkkkk..",".bbbbbbbbbb."],
+ lock:["...kkkkkk...","..kSkkkkSk..","..kSk..kSk..","..kSk..kSk..",".kkkkkkkkkk.",".kggggggggk.",".kgGGkkGGgk.",".kggGkkGggk.",".kggggggggk.",".kGGGGGGGGk.",".kkkkkkkkkk.","............"],
+ check:["............","..........kk",".........kek","........keek","kk.....keek.","kek...keek..","keek.keek...",".keekeek....","..keeek.....","...kek......","....k.......","............"],
+ warn:[".....kk.....","....kyyk....","....kyyk....","...kyyyyk...","...kykkyk...","..kyykkyyk..","..kyykkyyk..",".kyyykkyyyk.",".kyyyyyyyyk.","kyyyykkyyyyk","kkkkkkkkkkkk","............"],
+ star:[".....kk.....",".....kgk....","....kggk....","kkkkkggkkkk.","kgggggggggk.",".kgggggggk..","..kgggggk...","..kggkggk...",".kggk.kggk..",".kgk...kgk..",".kk.....kk..","............"],
+ team:["..kk....kk..",".kook..kbbk.",".kook..kbbk.","..kk....kk..",".kkkk..kkkk.","kookkkkkbbbk","kookwwwwkbbk","kookkwwkkbbk","kook.kk.kbbk",".kk......kk.","............","............"],
+ gear:["....k..k....","...kSkkSk...",".kkSSSSSSkk.",".kSSSkkSSSk.","..kSk..kSk..","kkSk....kSkk","kkSk....kSkk","..kSk..kSk..",".kSSSkkSSSk.",".kkSSSSSSkk.","...kSkkSk...","....k..k...."],
+ trophy:["kkkkkkkkkkkk","kgkgggggGkgk","kgkgggggGkgk",".kkgggggGkk.","...kgggGk...","....kggk....",".....kk.....","....kggk....","...kkkkkk...","...kNNNNk...","...kkkkkk...","............"],
+ heart:["............",".kkk...kkk..","krrrk.krrrk.","krwrrkrrrrk.","krrrrrrrrrk.",".krrrrrrrk..","..krrrrrk...","...krrrk....","....krk.....",".....k......","............","............"],
+ bottle:["......kk....","......kNk...",".....kcck...",".....kcck...","....kccccck.","...kccyyyck.","...kcyRyyck.","...kcyRyyck.","...kcyyyyck.","...kccccccck","....kkkkkkk.","............"],
+ crown:["............","k....k....k.","kg..kgk..gk.","kgk.kgk.kgk.","kggkgggkggk.","kgggrgbgggk.","kggggggggggk","kGGGGGGGGGGk","kkkkkkkkkkkk","............","............","............"],
+ bolt:[".....kkkk...","....kyyk....","...kyyk.....","..kyyykkkk..",".kyyyyyyyk..","..kkkkyyk...","....kyyk....","...kyyk.....","..kyk.......","..kk........","............","............"],
+ coin:["............","...kkkkkk...","..kggggggk..",".kgyyggggGk.",".kgyggggGGk.",".kggggggGGk.",".kgggggGGGk.",".kggggGGGGk.","..kGGGGGGk..","...kkkkkk...","............","............"],
+ globe:["...kkkkkk...","..kbbeebbk..",".kbeeeebbbk.",".kbbeebbebk.","kbbbbbbeeebk","kbebbbbeeebk","kbeebbbbebbk","kbbeebbbbbbk",".kbbebbbbbk.",".kbbbbbeebk.","..kbbbbbbk..","...kkkkkk..."],
+ sound:["......k.....",".....kk...k.","....kwk.k..k","kkkkwwk..k.k","kwwwwwk..k.k","kwwwwwk..k.k","kkkkwwk..k.k","....kwk.k..k",".....kk...k.","......k.....","............","............"],
+ user:["....kkkk....","...kyyyyk...","...kyyyyk...","...kyyyyk...","....kkkk....","..kkbbbbkk..",".kbbbbbbbbk.",".kbbbbbbbbk.",".kbbbbbbbbk.",".kkkkkkkkkk.","............","............"],
+ bell:[".....kk.....","....kggk....","...kggggk...","..kggggggk..","..kggggggk..","..kggggggk..",".kggggggggk.","kggggggggggk","kkkkkkkkkkkk",".....kk.....","............","............"],
+ info:["...kkkkkk...","..kbbbbbbk..",".kbbbwwbbbk.",".kbbbbbbbbk.","kbbbbwwbbbbk","kbbbbwwbbbbk","kbbbbwwbbbbk","kbbbbwwbbbbk",".kbbbwwbbbk.",".kbbbbbbbbk.","..kbbbbbbk..","...kkkkkk..."],
+ pad:["............","............",".kkkkkkkkkk.","kSSSSSSSSSSk","kSkSSSSSrSSk","kkkkSSSSSSbk","kSkSSSSeSSSk","kSSSSSSSSSSk","kSSkkkkkkSSk",".kk......kk.","............","............"],
+ eye:["............","............","...kkkkkk...","..kwwwwwwk..",".kwwkbbkwwk.","kwwwkbBkwwwk","kwwwkbbkwwwk",".kwwkkkkwwk.","..kwwwwwwk..","...kkkkkk...","............","............"],
+ exit:["kkkkkkk.....","kNNNNNk.....","kNkkkkk..k..","kNk.....kek.","kNk.kkkkkeek","kNk.keeeeeek","kNk.kkkkkeek","kNk.....kek.","kNkkkkk..k..","kNNNNNk.....","kkkkkkk.....","............"],
+};
+function icURI(name){const g=ICONS[name];if(!g)return '';const h=g.length,w=Math.max(...g.map(r=>r.length));let r='';
+  g.forEach((row,y)=>{for(let x=0;x<row.length;x++){const c=ICP[row[x]];if(c)r+=`<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${c}"/>`}});
+  return 'data:image/svg+xml;utf8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" shape-rendering="crispEdges">${r}</svg>`)}
+const ICIMG={};
+(function(){let css='.pxi{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.2em;background:center/contain no-repeat;image-rendering:pixelated;flex:none}';
+  for(const k in ICONS){const u=icURI(k);css+=`.ic-${k}{background-image:url("${u}")}`;const im=new Image();im.src=u;ICIMG[k]=im}
+  const st=document.createElement('style');st.textContent=css;document.head.appendChild(st)})();
+const ic=(k,cls)=>`<i class="pxi ic-${k}${cls?' '+cls:''}" aria-hidden="true"></i>`;
+function drawIc(c,k,x,y,s){const im=ICIMG[k];if(im&&im.complete&&im.naturalWidth)c.drawImage(im,Math.round(x),Math.round(y),s,s)}
+
 (()=>{
 const $=s=>document.querySelector(s);
 const TAU=Math.PI*2, clamp=(v,a,b)=>v<a?a:v>b?b:v, rnd=Math.random;
@@ -547,10 +776,16 @@ const MISSIONS=[
 
 /* ================= state ================= */
 const KEY='sfn.io.save.v2';
-const today=()=>new Date().toLocaleDateString('en-CA');
-const fresh=()=>({name:'',mode:'ffa',team:'ffa',hull:'dinghy',hulls:['dinghy'],teamMax:0,coins:0,earned:0,earnedRun:0,owned:{dinghy:1},unl:1,upg:{},skins:['classic'],skin:'classic',auto:false,
+/* ---- trusted clock: ignores phone date/time changes ---- */
+let timeOff=null,clockBad=false,timeChecked=false;
+const nowT=()=>Date.now()+(timeOff||0);
+async function syncTime(){if(timeOff!==null)return true;try{const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),3500);
+  const r=await fetch(location.href.split('#')[0],{method:'HEAD',cache:'no-store',signal:ctl.signal});clearTimeout(tm);
+  const d=r.headers.get('Date'),t=d?Date.parse(d):NaN;if(t>1.6e12)timeOff=t-Date.now()}catch(e){}return timeOff!==null}
+const today=()=>new Date(nowT()).toLocaleDateString('en-CA');
+const fresh=()=>({myIsl:[],spawnIsl:null,name:'',mode:'ffa',team:'ffa',hull:'dinghy',hulls:['dinghy'],teamMax:0,coins:0,earned:0,earnedRun:0,owned:{dinghy:1},unl:1,upg:{},skins:['classic'],skin:'classic',auto:false,
   day:1,time:8*60,maxZone:1,kills:0,collected:0,lost:0,stars:0,codex:{},bounties:0,
-  daily:{date:'',streak:0,chest:false,missions:[],isl:[]},lastSeen:0,rateEMA:0,vol:.35,mute:false,
+  daily:{date:'',streak:0,chest:false,missions:[],isl:[]},lastSeen:0,maxSeen:0,rateEMA:0,vol:.35,mute:false,
   admin:{god:false,peace:false,freeze:false,speedX:1,magnet:false},form:'none',officers:{},pet:null,pets:[],flag:null,mats:{wood:0,iron:0,canvas:0},heads:[],head:null,mastery:{},achv:{},fish:0,dives:0,trades:0,bossKills:0,islFound:[],explored:{},tmap:null,digs:0,season:{wk:'',score:0,lastRank:99},tut:0,q:'high',cb:false,music:true,mvol:.5,captures:0,contract:null,cargo:{},built:{},lbMode:'power'});
 let S=fresh();
 try{const d=JSON.parse(localStorage.getItem(KEY)||'null');if(d){S=Object.assign(fresh(),d);S.admin=Object.assign(fresh().admin,d.admin||{});S.daily=Object.assign(fresh().daily,d.daily||{})}}catch(e){}
@@ -560,12 +795,17 @@ function migrateS(){S.mode='ffa';S.team='ffa';S.form='none';S.auto=false;if(!S.o
   let mx=0;SHIPS.forEach((t,i)=>{if(S.hulls.includes(t.id))mx=i});
   if(!S.hull||!S.hulls.includes(S.hull))S.hull=SHIPS[mx].id;
   S.owned={[S.hull]:1};S.unl=Math.max(S.unl||1,Math.min(SHIPS.length,mx+2));
-  if(S.daily&&Array.isArray(S.daily.missions))for(const m of S.daily.missions)if(m.k==='buy'){m.k='upg';m.n=Math.min(m.n,4);m.p=Math.min(m.p,m.n);m.done=m.p>=m.n}}
+  if(S.daily&&Array.isArray(S.daily.missions))for(const m of S.daily.missions)if(m.k==='buy'){m.k='upg';m.n=Math.min(m.n,4);m.p=Math.min(m.p,m.n);m.done=m.p>=m.n}
+  if(!Array.isArray(S.parts)){const mp={mermaid:['mermaid'],lion:['chaser'],eagle:['emblem'],dragon:['mermaid','chaser','emblem','armor']};S.parts=[...new Set((S.heads||[]).flatMap(h=>mp[h]||[]))]}}
 migrateS();
 let started=false;
-function save(){if(!started)return;S.lastSeen=Date.now();let j;try{j=JSON.stringify(S)}catch(e){return}try{localStorage.setItem(KEY,j)}catch(e){}if(typeof CLOUD!=='undefined')CLOUD.next=j}
+function save(){if(!started)return;const n=nowT();if(!clockBad&&timeChecked){S.lastSeen=n;S.maxSeen=Math.max(S.maxSeen||0,n)}let j;try{j=JSON.stringify(S)}catch(e){return}try{localStorage.setItem(KEY,j)}catch(e){}if(typeof CLOUD!=='undefined')CLOUD.next=j}
 const lv=id=>S.upg[id]||0;
 const avgUpg=()=>UPG.reduce((a,u)=>a+lv(u.id),0)/UPG.length;
+const UPG_STEP=5;
+function upgCap(){let m=0;SHIPS.forEach((t,i)=>{if(S.hulls&&S.hulls.includes(t.id))m=i});return m>=SHIPS.length-1?Infinity:(m+1)*UPG_STEP}
+function nextHull(){for(let i=0;i<SHIPS.length;i++)if(!S.hulls.includes(SHIPS[i].id))return i;return -1}
+const capped=()=>UPG.filter(u=>lv(u.id)>=upgCap()).length;
 const codexPages=()=>{let n=0;for(let p=0;p<5;p++){let ok=true;for(let i=0;i<6;i++)if(!S.codex[p*6+i])ok=false;if(ok)n++}return n};
 const starsMult=()=>1+.15*S.stars;
 let warBonus=1, weatherBonus=1;
@@ -613,8 +853,8 @@ function unlockAudio(){
     const b=AU.c.createBuffer(1,1,22050),s=AU.c.createBufferSource();s.buffer=b;s.connect(AU.c.destination);s.start(0)}catch(e){}}}
 ['touchend','pointerup','click','keydown'].forEach(ev=>addEventListener(ev,()=>{if(!AU.c||AU.c.state!=='running'||(AU_EL&&AU_EL.paused))unlockAudio()},{capture:true,passive:true}));
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&AU.c&&AU.c.state!=='running'){try{AU.c.resume()}catch(e){}}});
-function setVol(){if(AU.m)AU.m.gain.setTargetAtTime(S.mute?0:S.vol*.6,AU.c.currentTime,.08)}
-function env(node,now,peak,a,d){const g=AU.c.createGain();g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(Math.max(.0002,peak),now+a);g.gain.exponentialRampToValueAtTime(.0001,now+a+d);node.connect(g);g.connect(AU.m);return g}
+function setVol(){if(!AU.m)return;if(!AU.fx){AU.fx=AU.c.createGain();AU.fx.connect(AU.m)}AU.m.gain.setTargetAtTime(S.mute?0:S.vol*.6,AU.c.currentTime,.08);AU.fx.gain.setTargetAtTime(S.svol??1,AU.c.currentTime,.05)}
+function env(node,now,peak,a,d){const g=AU.c.createGain();g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(Math.max(.0002,peak),now+a);g.gain.exponentialRampToValueAtTime(.0001,now+a+d);node.connect(g);g.connect(AU.fx||AU.m);return g}
 function noise(buf,now,dur,rate){const s=AU.c.createBufferSource();s.buffer=buf;s.playbackRate.value=rate||1;s.start(now,rnd()*1);s.stop(now+dur);return s}
 function filt(type,f){const b=AU.c.createBiquadFilter();b.type=type;b.frequency.value=f;return b}
 function sfx(kind,d=0){
@@ -648,7 +888,7 @@ function viewRadius(){const f=me.ships[0],t=SHIPS[f.ti];let r=Math.max(t.w*.6+t.
   return r}
 function fleetRadius(){return viewRadius()}
 function wantPX(){const w=W||innerWidth,h=H||innerHeight,mob=w<760;if(!started||!me||!me.ships.length)return mob?2:3;
-  const v=Math.min(w,h);const auto=clamp(v*.5/viewRadius(),mob?.55:.6,mob?2.6:3.2);return clamp(Math.round(auto*zoomMul*8)/8,.5,5)}
+  const v=Math.min(w,h);const auto=S.autoZoom===false?(mob?1.75:2.25):clamp(v*.5/viewRadius(),mob?.55:.6,mob?2.6:3.2);return clamp(Math.round(auto*zoomMul*8)/8,.5,5)}
 function setZoom(z){zoomMul=clamp(zoomMul*z/PX,.4,2.5);resize();zoomMsg()}
 let zmT=0;function zoomMsg(){const t=$('#zoomLbl');t.textContent='×'+(Math.round(PX*100)/100);t.hidden=false;zmT=1.2}
 function resize(){
@@ -804,6 +1044,52 @@ function getSprite(t,sk,bil,lit,hb){
   const flagX=main.x+1,flagY=-top-main.h;
   s={c,ax,ay,flagX,flagY,top,bot,white:null};sprCache.set(key,s);return s;
 }
+// end-on views: 'f' = bow toward the viewer (sailing down/south), 'b' = stern (sailing up/north)
+function getSpriteV(t,sk,bil,lit,hb,dir){
+  const key='V'+dir+'|'+t.id+'|'+sk.id+'|'+bil+'|'+(lit?1:0)+'|'+(sk.sail==='rainbow'?hb:0);
+  let s=sprCache.get(key);if(s)return s;if(sprCache.size>700)sprCache.clear();
+  const back=dir==='b',top=Math.ceil(t.hh*.7),bot=t.hh-top,hw=Math.round(t.w*.2)+2,H=t.mh,SW=Math.max(hw*2+2,Math.round(t.w*.4));
+  const cw=SW+14,ch=top+bot+H+18,ax=Math.round(cw/2),ay=H+top+13;
+  const c=document.createElement('canvas');c.width=cw;c.height=ch;const g=c.getContext('2d');g.translate(ax,ay);
+  const hull=sk.hull,dark=shade(hull,-.35),trim=sk.trim,mastC='#3a2412',mw=t.w>40?2:1;
+  const sc=i=>sailCol(sk,i,hb),scd=i=>{const v=sc(i);return v[0]==='#'?shade(v,-.18):v};
+  const castH=t.castle?Math.max(3,Math.round(t.hh*.6)):0;
+  // stern castle seen from the bow sits behind the sails
+  if(t.castle&&!back){g.fillStyle=shade(hull,-.15);g.fillRect(-hw+2,-top-castH,hw*2-4,castH);g.fillStyle=trim;g.fillRect(-hw+1,-top-castH-1,hw*2-2,1)}
+  g.fillStyle=mastC;g.fillRect(-Math.floor(mw/2),-top-H,mw,H);
+  if(t.rig==='lateen'){
+    for(let i=t.masts-1;i>=0;i--){const off=Math.round((i-(t.masts-1)/2)*4),w=Math.max(3,Math.round(t.w*.14))+bil,h0=-top-Math.round(H*(i?.86:1)),h1=-top-2;
+      for(let y=h0;y<h1;y++){const u=(y-h0)/(h1-h0),ww=Math.max(1,Math.round(w*Math.sin(.2+u*2.6)));g.fillStyle=back?scd(i):sc(i);g.fillRect(off+(back?-ww:1),y,ww,1);
+        if(!back&&u>.25&&u<.8){g.fillStyle='rgba(255,255,255,.22)';g.fillRect(off+1,y,1,1)}}
+      g.fillStyle=mastC;line(g,off-2,h0,off+3,h1-1)}
+  }else{
+    const lvls=H>22?3:2,spec=[[.3,.31,.38],[.24,.25,.7],[.17,.17,.95]],ms=t.masts>1?[1,0]:[0];
+    for(const mi of ms){const kk=mi?.78:1,lift=mi?3:0;
+      for(let k=0;k<lvls;k++){const [wf,hf,yf]=spec[k],sw=Math.max(5,Math.round(t.w*wf*kk*1.15)),sh=Math.max(3,Math.round(H*hf*kk)),y0=Math.round(-top-H*yf)-lift,x0=-Math.floor(sw/2);
+        g.fillStyle=back?scd(mi):sc(mi);g.fillRect(x0,y0,sw,sh);g.fillRect(x0+1,y0+sh,sw-2,1+(bil&&!back?1:0));
+        if(!back){g.fillStyle='rgba(255,255,255,.2)';g.fillRect(x0+2,y0+Math.floor(sh/3),sw-4,Math.max(1,Math.floor(sh/3)));g.fillStyle='rgba(0,0,0,.1)';g.fillRect(x0,y0,1,sh);g.fillRect(x0+sw-1,y0,1,sh)}
+        else{g.fillStyle='rgba(0,0,0,.14)';g.fillRect(x0+1,y0+1,sw-2,1);g.fillStyle=mastC;g.fillRect(-Math.floor(mw/2),y0,mw,sh)}
+        if(t.rig==='tattered'){const rr=mulberry(mi*31+k*7+(back?3:0));for(let q=0;q<4;q++)g.clearRect(x0+1+Math.floor(rr()*(sw-2)),y0+Math.floor(rr()*sh),1+(rr()<.4?1:0),1)}
+        g.fillStyle=mastC;g.fillRect(x0-1,y0-1,sw+2,1)}}
+  }
+  // hull (U-shaped cross-section)
+  for(let rr=-top;rr<=bot;rr++){const f=(rr+top)/Math.max(1,t.hh),w=Math.max(2,Math.round(hw*(1-f*f*.55)));
+    g.fillStyle=rr===-top?trim:f>.72?dark:hull;g.fillRect(-w,rr,w*2,1);
+    if(rr>-top){g.fillStyle='rgba(0,0,0,.18)';g.fillRect(-w,rr,1,1);g.fillStyle='rgba(255,255,255,.12)';g.fillRect(w-1,rr,1,1)}}
+  if(t.hh>=6){const rr=-top+Math.round(t.hh*.46),w=Math.round(hw*(1-Math.pow((rr+top)/t.hh,2)*.55));g.fillStyle=trim;g.fillRect(-w,rr,w*2,1)}
+  if(back){
+    if(t.castle){g.fillStyle=trim;g.fillRect(-hw,-top-castH-1,hw*2,castH+1);g.fillStyle=hull;g.fillRect(-hw+1,-top-castH,hw*2-2,castH);
+      g.fillStyle=lit?'#ffd36a':'#2a1d14';for(let x=-hw+3;x<hw-2;x+=3)g.fillRect(x,-top-castH+1,1,Math.max(1,castH-2))}
+    if(t.hh>=5){g.fillStyle=lit?'#ffcf70':'#1b120c';for(let x=-hw+3;x<hw-3;x+=4)g.fillRect(x,-top+2,2,1)}
+    g.fillStyle=dark;g.fillRect(0,-top+1,1,top+bot);
+    g.fillStyle=lit?'#ffe27a':'#d9a84a';g.fillRect(-1,-top-castH-3,2,2);g.fillStyle=mastC;g.fillRect(0,-top-castH-1,1,1);
+  }else{
+    g.fillStyle=trim;g.fillRect(0,-top-1,1,top+bot);g.fillRect(-1,-top-2,3,2);
+    g.fillStyle=mastC;g.fillRect(0,-top-4,1,2);
+    g.fillStyle='#2b2b2b';g.fillRect(-hw+2,-top+2,1,2);g.fillRect(hw-3,-top+2,1,2);
+    if(t.cannons>2){g.fillStyle=lit?'#ffcf70':'#1b120c';g.fillRect(-hw+1,-top+2,1,1);g.fillRect(hw-2,-top+2,1,1)}
+  }
+  s={c,ax,ay,flagX:1,flagY:-top-H,top,bot,hw,white:null};sprCache.set(key,s);return s}
 function drawOcto(c,bx,by,k,side,tgt,drag=0,sc=0){
   bx=Math.round(bx);by=Math.round(by);const P='#7b34b0',L='#a463de',HL='#d9a8ff',SU='#f3d2ff',D='#4c1a74';
   const big=sc||(tgt?1.45:.7),hr=Math.round(9*big),mm=big/.7;
@@ -870,9 +1156,18 @@ const war={t:WAR_LEN};
 const FX={shake:0};
 
 function zoneAt(x,y){return Math.floor(Math.hypot(x,y)/ZONE_W)+1}
-function zoneMult(z){return Math.pow(2.4,z-1)}
+function tierIdx(){let m=0;SHIPS.forEach((t,i)=>{if(S.hulls&&S.hulls.includes(t.id))m=i});return m}
+function zoneMult(z){const h=tierIdx();return Math.pow(2.4,h)*(1+.1*Math.min(Math.max(0,(z||1)-1),h+1))}
 const refLvl=z=>2*(z-1);
-const inSafe=e=>Math.hypot(e.x,e.y)<SAFE_R;
+const ISL_SAFE=170;
+const inSafe=e=>Math.hypot(e.x,e.y)<SAFE_R||(S.myIsl&&S.myIsl.length>0&&S.myIsl.some(i=>Math.abs(e.x-i.x)<i.r+ISL_SAFE&&Math.hypot(e.x-i.x,e.y-i.y)<i.r+ISL_SAFE));
+const ownsIsl=id=>!!(S.myIsl&&S.myIsl.some(i=>i.id===id));
+function islPrice(isl){return Math.round(1200*Math.pow(2.6,zoneAt(isl.x,isl.y)-1)*(1+.3*(S.myIsl?S.myIsl.length:0)))}
+function spawnPoint(){const i=(S.myIsl||[]).find(q=>q.id===S.spawnIsl);return i?{x:i.x,y:i.y+i.r+30}:{x:0,y:118}}
+function respawnPoint(x,y){let best={x:0,y:118},bd=Math.hypot(x,y);for(const i of (S.myIsl||[])){const d=Math.hypot(x-i.x,y-i.y);if(d<bd){bd=d;best={x:i.x,y:i.y+i.r+30}}}return best}
+function buyIsland(isl){if(!isl||isl.home||ownsIsl(isl.id))return;const c=islPrice(isl);if(S.coins<c){toast('ما عندك كوينز كفاية');return}
+  S.coins-=c;S.myIsl=[...(S.myIsl||[]),{id:isl.id,x:isl.x,y:isl.y,r:isl.r,name:isl.name}];S.spawnIsl=isl.id;sfx('legend',0);
+  notify(`صارت ${isl.name} لك!`,'crown','حولها منطقة آمنة، وتبدأ منها لما تدخل اللعبة');feed(`<b>${esc(me.name)}</b> اشترى <b>${esc(isl.name)}</b>`);saveT=.2}
 
 /* captain stats */
 const cu=(c,id)=>c.bot?c.u:lv(id);
@@ -930,7 +1225,7 @@ function makeBot(near,opt){
   else top=Math.round(z-1+(rnd()-.4)*2.2);
   top=clamp(top,0,SHIPS.length-1);
   const L=refLvl(z),base=near?Math.max(avgUpg()*.9,L*.5):L;
-  const u=opt.u!==undefined?opt.u:Math.max(0,Math.round(base+(rnd()-.45)*4));
+  const u=Math.min((top+1)*UPG_STEP+(top>=SHIPS.length-1?99:0),opt.u!==undefined?opt.u:Math.max(0,Math.round(base+(rnd()-.45)*4)));
   const b=newCap({name:opt.name||pickName(),bot:true,team:'ffa'+uid,owned:{[SHIPS[top].id]:1},u,zone:z,income:0,growT:30+rnd()*45,col:`hsl(${Math.floor(rnd()*360)} 70% 60%)`,aggr:.7+rnd()*.6});
   if(opt.name)usedNames.add(opt.name);
   let x,y,tries=0;
@@ -952,6 +1247,11 @@ function teamOf(e){return e.cap?e.cap.team:e.team}
 /* ================= economy ================= */
 function shipCost(i){return SHIPS[i].cost*shipDiscount()}
 function upgCost(u){return u.base*Math.pow(u.g,lv(u.id))}
+const BUYN=[1,10,50,100,'max'];
+function upgBulk(u){const l=lv(u.id),cap=upgCap(),room=isFinite(cap)?cap-l:5000;if(room<=0)return {n:0,c:0};
+  const g=u.g,b0=u.base*Math.pow(g,l),costN=n=>b0*(Math.pow(g,n)-1)/(g-1),mode=S.buyN||1;
+  if(mode==='max'){let n=0;while(n<room&&costN(n+1)<=S.coins)n++;return {n,c:costN(Math.max(1,n))}}
+  const n=Math.min(mode,room);return {n,c:costN(n)}}
 let coinBump=0;
 function earn(n,x,y,col,fly){
   S.coins+=n;S.earned+=n;S.earnedRun+=n;S.season.score+=n;earnLog.push([time,n]);progress('earn',n);
@@ -963,29 +1263,33 @@ function buyShip(i){const t=SHIPS[i];
   if(S.hulls.includes(t.id)){if(S.hull!==t.id){setHull(t.id);toast(`ركبت ${t.name}`);sfx('coin')}return true}
   if(i>=S.unl)return false;const c=shipCost(i);if(S.coins<c)return false;
   S.coins-=c;S.hulls.push(t.id);if(i+1>=S.unl&&S.unl<SHIPS.length)S.unl=Math.min(SHIPS.length,i+2);
-  setHull(t.id);if(me.ships[0])texts.push({x:me.x,y:me.y-30,t:'⚓ '+t.name,life:1.6,col:'#bff28a'});
+  setHull(t.id);if(me.ships[0])texts.push({x:me.x,y:me.y-30,t:t.name,life:1.6,col:'#bff28a'});
   if(t.legend){toast(`سفينة أسطورية! ${t.name}: ${t.lname}`);sfx('legend',0)}else{toast(`سفينتك الجديدة: ${t.name}${SHIPS[i+1]?' · انفتحت '+SHIPS[i+1].name+' في المرسى':''}`);sfx('chime')}
   return true}
 function autoBuy(){}
 
 /* ================= missions / daily / codex ================= */
+function missTxt(m){const d=MISSIONS.find(q=>q.k===m.k);return d?d.txt(m.n):''}
+function showMissions(){const ms=(S.daily.missions||[]).filter(m=>!m.done);ms.forEach((m,i)=>setTimeout(()=>notify(missTxt(m),'scroll',`مهمة اليوم · ${fmt(m.p)} / ${fmt(m.n)} · الجائزة ${fmt(m.r)}`),900+i*1300))}
 function genMissions(){
   const z=S.maxZone,pool=[...MISSIONS].sort(()=>rnd()-.5).slice(0,3);
   S.daily.missions=pool.map((m,i)=>({k:m.k,n:m.n(z),p:0,r:Math.round(400*zoneMult(z)*(i+1)*(1+.3*S.stars)),done:false,cl:false}));S.daily.isl=[];
 }
 function progress(k,a){
   if(!S.daily||!S.daily.missions)return;
-  for(const m of S.daily.missions){if(m.k!==k||m.done)continue;m.p+=a;if(m.p>=m.n){m.p=m.n;m.done=true;toast('اكتملت مهمة! استلم مكافأتك من القائمة');sfx('chime')}}
+  for(const m of S.daily.missions){if(m.k!==k||m.done)continue;const before=m.p;m.p+=a;const mt=missTxt(m);
+    if(m.p>=m.n){m.p=m.n;m.done=true;m.cl=true;earn(m.r);notify('مهمة مكتملة: '+mt,'scroll','+'+fmt(m.r)+' كوينز');sfx('chime')}
+    else if(before<m.n/2&&m.p>=m.n/2)notify(mt,'scroll',`${fmt(m.p)} / ${fmt(m.n)}`)}
 }
 function rollCodex(kind,x,y,force){
-  const ch=[0,0,.008,.035,.22][kind]||0;
+  const ch=[0,0,.0015,.006,.05][kind]||0;
   if(!force&&rnd()>ch*(1+lv('radar')*.05)*(S.pet==='cat'?1.25:1)*(1+.1*bl('light')))return;
   const w=[50,25,13,8,4].map((v,i)=>v*(1+lv('radar')*.04*i));let tot=w.reduce((a,b)=>a+b),r=rnd()*tot,tier=0;while(r>w[tier]){r-=w[tier];tier++}
   const idx=tier*6+Math.floor(rnd()*6),isNew=!S.codex[idx];
   S.codex[idx]=(S.codex[idx]||0)+1;
   const bonus=120*Math.pow(tier+1,2.4)*zoneMult(zoneAt(x,y))*globalMult();
   earn(bonus,x,y-10,TIER_COL[tier]);
-  if(isNew){sfx('chime');toast(`كنز نادر جديد في السجل: ${ITEMS[idx]}`);
+  if(isNew){sfx('chime');notify(`كنز نادر جديد: ${ITEMS[idx]}`,'crown','شوفه في سجل الكنوز من المرسى');
     const p=Math.floor(idx/6);let full=true;for(let i=0;i<6;i++)if(!S.codex[p*6+i])full=false;
     if(full){const sk=SKINS.find(s=>s.page===p);if(sk&&!S.skins.includes(sk.id))S.skins.push(sk.id);toast(`كملت صفحة ${p+1} من السجل! انفتح شكل "${sk.name}" و+10% على كل الأرباح`)}}
 }
@@ -993,15 +1297,18 @@ function starSkins(){for(const s of SKINS)if(s.stars&&S.stars>=s.stars&&!S.skins
 
 /* ================= toast & feed ================= */
 let toastT=0;
-function toast(m){const t=$('#toast');t.textContent=m;t.classList.remove('off');toastT=3.4}
+function notify(msg,icon,sub){const box=$('#notes');for(const n of [...box.children])if(n.dataset.m===msg)n.remove();
+  const d=document.createElement('div');d.className='note-b';d.dataset.m=msg;d.innerHTML=(icon?ic(icon):ic('info'))+`<div>${esc(msg)}${sub?`<small>${esc(sub)}</small>`:''}</div>`;box.prepend(d);
+  while(box.children.length>3)box.lastChild.remove();setTimeout(()=>{d.classList.add('out');setTimeout(()=>d.remove(),400)},4000)}
+function toast(m,icon){notify(m,icon)}
 function feed(html){const f=$('#feed'),d=document.createElement('div');d.innerHTML=html;f.prepend(d);while(f.children.length>5)f.lastChild.remove();setTimeout(()=>{d.style.opacity=0;setTimeout(()=>d.remove(),700)},7000)}
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 
 /* ================= input ================= */
 function codeKey(e){const c=e.code||'';if(/^Key[A-Z]$/.test(c))return c.slice(3).toLowerCase();if(/^Digit\d$/.test(c))return c.slice(5);if(/^Arrow/.test(c))return c.toLowerCase();if(c==='Equal')return '=';if(c==='Minus')return '-';return (e.key||'').toLowerCase()}
-const anyModal=()=>['#book','#admin','#mapModal','#notice','#mg'].some(s=>!$(s).hidden)||!$('#cmd').hidden;
+const anyModal=()=>['#book','#admin','#mapModal','#notice','#mg','#settings'].some(s=>!$(s).hidden)||!$('#cmd').hidden;
 addEventListener('keydown',e=>{
-  if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'){if(e.key==='Escape')closeAll();return}
+  if(e.target.tagName==='INPUT'||e.target.tagName==='SELECT'||e.target.tagName==='TEXTAREA'){if(e.key==='Escape')closeAll();return}
   if(!started)return;
   if(MG.on){if(e.key===' '||e.key==='Enter'){e.preventDefault();mgHit()}return}
   if(e.key==='/'||e.code==='Slash'){e.preventDefault();openCmd();return}
@@ -1068,7 +1375,7 @@ function update(dt){
   nearIsland=null;
   if(started){for(const s of nearList){if(Math.hypot(me.x-s.x,me.y-s.y)<s.r+55)nearIsland=s}
     const dk=$('#dock');if(nearIsland&&!anyModal()){if(dk.hidden||dk.dataset.id!==nearIsland.id){dk.hidden=false;dk.dataset.id=nearIsland.id;$('#dockName').textContent=nearIsland.name}}else if(!dk.hidden)dk.hidden=true;
-    const sf=inSafe(me);if(sf!==wasSafe){wasSafe=sf;toast(sf?'دخلت المنطقة الآمنة حول الميناء: ما فيه قتال هنا':'خرجت من المنطقة الآمنة — مدافعك تطلق تلقائي على أي عدو في مداها')}
+    const sf=inSafe(me);if(sf!==wasSafe){wasSafe=sf;toast(sf?'دخلت منطقة آمنة: ما فيه قتال هنا':'خرجت من المنطقة الآمنة — مدافعك تطلق تلقائي على أي عدو في مداها')}
     const z=zoneAt(me.x,me.y);if(z>S.maxZone){S.maxZone=z;toast(`وصلت المنطقة ${z} — ${zoneName(z)}! الكنوز هنا أغلى`)}}
   // bots
   for(const b of caps){if(!b.bot||!b.alive)continue;botThink(b,dt)}
@@ -1143,8 +1450,8 @@ function botThink(b,dt){
     b.ships.forEach((s,k)=>{if(!k){s.x=b.x;s.y=b.y}else{const o=sl[k-1];s.x=b.x+o.x*ch-o.y*sh;s.y=b.y+(o.x*sh+o.y*ch)*.62}s.face=b.face;s.vx=0;s.vy=0})}
   // growth
   b.growT-=dt;if(b.growT<=0){b.growT=30+rnd()*45;let top=0;SHIPS.forEach((t,i)=>{if(b.owned[t.id])top=i});
-    if(rnd()<.55)b.u++;const capT=clamp(zoneAt(b.x,b.y)+1,1,SHIPS.length-1);
-    if(top<capT&&rnd()<.16){b.owned={[SHIPS[top+1].id]:1};if(started&&isMate(b)&&rnd()<.5)chatLine(b,'كبّرت سفينتي 😎')}rebuildFleet(b)}
+    const ucap=(top+1)*UPG_STEP;if(b.u<ucap&&rnd()<.55)b.u++;const capT=clamp(zoneAt(b.x,b.y)+1,1,SHIPS.length-1);
+    if(top<capT&&(b.u>=ucap?rnd()<.4:rnd()<.1)){b.owned={[SHIPS[top+1].id]:1};if(started&&isMate(b)&&rnd()<.5)chatLine(b,'كبّرت سفينتي 😎')}rebuildFleet(b)}
 }
 function botChurn(){
   const bots=caps.filter(c=>c.bot);
@@ -1189,7 +1496,7 @@ function makeCloud(x,y){const w=80+rnd()*120,h=w*.45,c=document.createElement('c
 function updateTreasures(dt){
   if(!started)return;
   const f=me.ships[0];if(!f)return;
-  const rad=(S.admin.magnet?420:mag(lv('magnet')))*(S.pet==='parrot'?1.2:1),r2=lv('radar'),want=45+Math.min(r2*3,70)+(W8.type==='storm'?15:0);
+  const rad=(S.admin.magnet?420:mag(lv('magnet')))*(S.pet==='parrot'?1.2:1)*(hasP('lantern')?1.15:1),r2=lv('radar'),want=45+Math.min(r2*3,70)+(W8.type==='storm'?15:0);
   let guard=0;
   while(treasures.length<want&&guard++<20){
     const a=rnd()*TAU,d=120+rnd()*600,x=f.x+Math.cos(a)*d,y=f.y+Math.sin(a)*d;
@@ -1211,7 +1518,7 @@ function updateTreasures(dt){
       const z=zoneAt(t.x,t.y),v=TK[t.k].v*zoneMult(z)*mult;earn(v,t.x,t.y-6,t.k>=3?'#ffe066':'#fff4c8',t.k>=3?4:2);
       S.collected++;sfx('coin');
       if(t.k===2)progress('pearl',1);if(t.k===3)progress('chest',1);if(t.k===4)progress('gold',1);
-      rollCodex(t.k,t.x,t.y);tmapDrop(t.k);
+      rollCodex(t.k,t.x,t.y);tmapDrop(t.k,t.x,t.y);
       treasures.splice(i,1);
       for(let j=0;j<5;j++)parts.push({x:t.x,y:t.y,vx:(rnd()-.5)*40,vy:-rnd()*40,life:.5,max:.5,c:t.k===4?'#ffe066':'#ffffff'});
       continue;
@@ -1319,7 +1626,7 @@ function hurt(e,dmg,src){
   if(e.dead)return;
   if(e.cap===me&&(S.admin.god||(e.prot&&e.prot>time)))return;
   dmg*=dmgTakenMul(e);e.hp-=dmg;e.flash=.08;e.last=src;dmgNum(e,dmg,src);
-  if(e.cap===me&&me.ships[0]===e)FX.shake=Math.min(4,FX.shake+1.2);
+  if(e.cap===me&&me.ships[0]===e){FX.shake=Math.min(4,FX.shake+1.2);hitFx(src,dmg)}
   if(e.hp<=0)kill(e,src);
 }
 function aimPt(o,s){if(!o.seg)return o;let b=o.seg[0],bd=1e9;for(let i=0;i<o.seg.length;i+=2){const q=o.seg[i],d=Math.hypot(q.x-s.x,q.y-s.y);if(d<bd){bd=d;b=q}}return b}
@@ -1341,7 +1648,33 @@ function updateBalls(dt){
     else{parts.push({x:b.tx,y:b.ty,vx:0,vy:0,life:.6,max:.6,c:'splash'});for(let j=0;j<4;j++)parts.push({x:b.tx,y:b.ty,vx:(rnd()-.5)*20,vy:-20-rnd()*25,life:.45,max:.45,c:'#e8f6ff'});sfx('splash',d)}
   }
 }
-function updateHazards(dt){
+let whaleT=45;
+function whaleTick(dt){if(!started||!me.ships[0])return;whaleT-=dt;if(whaleT>0)return;whaleT=65+rnd()*75;
+  const f=me.ships[0],z=zoneAt(f.x,f.y);if(z<2||inSafe(f)||hz.some(h=>h.k==='whale')||S.admin.peace)return;
+  const c=entsCache.filter(o=>!o.dead&&!o.boss&&!o.seg&&!inSafe(o)&&Math.hypot(o.x-f.x,o.y-f.y)<650);if(!c.length)return;
+  const tg=rnd()<.35?f:pick(c);spawnWhale(tg)}
+function spawnWhale(tg){hz.push({k:'whale',e:tg,x:tg.x+(rnd()-.5)*50,y:tg.y+(rnd()-.5)*30,t:5.2,T:5.2,bit:false,seed:rnd()*9});
+  if(tg.cap===me)notify('ظل ضخم تحت سفينتك… ابعد بسرعة!','warn');else if(Math.hypot(tg.x-me.x,tg.y-me.y)<500)notify('حوت عملاق يطارد سفينة قريبة منك','warn');sfx('horn')}
+function whaleUpd(h,dt){const o=h.e;
+  if(!h.bit){if(o&&!o.dead&&h.t>1.5){const dx=o.x-h.x,dy=o.y-h.y,d=Math.hypot(dx,dy)||1,sp=Math.min(d/dt,62);h.x+=dx/d*sp*dt;h.y+=dy/d*sp*dt}
+    if(h.t<=1.4){h.bit=true;FX.shake=Math.min(6,FX.shake+4);sfx('sink',Math.hypot(h.x-me.x,h.y-me.y));
+      for(let j=0;j<30;j++){const a=rnd()*TAU,s=30+rnd()*80;parts.push({x:h.x+Math.cos(a)*20,y:h.y,vx:Math.cos(a)*s,vy:-rnd()*90,life:1,max:1,c:j%3?'#ffffff':'#bfefff'})}
+      for(const q of entsCache){if(q.dead||q.boss||q.seg||inSafe(q))continue;if(Math.hypot(q.x-h.x,(q.y-h.y)*1.3)<40){
+        if(q.cap===me&&S.admin.god)continue;const nm=q.cap?q.cap.name:null;hurt(q,q.maxhp*3,null);if(q.dead&&nm)feed(`${ic('warn')} الحوت العملاق بلع سفينة <b>${esc(nm)}</b>!`)}}}}}
+function drawWhaleShadow(c,h){const x=h.x-camX,y=h.y-camY;if(x<-80||y<-80||x>LW+80||y>LH+80)return;const el=h.T-h.t;if(h.bit)return;
+  const k=Math.min(1,el/3.4),r=18+k*30;c.fillStyle=`rgba(4,14,30,${(.18+.4*k).toFixed(3)})`;c.beginPath();c.ellipse(x,y,r*1.5,r*.6,0,0,TAU);c.fill();
+  c.strokeStyle=`rgba(255,255,255,${(.25+.3*k*Math.abs(Math.sin(time*6))).toFixed(3)})`;c.beginPath();c.ellipse(x,y,r*1.5+4,r*.6+2,0,0,TAU);c.stroke()}
+function drawWhale(c,h){if(!h.bit)return;const x=Math.round(h.x-camX),y=Math.round(h.y-camY);if(x<-90||y<-140||x>LW+90||y>LH+90)return;
+  const u=1-h.t/1.4,rise=Math.sin(Math.min(1,u)*Math.PI),H=Math.round(78*rise),W=26;if(H<2)return;
+  c.fillStyle='rgba(255,255,255,.55)';c.beginPath();c.ellipse(x,y,W+14,9,0,0,TAU);c.fill();
+  for(let yy=0;yy<H;yy++){const f=yy/78,hw=Math.round(W*Math.sqrt(Math.max(0,1-Math.pow(f*1.05-.1,2)))*(1-f*.25));
+    c.fillStyle=yy%6===0?'#2b4058':'#3a5574';c.fillRect(x-hw,y-yy,hw*2,1);
+    c.fillStyle=yy%3===0?'#d8dfe6':'#b9c4cf';c.fillRect(x-Math.round(hw*.45),y-yy,Math.round(hw*.9),1)}
+  const mt=y-H;c.fillStyle='#120a14';c.fillRect(x-Math.round(W*.6),mt,Math.round(W*1.2),5);c.fillStyle='#c4412b';c.fillRect(x-Math.round(W*.45),mt+2,Math.round(W*.9),2);
+  c.fillStyle='#f4f4f4';for(let k=-3;k<=3;k++)c.fillRect(x+k*4,mt+4,1,2);
+  c.fillStyle='#0b1220';c.fillRect(x-W+4,mt+14,3,3);c.fillRect(x+W-7,mt+14,3,3);
+  c.fillStyle='rgba(255,255,255,.75)';for(let k=0;k<10;k++){const a=k/10*TAU+time*3;c.fillRect(Math.round(x+Math.cos(a)*(W+8)),Math.round(y-2-Math.abs(Math.sin(a*2))*10*rise),2,2)}}
+function updateHazards(dt){whaleTick(dt);
   for(let i=hz.length-1;i>=0;i--){const h=hz[i];h.t-=dt;
     if(h.k==='whirl'){for(const o of entsCache){if(!foes(h.team,teamOf(o))||o.dead)continue;const dx=h.x-o.x,dy=h.y-o.y,d=Math.hypot(dx,dy);if(d<h.r&&d>1){o.x+=dx/d*40*dt;o.y+=dy/d*40*dt;o.root=.2;hurt(o,h.dps*dt,h.src)}}}
     else if(h.k==='octo'){const o=h.e,el=h.T-h.t;
@@ -1353,6 +1686,7 @@ function updateHazards(dt){
     else if(h.k==='beam'){const s=h.e;if(s.dead){h.t=0}else{const cx=Math.cos(h.a),sy=Math.sin(h.a);
       for(const o of entsCache){if(!foes(h.team,teamOf(o))||o.dead)continue;const rx=o.x-s.x,ry=o.y-s.y,along=rx*cx+ry*sy,perp=Math.abs(-rx*sy+ry*cx);if(along>0&&along<h.len&&perp<(o.br||SHIPS[o.ti].w*.4)+6)hurt(o,h.dps*dt,h.src)}
       if(rnd()<.8)parts.push({x:s.x+cx*h.len*rnd(),y:s.y+sy*h.len*rnd()-6,vx:0,vy:-15,life:.4,max:.4,c:'fire'})}}
+    else if(h.k==='whale')whaleUpd(h,dt);
     if(h.t<=0)hz.splice(i,1);
   }
 }
@@ -1372,15 +1706,16 @@ function kill(e,src){
   const wasFlag=c.ships[0]===e;
   c.ships.splice(c.ships.indexOf(e),1);
   if(c!==me)c.owned[t.id]=Math.max(0,(c.owned[t.id]||0)-1);
-  if(byMe){S.kills++;progress('sink',1);earn(Math.max(20,t.cost*.15)*(1+.05*c.u)*globalMult(),e.x,e.y-20,'#ffb347',3)}
-  if(c===me){S.lost++;texts.push({x:e.x,y:e.y-20,t:'غرقت '+t.name,life:1.6,col:'#ff8a7a'});sideDirty=true;if(src&&src.bot){src.u++;if(rnd()<.45)setTimeout(()=>{if(src.alive)chatLine(src,pick(T_GG))},900+rnd()*1500)}}
+  if(byMe)onMyKill(c,e);
+  if(byMe){S.kills++;progress('sink',1);earn(Math.max(15,Math.min(t.cost*.15,50*zoneMult(1)))*(1+.04*c.u)*globalMult(),e.x,e.y-20,'#ffb347',3)}
+  if(c===me){streak=0;if(src&&src.bot&&src.name){revengeName=src.name;setTimeout(()=>{if(revengeName===src.name)feed(`${ic('sword')} <b>${esc(src.name)}</b> أغرقك — انتقم منه وخذ مكافأة مضاعفة`)},1200)}S.lost++;texts.push({x:e.x,y:e.y-20,t:'غرقت '+t.name,life:1.6,col:'#ff8a7a'});sideDirty=true;if(src&&src.bot){src.u++;if(rnd()<.45)setTimeout(()=>{if(src.alive)chatLine(src,pick(T_GG))},900+rnd()*1500)}}
   if(wasFlag&&byMe&&S.contract&&S.contract.name===c.name)contractDone(c);
   if(wasFlag&&c===wantedCap&&byMe){const bnt=bountyOf(c);earn(bnt,e.x,e.y-34,'#ffcf3a',4);S.bounties++;toast(`أغرقت المطلوب ${c.name}! المكافأة ${fmt(bnt)}`);feed(`<b>${esc(me.name)}</b> قبض على المطلوب <b>${esc(c.name)}</b>`);sfx('chime')}
-  else if(src&&src.name&&(byMe||c===me||src===wantedCap||isMate(src)||isMate(c)||time-killFeedT>3.5)){killFeedT=time;feed(`<span class="ki"><b>${esc(src.name)}</b> ⚔ أغرق <b>${esc(c.name)}</b></span>`)}
-  rebuildFleet(c);
+  else if(src&&src.name&&(byMe||c===me||src===wantedCap||isMate(src)||isMate(c)||(S.killfeed!==false&&time-killFeedT>3.5))){killFeedT=time;feed(`<span class="ki"><b>${esc(src.name)}</b> ${ic('sword')} أغرق <b>${esc(c.name)}</b></span>`)}
+  if(c!==me)rebuildFleet(c);
   if(!c.ships.length){
-    if(c===me){S.owned={[S.hull]:1};me.owned=S.owned;S.cargo={};rebuildFleet(me);const f=me.ships[0];f.x=0;f.y=118;f.vx=f.vy=0;me.x=0;me.y=118;camCX=0;camCY=118;f.prot=time+4;
-      toast('غرقت سفينتك! رجعت للميناء — فلوسك وسفينتك وتطويراتك محفوظة');FX.shake=0}
+    if(c===me){balls=balls.filter(b=>b.team==='ffa_me');hz=hz.filter(h=>!(h.e&&h.e.cap===me));S.owned={[S.hull]:1};me.owned=S.owned;S.cargo={};rebuildFleet(me);const rp=respawnPoint(e.x,e.y),f=me.ships[0];f.x=rp.x;f.y=rp.y;f.vx=f.vy=0;me.x=rp.x;me.y=rp.y;camCX=rp.x;camCY=rp.y;f.prot=time+4;
+      toast('غرقت سفينتك! رجعت لأقرب جزيرة لك — فلوسك وسفينتك وتطويراتك محفوظة');FX.shake=0}
     else{const mt=isMate(c);c.alive=false;caps=caps.filter(x=>x!==c);grp.delete(c.team);if(mt&&!mates().length)grp.delete(me.team);
       let top=0;SHIPS.forEach((q,i)=>{if(q.id===t.id)top=i});
       respawnQ.push({name:c.name,ti:Math.max(0,top-1-Math.floor(rnd()*2)),u:Math.max(0,c.u-1-Math.floor(rnd()*3)),z:Math.max(1,(c.zone||1)-Math.floor(rnd()*2)),t:time+10+rnd()*25});
@@ -1401,11 +1736,13 @@ function drawShip(c,e,sk,flag,flagTeam,sinkT){
   const t=SHIPS[e.ti],sx=Math.round(e.x-camX),sy=Math.round(e.y-camY),B=e.big||1;
   if(sx<-70*B||sy<-80*B||sx>LW+70*B||sy>LH+40*B)return;
   const v=Math.hypot(e.vx||0,e.vy||0),bil=v>60?2:v>15?1:0,hb=Math.floor(time*2)%12;
-  const s=getSprite(t,sk,bil,lit,hb);
+  let vd=e.vd||'s';if(v>14&&!sinkT){const axv=Math.abs(e.vx||0),ayv=Math.abs(e.vy||0);if(ayv>axv*1.5)vd=e.vy>0?'f':'b';else if(axv>ayv)vd='s'}
+  if(sinkT||e.seg)vd='s';e.vd=vd;const side=vd==='s';
+  const s=side?getSprite(t,sk,bil,lit,hb):getSpriteV(t,sk,bil,lit,hb,vd),HW=side?t.w/2:s.hw;
   if(sk.ghost)c.globalAlpha=.5+.15*Math.sin(time*3+e.seed);
   const bob=Math.round(Math.sin(time*2.2+e.seed)*.9),tilt=Math.sin(time*1.7+e.seed)*.035+(sinkT?sinkT*.5*(e.fx<0?-1:1):0);
   if(!sinkT){
-    c.fillStyle='rgba(0,18,44,.28)';c.beginPath();c.ellipse(sx+2*B,sy+2*B,t.w*.58*B,Math.max(2,t.hh*.42*B),0,0,TAU);c.fill();
+    c.fillStyle='rgba(0,18,44,.28)';c.beginPath();c.ellipse(sx+2*B,sy+2*B,(side?t.w*.58:HW*1.3)*B,Math.max(2,(side?t.hh*.42:t.hh*.6)*B),0,0,TAU);c.fill();
     if(B>1){const g=c.createRadialGradient(sx,sy-t.hh*B,4,sx,sy-t.hh*B,t.w*B);g.addColorStop(0,'rgba(127,255,224,.28)');g.addColorStop(1,'rgba(127,255,224,0)');c.fillStyle=g;c.fillRect(sx-t.w*B,sy-t.hh*B-t.w*B,t.w*B*2,t.w*B*2)}
     if(dayLight>.25){const h=S.time/60,dir=clamp((h-12.5)/6,-1,1),L=t.mh*.7*(.5+Math.abs(dir)),ox=dir*L,oy=L*.35;
       c.fillStyle=`rgba(0,18,44,${(.13*dayLight).toFixed(3)})`;c.beginPath();c.moveTo(sx-t.w*.32,sy+1);c.lineTo(sx+t.w*.32,sy+1);c.lineTo(sx+t.w*.18+ox,sy+1+oy);c.lineTo(sx-t.w*.18+ox,sy+1+oy);c.closePath();c.fill()}
@@ -1413,12 +1750,14 @@ function drawShip(c,e,sk,flag,flagTeam,sinkT){
   }
   c.save();
   if(sinkT){c.beginPath();c.rect(sx-80,sy-120,160,121);c.clip()}
-  c.translate(sx,sy+bob+(sinkT?sinkT*(t.mh+t.hh+6):0));c.rotate(tilt);c.scale((Math.abs(e.fx)<.12?.12*Math.sign(e.fx||1):e.fx)*B,B);
+  c.translate(sx,sy+bob+(sinkT?sinkT*(t.mh+t.hh+6):0));c.rotate(side?tilt:tilt*.5);c.scale((side?(Math.abs(e.fx)<.12?.12*Math.sign(e.fx||1):e.fx):1)*B,B);
   c.drawImage(e.flash>0?whiteOf(s):s.c,-s.ax,-s.ay);
+  if(e.cap===me&&me&&me.ships[0]===e&&!sinkT&&e.flash<=0)drawParts(c,t,s,side,vd,lit);
   drawFlag(c,s.flagX,s.flagY,flag,flagTeam);
-  if(e.cap===me&&S.pet&&me.ships[0]===e)drawPet(c,s,t);
-  if(!sinkT){const wr=waterStr;c.fillStyle=wr;c.fillRect(-t.w/2-2,1,t.w+4,s.bot+2);
-    c.fillStyle='rgba(255,255,255,.6)';for(let x=-t.w/2;x<t.w/2;x+=2)if(Math.sin(time*5+x*.7+e.seed)>-.3)c.fillRect(x,0+(Math.sin(time*3+x)>.6?1:0),2,1)}
+  if(side&&e.cap===me&&S.pet&&me.ships[0]===e)drawPet(c,s,t);
+  if(!sinkT){const wr=waterStr;c.fillStyle=wr;c.fillRect(-HW-2,1,HW*2+4,s.bot+2);
+    if(!side&&v>14){c.fillStyle='rgba(255,255,255,.55)';const fl=Math.round(Math.sin(time*9)*1);if(vd==='f'){c.fillRect(-HW-3+fl,0,2,1);c.fillRect(HW+1-fl,0,2,1);c.fillRect(-1,1,3,1)}else{c.fillRect(-2,s.bot+2,5,1);c.fillRect(-1,s.bot+4,3,1)}}
+    c.fillStyle='rgba(255,255,255,.6)';for(let x=-HW;x<HW;x+=2)if(Math.sin(time*5+x*.7+e.seed)>-.3)c.fillRect(x,0+(Math.sin(time*3+x)>.6?1:0),2,1)}
   c.restore();c.globalAlpha=1;
 }
 let waterStr='rgba(46,132,192,.7)';
@@ -1429,7 +1768,7 @@ function render(dt){
   if(f){tx=f.x;ty=f.y}else{const ab=caps.filter(q=>q.bot&&q.alive&&q.ships.length).sort((a,b)=>Math.hypot(a.x,a.y)-Math.hypot(b.x,b.y))[0];if(ab){tx=ab.x;ty=ab.y}else{tx=0;ty=110}}
   camCX+=(tx-camCX)*Math.min(1,dt*(f?6:1));camCY+=(ty-camCY)*Math.min(1,dt*(f?6:1));
   if(Math.hypot(tx-camCX,ty-camCY)>600){camCX=tx;camCY=ty}
-  const shx=FX.shake?(rnd()-.5)*FX.shake:0,shy=FX.shake?(rnd()-.5)*FX.shake:0;
+  const shk=S.shake===false?0:FX.shake,shx=shk?(rnd()-.5)*shk:0,shy=shk?(rnd()-.5)*shk:0;
   camX=Math.round(camCX-((sideW+W)/2)/PX+shx);camY=Math.round(camCY-H/2/PX+shy);
   const c=lc,z=zoneAt(camCX,camCY),w=tintWater(waterRGB(z),z);
   const h=S.time/60;dayLight=(Math.cos((h-13)/24*TAU)+1)/2;dark=Math.max(0,.5-dayLight)*.95+W8.k*(W8.type==='storm'?.25:W8.type==='rain'?.08:0);lit=dark>.18;
@@ -1450,13 +1789,18 @@ function render(dt){
   // safe harbour ring
   const hx=-camX,hy=-camY;
   if(Math.hypot(hx-LW/2,hy-LH/2)<SAFE_R+Math.max(LW,LH)){c.strokeStyle='rgba(255,255,255,.14)';c.setLineDash([3,5]);c.beginPath();c.arc(hx,hy,SAFE_R,0,TAU);c.stroke();c.setLineDash([])}
+  for(const i of (S.myIsl||[])){const x=i.x-camX,y=i.y-camY,rr=i.r+ISL_SAFE;if(x<-rr||y<-rr||x>LW+rr||y>LH+rr)continue;
+    c.fillStyle='rgba(255,215,90,.05)';c.beginPath();c.arc(x,y,rr,0,TAU);c.fill();c.strokeStyle='rgba(255,215,90,.35)';c.setLineDash([4,5]);c.beginPath();c.arc(x,y,rr,0,TAU);c.stroke();c.setLineDash([])}
   for(const s of nearList){const spr=islandSprite(s);c.drawImage(spr,Math.round(s.x-s.R-camX),Math.round(s.y-s.R-camY))}
+  for(const i of (S.myIsl||[])){const x=Math.round(i.x-camX+i.r*.15),y=Math.round(i.y-camY-i.r*.45);if(x<-30||y<-40||x>LW+30||y>LH+30)continue;
+    c.fillStyle='#3d2410';c.fillRect(x,y-18,1,19);drawFlag(c,x+1,y-18,S.flag?'custom':'ffa','#ffd84a')}
   extDrawUnder(c);
   // water particles
   for(const p of parts){if(p.c!=='wake'&&p.c!=='splash')continue;const a=p.life/p.max,x=Math.round(p.x-camX),y=Math.round(p.y-camY);
     if(p.c==='wake'){c.fillStyle=`rgba(255,255,255,${(a*.55).toFixed(2)})`;c.fillRect(x,y,2,1)}
     else{const r=Math.round((1-a)*7)+1;c.strokeStyle=`rgba(255,255,255,${(a*.6).toFixed(2)})`;c.beginPath();c.ellipse(x,y,r,r*.45,0,0,TAU);c.stroke()}}
   // hazards under
+  for(const hzd of hz)if(hzd.k==='whale')drawWhaleShadow(c,hzd);
   for(const hzd of hz){if(hzd.k!=='whirl')continue;const x=hzd.x-camX,y=hzd.y-camY,k=Math.min(1,hzd.t/.4,(hzd.T-hzd.t)/.3+.2);
     for(let r=6;r<hzd.r;r+=7){c.strokeStyle=`rgba(180,230,255,${(.45*k*(1-r/hzd.r)).toFixed(2)})`;c.beginPath();const a0=time*4+r*.1;c.ellipse(x,y,r,r*.5,0,a0,a0+4.2);c.stroke()}}
   for(const t of treasures){const x=t.x-camX,y=t.y-camY;if(x>-10&&y>-10&&x<LW+10&&y<LH+10)drawTreasure(c,t,x,y)}
@@ -1480,6 +1824,7 @@ function render(dt){
     if(hzd.boss){const kb=hzd.boss,a=Math.atan2(o.y-kb.y,o.x-kb.x);drawArm(c,kb.x-camX+Math.cos(a)*kb.br*.6,kb.y-camY+Math.sin(a)*kb.br*.2-6,o.x-camX,o.y-camY-t.hh*.4+(hzd.drag||0)*20,k,Math.round(kb.br*.2),o.seed||1,1);continue}
     drawOcto(c,o.x-camX+hzd.side*(t.w*.5+12),o.y-camY+3+(hzd.drag||0)*20,k,-hzd.side,o,hzd.drag||0)}
   // beams
+  for(const hzd of hz)if(hzd.k==='whale')drawWhale(c,hzd);
   for(const hzd of hz){if(hzd.k!=='beam')continue;const s=hzd.e,x0=s.x-camX,y0=s.y-camY-SHIPS[s.ti].hh*.6,x1=x0+Math.cos(hzd.a)*hzd.len,y1=y0+Math.sin(hzd.a)*hzd.len,k=Math.min(1,hzd.t/.3);
     c.save();c.globalCompositeOperation='lighter';c.strokeStyle=`rgba(255,150,40,${(.5*k).toFixed(2)})`;c.lineWidth=6;c.beginPath();c.moveTo(x0,y0);c.lineTo(x1,y1);c.stroke();
     c.strokeStyle=`rgba(255,240,180,${(.9*k).toFixed(2)})`;c.lineWidth=2;c.stroke();c.restore();c.lineWidth=1}
@@ -1523,8 +1868,8 @@ function render(dt){
     if(x<-80||x>W+80||y<-20||y>H+40)continue;
     const isMe=cp===me,ally=started&&me&&!isMe&&!foes(me.team,cp.team),col=isMe?'#ffd84a':ally?'#9cf27a':teamLight(cp.team);
     ctx.font=`600 ${PX<2.5?13:15}px Changa, Tajawal, sans-serif`;ctx.lineWidth=3;ctx.strokeStyle='rgba(8,12,22,.85)';
-    const label=(ally?'🤝 ':'')+cp.name+(cp===wantedCap?'  ☠':'');ctx.strokeText(label,x,y);ctx.fillStyle=cp===wantedCap?'#ffcf3a':col;ctx.fillText(label,x,y);
-    ctx.font=`400 ${PX<2.5?11:12}px Changa, Tajawal, sans-serif`;ctx.lineWidth=3;const sub=SHIPS[s.ti].name+' · ⚔'+fmt(cp.power);ctx.strokeText(sub,x,y+(PX<2.5?13:15));ctx.fillStyle='rgba(235,240,250,.88)';ctx.fillText(sub,x,y+(PX<2.5?13:15))}
+    if(S.tags===false&&!isMe&&!ally&&cp!==wantedCap&&cp.name!==revengeName)continue;const label=cp.name;ctx.strokeText(label,x,y);ctx.fillStyle=cp===wantedCap?'#ffcf3a':col;ctx.fillText(label,x,y);{const lw=ctx.measureText(label).width/2;if(ally)drawIc(ctx,'team',x-lw-19,y-14,15);if(cp.name===revengeName&&!isMe)drawIc(ctx,'sword',x-lw-19,y-14,15);if(cp===wantedCap)drawIc(ctx,'skull',x+lw+4,y-14,15)}
+    ctx.font=`400 ${PX<2.5?11:12}px Changa, Tajawal, sans-serif`;ctx.lineWidth=3;const sub=SHIPS[s.ti].name+' · '+fmt(cp.power);ctx.strokeText(sub,x,y+(PX<2.5?13:15));ctx.fillStyle='rgba(235,240,250,.88)';ctx.fillText(sub,x,y+(PX<2.5?13:15))}
   // hp bars
   for(const [e] of list){if(e.t!==undefined&&e.sk)continue;if(e.boss&&(e.boss!=='ghost'||e.big))continue;if(e.hp>=e.maxhp*.98)continue;const t=SHIPS[e.ti],x=(e.x-camX)*PX,y=(e.y-camY+5)*PX;if(x<-40||x>W+40||y<-40||y>H+40)continue;
     const bw=Math.max(24,t.w*PX*.6),r=clamp(e.hp/e.maxhp,0,1);ctx.fillStyle='rgba(20,8,4,.8)';ctx.fillRect(x-bw/2-1,y-1,bw+2,5);
@@ -1561,6 +1906,8 @@ function drawMap(g,Wd,cx,cy,R,big){
   g.strokeStyle='rgba(255,255,255,.35)';g.setLineDash([3,3]);g.beginPath();g.arc(hx,hy,SAFE_R*k,0,TAU);g.stroke();g.setLineDash([]);
   for(const s of islandsNear(cx,cy,R*1.05)){if(started&&!s.home&&!S.islFound.includes(s.id))continue;const [x,y]=P(s.x,s.y);{const st=capMap.get(s.id);if(st&&st.owner){g.fillStyle=teamCol(st.owner);g.beginPath();g.arc(x,y,Math.max(3,s.r*k)+3,0,TAU);g.fill()}}g.fillStyle='rgba(150,235,225,.5)';g.beginPath();g.arc(x,y,Math.max(2,s.r*k*1.25),0,TAU);g.fill();g.fillStyle=s.home?'#ffcf3a':'#e9c98c';g.beginPath();g.arc(x,y,Math.max(1.5,s.r*k),0,TAU);g.fill();g.fillStyle='#4f9a3a';g.beginPath();g.arc(x,y,Math.max(1,s.r*k*.6),0,TAU);g.fill()}
   if(started){const E=500,x0=Math.floor((cx-R)/E),x1=Math.floor((cx+R)/E),y0=Math.floor((cy-R)/E),y1=Math.floor((cy+R)/E),st=(x1-x0)>140?2:1;g.fillStyle='#0e1a2c';for(let i=x0;i<=x1;i+=st)for(let j=y0;j<=y1;j+=st){if(!S.explored[i+','+j]){const [px,py]=P(i*E,j*E);g.fillRect(Math.floor(px),Math.floor(py),Math.ceil(E*k*st)+1,Math.ceil(E*k*st)+1)}}}
+  for(const i of (S.myIsl||[])){const [x,y]=P(i.x,i.y);if(x<-20||y<-20||x>Wd+20||y>Wd+20)continue;g.strokeStyle='rgba(255,215,90,.8)';g.lineWidth=big?2:1.5;g.beginPath();g.arc(x,y,Math.max(4,(i.r+ISL_SAFE)*k),0,TAU);g.stroke();g.lineWidth=1;
+    g.fillStyle='#ffd84a';g.beginPath();g.arc(x,y,big?4:2.5,0,TAU);g.fill()}
   for(const cp of caps){if(!cp.alive||cp===me||!cp.ships.length)continue;const [x,y]=P(cp.x,cp.y);if(x<0||y<0||x>Wd||y>Wd)continue;
     g.fillStyle=isMate(cp)?'#8ff07a':'#ff6a55';const r=big?3+Math.min(4,Math.log10(cp.power+1)):2+Math.min(2,Math.log10(cp.power+1)*.6);
     g.beginPath();g.arc(x,y,r,0,TAU);g.fill();g.strokeStyle='rgba(0,0,0,.4)';g.stroke();
@@ -1615,8 +1962,29 @@ document.body.classList.add('side-closed');
 /* ================= HUD ================= */
 let goalFlip=0;
 function upgN(){return UPG.reduce((a,u)=>a+lv(u.id),0)}
+let capT=40;
+function capRemind(now){const nh=nextHull();if(nh<0||!capped())return;const t=SHIPS[nh],c=shipCost(nh);
+  toast(c<=S.coins?`تطويرك وصل الحد! تقدر الحين تشتري ${t.name} من المرسى في أي جزيرة`:`تطويرك وصل الحد — اجمع ${fmt(c-S.coins)} واشترِ ${t.name} عشان تكمل`);if(now)sfx('chime')}
+/* ---- extras: hit direction, low HP, kill streaks, revenge ---- */
+let hurtA=0,hurtDir=null,streak=0,streakT=0,revengeName=null,lastVib=0;
+function hitFx(src,dmg){hurtA=Math.min(1,hurtA+.35+Math.min(.4,dmg/((me.ships[0]&&me.ships[0].maxhp)||1)));
+  const s=src&&src.ships?src.ships[0]:null;if(s){hurtDir={x:s.x,y:s.y,t:1.2}}
+  if(S.haptic!==false&&navigator.vibrate&&performance.now()-lastVib>160){lastVib=performance.now();try{navigator.vibrate(dmg>((me.ships[0]&&me.ships[0].maxhp)||1)*.2?60:25)}catch(e){}}}
+function onMyKill(c,e){if(time-streakT>15)streak=0;streak++;streakT=time;S.bestStreak=Math.max(S.bestStreak||0,streak);
+  if(streak>=2){const names=['','','إغراق مزدوج!','ثلاثي!','رباعي!','مجزرة بحرية!'],nm=names[Math.min(5,streak)]||'مجزرة بحرية!',bonus=40*zoneMult(1)*streak*globalMult();
+    earn(bonus,e.x,e.y-34,'#ff9a3a',3);toast(`${nm} سلسلة ${streak} — مكافأة ${fmt(bonus)}`);sfx('legend',0)}
+  if(c.name===revengeName){const b=120*zoneMult(1)*globalMult();earn(b,e.x,e.y-44,'#ff6a55',4);toast(`انتقمت من ${c.name}! مكافأة ${fmt(b)}`);revengeName=null}}
+function extraTick(dt){const el=$('#hurt');if(!el)return;const f=started&&me&&me.ships[0];
+  hurtA=Math.max(0,hurtA-dt*1.6);const low=f&&f.hp<f.maxhp*.3;
+  el.style.opacity=Math.min(1,hurtA+(low?.35+.25*Math.sin(time*6):0)).toFixed(3);
+  if(hurtDir){hurtDir.t-=dt;if(hurtDir.t<=0)hurtDir=null}}
+function drawHurtDir(){if(!hurtDir||!started||!me.ships[0])return;const f=me.ships[0],a=Math.atan2(hurtDir.y-f.y,hurtDir.x-f.x),cx=W/2,cy=H/2,r=Math.min(W,H)*.32,x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;
+  ctx.save();ctx.translate(x,y);ctx.rotate(a);ctx.globalAlpha=Math.min(1,hurtDir.t*1.5);ctx.fillStyle='#ff4a3a';ctx.strokeStyle='rgba(20,0,0,.8)';ctx.lineWidth=3;
+  ctx.beginPath();ctx.moveTo(22,0);ctx.lineTo(-6,-16);ctx.lineTo(0,0);ctx.lineTo(-6,16);ctx.closePath();ctx.stroke();ctx.fill();ctx.restore();ctx.globalAlpha=1}
 function updateHUD(dt){
   if(!started)return;
+  capT-=dt;if(capT<=0){capT=80;if(capped()&&S.capRem!==false)capRemind()}
+  {const nh=nextHull(),yb=$('#yardDot'),show=nh>=0&&(capped()>0||shipCost(nh)<=S.coins);yb.hidden=!show;}
   $('#coins').textContent=fmt(S.coins);
   earnLog=earnLog.filter(e=>time-e[0]<10);const r=earnLog.reduce((a,e)=>a+e[1],0)/10;
   S.rateEMA=S.rateEMA*.98+r*.02;
@@ -1628,14 +1996,14 @@ function updateHUD(dt){
   const h=Math.floor(S.time/60),m=Math.floor(S.time%60);$('#clock').textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
   const ms=S.daily.missions||[],cl=ms.some(x=>x.done&&!x.cl),nb=$('#missN');nb.textContent=cl?'!':ms.filter(x=>x.done).length+'/'+ms.length;nb.classList.toggle('ok',cl);nb.hidden=!cl&&ms.every(x=>x.cl);
   goalFlip+=dt;const sorted=rankList(),rank=sorted.indexOf(me)+1;
-  let g1=null;for(let i=0;i<Math.min(S.unl,SHIPS.length);i++){if(S.hulls.includes(SHIPS[i].id))continue;const c=shipCost(i);g1=c>S.coins?`باقي ${fmt(c-S.coins)} على ${SHIPS[i].name}`:`تقدر تشتري ${SHIPS[i].name} من المرسى ⚓`;break}
+  let g1=null;for(let i=0;i<Math.min(S.unl,SHIPS.length);i++){if(S.hulls.includes(SHIPS[i].id))continue;const c=shipCost(i);g1=c>S.coins?`باقي ${fmt(c-S.coins)} على ${SHIPS[i].name}`:`تقدر تشتري ${SHIPS[i].name} من المرسى`;break}
   let g2;if(rank>10&&sorted[9])g2=`باقي ${fmt(sorted[9].power-me.power+1)} قوة وتدخل التوب 10`;else if(rank>1)g2=`باقي ${fmt(sorted[rank-2].power-me.power+1)} قوة للمركز ${rank-1}`;else g2='أنت الأول في البحر!';
   $('#goal').textContent=(Math.floor(goalFlip/5)%2===0&&g1)?g1:g2;
-  const mt=mates(),tl=$('#teamLine');tl.hidden=!mt.length;if(mt.length)tl.textContent='🤝 '+mt.map(c=>c.name).join('، ');
-  const wd=$('#wanted');if(wantedCap===me){wd.hidden=false;wd.textContent=`أنت المطلوب ☠ — المكافأة على راسك ${fmt(bountyOf(me))}`}else wd.hidden=true;
+  const mt=mates(),tl=$('#teamLine');tl.hidden=!mt.length;if(mt.length)tl.innerHTML=ic('team')+' '+mt.map(c=>esc(c.name)).join('، ');
+  const wd=$('#wanted');if(wantedCap===me){wd.hidden=false;wd.innerHTML=`${ic('skull')} أنت المطلوب — المكافأة على راسك ${fmt(bountyOf(me))}`}else wd.hidden=true;
 }
 function rankList(){return caps.filter(c=>c.alive&&c.ships.length&&(c.bot||started)).sort((a,b)=>b.power-a.power)}
-function lbRow(c,i,pw){const v=(!pw&&S.lbMode==='season')?seasonScore(c):c.power,mt=isMate(c);return `<li class="${c===me?'me':mt?'mate':''}"><span class="rk">${i+1}</span><span class="dt" style="background:${c===me?'#ffcf3a':mt?'#8ff07a':'#ff6a55'}"></span><span class="nm">${mt?'🤝 ':''}${esc(c.name)}${c===wantedCap?' ☠':''}</span><span class="pw">${fmt(v)}</span></li>`}
+function lbRow(c,i,pw){const v=(!pw&&S.lbMode==='season')?seasonScore(c):c.power,mt=isMate(c);return `<li class="${c===me?'me':mt?'mate':''}"><span class="rk">${i+1}</span><span class="dt" style="background:${c===me?'#ffcf3a':mt?'#8ff07a':'#ff6a55'}"></span><span class="nm">${mt?ic('team')+' ':''}${esc(c.name)}${c===wantedCap?' '+ic('skull'):''}</span><span class="pw">${fmt(v)}</span></li>`}
 function updateLB(){
   const r=S.lbMode==='season'?seasonList():rankList();
   const ri=r.indexOf(me);
@@ -1650,13 +2018,15 @@ $('#missChip').addEventListener('click',()=>openBook('miss'));
 
 /* ================= book (island + menu) ================= */
 let bookTab='upg',bookIsl=null,starArm=0;
-const TABS={yard:'المرسى',base:'جزيرتك',upg:'ورشة التطوير',market:'السوق',crew:'الطاقم',contract:'العقود',skin:'الأشكال',miss:'المهمات',achv:'الإنجازات',codex:'سجل الكنوز',craft:'الصناعة',flag:'العلم',star:'إعادة الإبحار',set:'الإعدادات'};
+const TABS={own:'الجزيرة',craft:'الصناعة',flag:'العلم',codex:'سجل الكنوز',skin:'الأشكال',yard:'المرسى',base:'جزيرتك',upg:'ورشة التطوير',market:'السوق',crew:'الطاقم',contract:'العقود',skin:'الأشكال',miss:'المهمات',achv:'الإنجازات',codex:'سجل الكنوز',craft:'الصناعة',flag:'العلم',star:'إعادة الإبحار',set:'الإعدادات'};
 function openBook(tab,isl){
   bookIsl=isl||null;flagDraft=null;
+  if(isl&&!isl.home){if(ownsIsl(isl.id))S.spawnIsl=isl.id;else setTimeout(()=>notify(`تقدر تشتري ${isl.name} بـ ${fmt(islPrice(isl))}`,'crown','من تبويب «الجزيرة» — تصير منطقة آمنة ونقطة انطلاقك'),400)}
   if(isl){tutFlag.dock=true;for(const s of me.ships)s.hp=s.maxhp;if(!S.daily.isl.includes(isl.id)){S.daily.isl.push(isl.id);progress('island',1)}
     $('#bookTitle').innerHTML=`${isl.name}<small>تم إصلاح سفينتك بالكامل · المنطقة ${zoneAt(isl.x,isl.y)}</small>`}
   else $('#bookTitle').innerHTML='القائمة<small>شراء السفن والتطوير في أي جزيرة ترسي فيها</small>';
-  const tabs=isl?(isl.home?['base','upg','yard','market','crew','contract','skin','star']:['upg','yard','market','crew','contract','skin','star']):['yard','miss','achv','codex','craft','flag','skin','set'];
+  if(!isl)return;
+  const tabs=isl.home?['upg','yard','skin','craft','flag','codex','market','crew','contract','base','star']:['own','upg','yard','skin','craft','flag','codex','market','crew','contract','star'];
   bookTab=tabs.includes(tab)?tab:tabs[0];
   $('#bookTabs').innerHTML=tabs.map(t=>`<button role="tab" data-tab="${t}">${TABS[t]}</button>`).join('');
   $('#book').hidden=false;paused=!!isl;$('#dock').hidden=true;renderBook();
@@ -1666,11 +2036,15 @@ function renderBook(){
   document.querySelectorAll('#bookTabs button').forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===bookTab));
   if(extRender(b))return;
   if(bookTab==='upg'){
-    b.innerHTML='<div class="grid">'+UPG.map(u=>{const l=lv(u.id),c=upgCost(u);
-      return `<div class="card"><h4>${u.name}<span class="pix">مستوى ${l}</span></h4><p>${u.desc}</p>
-      <div class="fx">${u.fx(l)} ← <b>${u.fx(l+1)}</b></div>
-      <button class="buy" data-up="${u.id}" ${S.coins<c?'disabled':''}><i class="coin"></i>${fmt(c)}</button></div>`}).join('')+
-      '</div><p class="note">التطويرات ما لها نهاية: كل مستوى أغلى من اللي قبله، والسرعة والمدى يقربون من حدّهم شوي شوي.</p>';
+    const cap=upgCap(),nh=nextHull(),nn=nh>=0?SHIPS[nh].name:'';
+    b.innerHTML=(capped()&&nh>=0?`<div class="capbar"><b>${ic('lock')} سفينتك وصلت حدها (مستوى ${cap})</b><span>اشترِ <b>${nn}</b> من المرسى عشان يرتفع الحد إلى ${cap+UPG_STEP}</span><button class="btn" data-goyard="1">${ic('anchor')} روح للمرسى</button></div>`:
+      `<p class="note" style="margin:0 0 10px">حد التطوير لسفينتك الحالية: <b>${isFinite(cap)?'مستوى '+cap:'بدون حد'}</b>${nh>=0?` — كل سفينة أكبر ترفع الحد ${UPG_STEP} مستويات`:''}</p>`)+
+      `<div class="buyn"><span>كمية الشراء</span><div class="seg">${BUYN.map(n=>`<button data-buyn="${n}" aria-pressed="${(S.buyN||1)==n}">${n==='max'?'MAX':'x'+n}</button>`).join('')}</div></div>`+
+      '<div class="grid">'+UPG.map(u=>{const l=lv(u.id),c=upgCost(u),mx=l>=cap;
+      return `<div class="card ${mx?'max':''}"><h4>${u.name}<span class="pix">${l}${isFinite(cap)?' / '+cap:''}</span></h4><p>${u.desc}</p>
+      <div class="fx">${u.fx(l)}${mx?'':` ← <b>${u.fx(l+1)}</b>`}</div>
+      ${isFinite(cap)?`<div class="prog"><i style="width:${Math.min(100,l/cap*100)}%"></i></div>`:''}
+      ${mx?`<button class="buy" disabled>${ic('lock')} يحتاج ${nn||'سفينة أكبر'}</button>`:(()=>{const bk=upgBulk(u),ok=bk.n>0&&S.coins>=bk.c;return `<button class="buy" data-up="${u.id}" ${ok?'':'disabled'}>${(S.buyN||1)!=1?`<span class="bn">x${bk.n||0}</span>`:''}<i class="coin"></i>${fmt(bk.c)}</button>`})()}</div>`}).join('')+'</div>';
   }else if(bookTab==='skin'){
     b.innerHTML='<div class="grid">'+SKINS.map(s=>{const own=S.skins.includes(s.id),on=S.skin===s.id;
       let act;
@@ -1691,17 +2065,17 @@ function renderBook(){
   }else if(bookTab==='codex'){
     let html=`<p class="note" style="margin:0 0 6px">الكنوز النادرة تطلع من اللؤلؤ والصناديق والكنوز الذهبية. كل صفحة تكملها تعطيك شكل حصري و+10% على كل الأرباح.</p>`;
     for(let p=0;p<5;p++){const sk=SKINS.find(s=>s.page===p),got=[0,1,2,3,4,5].filter(i=>S.codex[p*6+i]).length;
-      html+=`<div class="page"><span>الصفحة ${p+1}</span><small>${got}/6 · الجائزة: ${sk.name}${got===6?' ✓':''}</small></div><div class="codex">`;
+      html+=`<div class="page"><span>الصفحة ${p+1}</span><small>${got}/6 · الجائزة: ${sk.name}${got===6?' '+ic('check'):''}</small></div><div class="codex">`;
       for(let i=0;i<6;i++){const idx=p*6+i,has=S.codex[idx];html+=`<div class="it ${has?'':'no'}"><canvas width="18" height="18" data-it="${idx}"></canvas><span>${has?ITEMS[idx]:'؟؟؟'}</span>${has>1?`<span class="pix">×${has}</span>`:''}</div>`}
       html+='</div>'}
     b.innerHTML=html;b.querySelectorAll('canvas[data-it]').forEach(cn=>drawItem(cn,+cn.dataset.it,!!S.codex[+cn.dataset.it]));
   }else if(bookTab==='star'){
     const gain=Math.floor(Math.sqrt(S.earnedRun/1e6));
-    b.innerHTML=`<div class="card"><h4>إعادة الإبحار<span class="pix">★ ${S.stars}</span></h4>
+    b.innerHTML=`<div class="card"><h4>إعادة الإبحار<span class="pix">${ic('star')} ${S.stars}</span></h4>
       <p>تبيع سفنك وتطويراتك وفلوس هذي الرحلة، وتبدأ من جديد بقارب صيد. مقابلها تاخذ نجوم بحرية، وكل نجمة تزيد كل أرباحك 15% للأبد. الأشكال وسجل الكنوز يبقون معك.</p>
       <div class="stats"><span>مضاعف النجوم الحالي</span><span class="pix">×${fmt(starsMult(),2)}</span><span>مكسب هذي الرحلة</span><span class="pix">${fmt(S.earnedRun)}</span><span>نجوم بتاخذها الحين</span><span class="pix">+${gain}</span><span>مضاعفك بعدها</span><span class="pix">×${fmt(1+.15*(S.stars+gain),2)}</span></div>
       <button class="bigbtn" id="starBtn" data-star="1" ${gain<1?'disabled':''}>${gain<1?'تحتاج مكسب 1M في الرحلة':'أعد الإبحار'}</button>
-      <p class="note">أشكال النجوم: نجم البحر (1★) · المحار الملكي (10★) · العاصفة (50★)</p></div>`;
+      <p class="note">أشكال النجوم: نجم البحر (1 نجمة) · المحار الملكي (10 نجوم) · العاصفة (50 نجمة)</p></div>`;
   }else if(bookTab==='set'){
     b.innerHTML=`<div class="set">
       <label for="volIn">مستوى الصوت <input type="range" id="volIn" min="0" max="100" value="${Math.round(S.vol*100)}"></label>
@@ -1710,7 +2084,7 @@ function renderBook(){
         <span>مجموع الكوينز اللي جمعتها</span><span class="pix">${fmt(S.earned)}</span><span>الكنوز الملتقطة</span><span class="pix">${fmt(S.collected)}</span>
         <span>سفن أغرقتها</span><span class="pix">${fmt(S.kills)}</span><span>مطلوبين قبضت عليهم</span><span class="pix">${fmt(S.bounties)}</span><span>سفن خسرتها</span><span class="pix">${fmt(S.lost)}</span>
         <span>أبعد منطقة</span><span class="pix">${S.maxZone}</span><span>الركاب</span><span class="pix">${fmt(me.crew)}</span><span>مكافأة الطاقم</span><span class="pix">×${fmt(crewBonus(),2)}</span>
-        <span>سفينتك</span><span class="pix">${SHIPS[me.ships[0]?me.ships[0].ti:0].name}</span><span>النجوم البحرية</span><span class="pix">★ ${S.stars}</span></div></div>
+        <span>سفينتك</span><span class="pix">${SHIPS[me.ships[0]?me.ships[0].ti:0].name}</span><span>النجوم البحرية</span><span class="pix">${ic('star')} ${S.stars}</span></div></div>
       <button class="btn alt" data-relog="1">تغيير الاسم</button>
       <p class="note">كل راكب يزيد قيمة الكنوز 2%. أول 40 سفينة تبحر حولك، والباقي احتياط يضيف مدافعه لسفينة القيادة.</p></div>`;
     $('#volIn').addEventListener('input',e=>{S.vol=e.target.value/100;setVol()});
@@ -1731,7 +2105,9 @@ $('#book').addEventListener('click',e=>{
   if(t.dataset.tab){bookTab=t.dataset.tab;renderBook();return}
   if(t.hasAttribute('data-close')){closeAll();return}
   if(extBookClick(t))return;
-  if(t.dataset.up){const u=UPG.find(x=>x.id===t.dataset.up),c=upgCost(u);if(S.coins>=c){S.coins-=c;S.upg[u.id]=lv(u.id)+1;progress('upg',1);rebuildFleet(me);sfx('coin');renderBook()}}
+  if(t.dataset.goyard){bookTab='yard';openBook('yard',bookIsl);return}
+  if(t.dataset.buyn){const v=t.dataset.buyn;S.buyN=v==='max'?'max':+v;renderBook();return}
+  if(t.dataset.up){const u=UPG.find(x=>x.id===t.dataset.up),bk=upgBulk(u);if(lv(u.id)>=upgCap()){capRemind(true);return}if(bk.n>0&&S.coins>=bk.c){S.coins-=bk.c;S.upg[u.id]=lv(u.id)+bk.n;progress('upg',bk.n);rebuildFleet(me);sfx('coin');if(lv(u.id)>=upgCap())capRemind(true);renderBook()}}
   else if(t.dataset.skin){const s=SKINS.find(x=>x.id===t.dataset.skin);if(S.coins>=s.cost){S.coins-=s.cost;S.skins.push(s.id);S.skin=s.id;drawThumbs();sfx('chime');renderBook()}}
   else if(t.dataset.wear){S.skin=t.dataset.wear;drawThumbs();renderBook()}
   else if(t.dataset.claim!==undefined){const m=S.daily.missions[+t.dataset.claim];if(m&&m.done&&!m.cl){m.cl=true;earn(m.r);sfx('chime');renderBook()}}
@@ -1753,14 +2129,18 @@ function pushNotice(n){noticeQ.push(n);if($('#notice').hidden)nextNotice()}
 function nextNotice(){const n=noticeQ.shift();if(!n){$('#notice').hidden=true;return}
   $('#noticeBody').innerHTML=n.html;$('#notice').hidden=false;
   $('#noticeBody').querySelector('[data-ok]').addEventListener('click',()=>{n.ok&&n.ok();nextNotice()})}
-function loginNotices(){
-  const now=Date.now();
-  if(S.lastSeen&&now-S.lastSeen>120000&&S.rateEMA>0){const sec=Math.min((8+2*bl('store'))*3600,(now-S.lastSeen)/1000),amt=S.rateEMA*sec*.35;
+async function loginNotices(){
+  const verified=await syncTime(),now=nowT();timeChecked=true;
+  if(S.maxSeen&&now<S.maxSeen-5*60000){clockBad=true;
+    pushNotice({html:`<h2>وقت الجهاز رجع لورا</h2><p>المكافآت اليومية وأرباح الغياب متوقفة لين يرجع وقت جهازك لوضعه الطبيعي.</p><button class="bigbtn" data-ok>تمام</button>`});return}
+  clockBad=false;S.maxSeen=Math.max(S.maxSeen||0,now);
+  const capH=verified?(8+2*bl('store')):2;
+  if(S.lastSeen&&now-S.lastSeen>120000&&S.rateEMA>0){const sec=Math.min(capH*3600,(now-S.lastSeen)/1000),amt=S.rateEMA*sec*.35;
     if(amt>=1){const hrs=Math.floor(sec/3600),mins=Math.floor(sec%3600/60);
       pushNotice({html:`<h2>هلا بالنوخذة!</h2><p>طاقمك ما وقف وأنت غايب (${hrs?hrs+' ساعة و':''}${mins} دقيقة)</p><div class="amt"><i class="coin"></i>${fmt(amt)}</div><button class="bigbtn" data-ok>استلم</button>`,ok:()=>{earn(amt);sfx('chime')}})}}
   const td=today();
   if(S.daily.date!==td){
-    const y=new Date(Date.now()-864e5).toLocaleDateString('en-CA');
+    const y=new Date(nowT()-864e5).toLocaleDateString('en-CA');
     S.daily.streak=S.daily.date===y?S.daily.streak+1:1;S.daily.date=td;S.daily.chest=false;genMissions();
   }
   if(!S.daily.chest){const st=S.daily.streak,amt=Math.round(150*zoneMult(S.maxZone)*Math.min(st,7)*starsMult());
@@ -1770,7 +2150,7 @@ function loginNotices(){
 
 /* ================= command bar (secret) ================= */
 function openCmd(){if(!started)return;const c=$('#cmd');c.hidden=false;const i=$('#cmdIn');i.value='';i.focus();kb.clear()}
-$('#slashBtn').addEventListener('click',openCmd);
+$('#slashBtn').addEventListener('click',()=>{$('#chatMenu').hidden=true;openCmd()});
 $('#zIn').addEventListener('click',()=>setZoom(PX+.5));$('#zOut').addEventListener('click',()=>setZoom(PX-.5));
 $('#cmdIn').addEventListener('keydown',e=>{if(e.key==='Enter'){const v=e.target.value.trim().replace(/^\//,'').toLowerCase();$('#cmd').hidden=true;if(v==='admin')openAdmin()}});
 $('#cmdIn').addEventListener('blur',()=>setTimeout(()=>{$('#cmd').hidden=true},150));
@@ -1801,7 +2181,7 @@ function renderAdmin(){
     <div class="row"><label>الطقس</label><select id="ad-wx">${Object.entries(WEATHER).map(([k,v])=>`<option value="${k}" ${W8.type===k?'selected':''}>${v}</option>`).join('')}</select></div></section>
   <section><h3>أحداث فورية</h3>
     <div class="row"><button class="btn" data-a="rain">مطر كنوز</button><button class="btn" data-a="raiders">استدعاء غزاة</button><button class="btn" data-a="gold">سفينة الكنز</button></div>
-    <div class="row"><button class="btn" data-a="bS">أفعى البحر</button><button class="btn" data-a="bK">الكراكن</button><button class="btn" data-a="bG">سفينة الأشباح</button></div>
+    <div class="row"><button class="btn" data-a="bS">أفعى البحر</button><button class="btn" data-a="bK">الكراكن</button><button class="btn" data-a="bG">سفينة الأشباح</button><button class="btn" data-a="bW">الحوت</button></div>
     <div class="row"><button class="btn alt" data-a="mats">+100 مواد</button><button class="btn alt" data-a="reveal">كشف الخريطة</button><button class="btn alt" data-a="tmap">خريطة كنز</button><button class="btn alt" data-a="fest">مهرجان</button></div>
     <div class="row"><button class="btn alt" data-a="heal">إصلاح السفينة</button><button class="btn alt" data-a="bots">بوتات جديدة</button><button class="btn alt" data-a="endwar">إنهاء الجولة</button><button class="btn alt" data-a="daily">تجديد اليومي</button></div>
     <div class="row"><button class="btn alt" data-a="home">انتقال للميناء</button><label style="flex:0">منطقة</label><input type="text" id="ad-zone" value="${S.maxZone}" style="width:60px"><button class="btn alt" data-a="tpzone">انتقال</button></div>
@@ -1839,8 +2219,9 @@ $('#admin').addEventListener('click',e=>{
     case 'bS':case 'bK':case 'bG':if(boss){for(const e of boss.ents){const i=npcs.indexOf(e);if(i>=0)npcs.splice(i,1)}boss=null}spawnBoss({bS:'serpent',bK:'kraken',bG:'ghost'}[t.dataset.a]);closeAll();return;
     case 'mats':S.mats.wood+=100;S.mats.iron+=100;S.mats.canvas+=100;toast('+100 من كل مادة');break;
     case 'reveal':{const E=500,cx=Math.floor(me.x/E),cy=Math.floor(me.y/E);for(let i=-24;i<=24;i++)for(let j=-24;j<=24;j++)S.explored[(cx+i)+','+(cy+j)]=1;for(const s2 of islandsNear(me.x,me.y,12000))if(!s2.home&&!S.islFound.includes(s2.id))S.islFound.push(s2.id);toast('انكشفت الخريطة');break}
-    case 'tmap':S.tmap=null;tmapMake();closeAll();return;
+    case 'tmap':S.tmap=null;bottles.length=0;spawnBottle(me.x+70,me.y+10);closeAll();toast('فيه قارورة جنبك');return;
     case 'fest':S.day=Math.floor((S.day-1)/7)*7+7;closeAll();return;
+    case 'bW':closeAll();setTimeout(()=>{const c=entsCache.filter(o=>!o.dead&&o.cap&&o.cap!==me&&Math.hypot(o.x-me.x,o.y-me.y)<700);spawnWhale(c.length?pick(c):me.ships[0])},300);return;
     case 'heal':me.ships.forEach(s=>s.hp=s.maxhp);toast('السفينة سليمة');break;
     case 'bots':initBots();toast('دخلت بوتات جديدة');break;
     case 'endwar':war.t=.01;closeAll();return;
@@ -1858,7 +2239,7 @@ $('#admin').addEventListener('click',e=>{
 });
 $('#admin').addEventListener('change',e=>{if(e.target.id==='ad-speed')S.admin.speedX=+e.target.value;if(e.target.id==='ad-wx'){W8.type=e.target.value;W8.t=120}});
 $('#admin').addEventListener('pointerdown',e=>{if(e.target.id==='admin')closeAll()});
-function closeAll(){['#book','#admin','#mapModal','#cmd'].forEach(s=>$(s).hidden=true);paused=false;sideDirty=true;save()}
+function closeAll(){['#book','#admin','#mapModal','#cmd','#settings'].forEach(s=>$(s).hidden=true);paused=false;sideDirty=true;save()}
 
 /* ================= login ================= */
 function showLogin(){
@@ -1878,7 +2259,7 @@ function startGame(){
   S.name=nm;unlockAudio();setVol();migrateS();
   retagTeams();grp.clear();
   me=newCap({name:nm,bot:false,team:'ffa_me',owned:S.owned,col:'#ffd84a'});
-  const p=S.lastSeen?{x:0,y:118}:{x:0,y:118};me.x=p.x;me.y=p.y;me.face=1;
+  const p=spawnPoint();me.x=p.x;me.y=p.y;me.face=1;
   rebuildFleet(me);me.ships.forEach((s,k)=>{s.x=me.x+(k?(rnd()-.5)*50:0);s.y=me.y+(k?rnd()*30:0)});
   caps.unshift(me);camCX=me.x;camCY=me.y;
   {const bs=caps.filter(c=>c.bot).sort(()=>rnd()-.5).slice(0,9);for(const b of bs){caps=caps.filter(c=>c!==b);usedNames.delete(b.name);caps.push(makeBot(true))}}
@@ -1886,7 +2267,7 @@ function startGame(){
   buildSide();updateSide();starSkins();
   war.t=WAR_LEN;warBonus=1;computeWanted();
   loginNotices();extLogin();save();
-  setTimeout(()=>{if(!noticeQ.length&&$('#notice').hidden&&$('#tut').hidden)toast('سفينة وحدة: طوّرها في الجزر · اطلب تيم من زر 💬')},700);
+  showMissions();setTimeout(()=>{if(!noticeQ.length&&$('#notice').hidden&&$('#tut').hidden)toast('سفينة وحدة: طوّرها في الجزر · اطلب تيم من زر التيم')},700);
 }
 
 /* ================= v4 systems ================= */
@@ -1895,10 +2276,36 @@ const SKILLS=[{id:'volley',n:'رشقة',cd:20},{id:'wind',n:'رياح',cd:18},{i
 const SKc={volley:0,wind:0,repair:0,shield:0};let windT=0,shieldT=0,volleyT=0;
 const OFFICERS=[{id:'gunner',n:'المدفعي',d:'ضرر المدافع +8% لكل مستوى',base:800},{id:'nav',n:'النوخذة',d:'سرعة +3% وانتظار المهارات −4% لكل مستوى',base:1000},{id:'diver',n:'الغيص',d:'الغوص والصيد أسهل، ومكسبهم +15% لكل مستوى',base:600},{id:'cook',n:'الطبّاخ',d:'التصليح الذاتي +25% والمتانة +4% لكل مستوى',base:700}];
 const OFF_NAMES=['بو ناصر','سالم','مبارك','جاسم','عيسى','راشد','حمد','سعيد','خليفة','يوسف','بو علي','مرزوق','غانم','فهد'];
-const PETS=[{id:'parrot',n:'ببغاء',d:'مدى جذب الكنوز +20%',cost:2e3},{id:'cat',n:'قطة السفينة',d:'فرصة الكنوز النادرة +25%',cost:8e3},{id:'turtle',n:'سلحفاة',d:'متانة الأسطول +10%',cost:2.5e4},{id:'monkey',n:'قرد',d:'قيمة الكنوز +5%',cost:1e5}];
+const PETS=[{id:'parrot',n:'ببغاء',d:'مدى جذب الكنوز +20%',cost:2e3},{id:'cat',n:'قطة السفينة',d:'فرصة الكنوز النادرة +25%',cost:8e3},{id:'turtle',n:'سلحفاة',d:'متانة سفينتك +10%',cost:2.5e4},{id:'monkey',n:'قرد',d:'قيمة الكنوز +5%',cost:1e5}];
+const PARTS=[
+ {id:'mermaid',n:'تمثال حورية',d:'قيمة الكنوز +10%',m:{wood:20,iron:5,canvas:5},c:400},
+ {id:'lantern',n:'فانوس المؤخرة',d:'مدى جذب الكنوز +15%',m:{wood:10,iron:15,canvas:0},c:600},
+ {id:'emblem',n:'شعار الشراع',d:'سرعة +8%',m:{wood:5,iron:0,canvas:30},c:900},
+ {id:'armor',n:'دروع حديد',d:'متانة +12%',m:{wood:10,iron:35,canvas:0},c:1500},
+ {id:'chaser',n:'مدفع المقدمة',d:'ضرر +10%',m:{wood:15,iron:40,canvas:0},c:2500},
+ {id:'nest',n:'عش المراقبة',d:'مدى المدافع +8%',m:{wood:40,iron:10,canvas:10},c:4000}];
+const hasP=id=>Array.isArray(S.parts)&&S.parts.includes(id);
+const partCost=p=>p.c*Math.pow(2.4,tierIdx());
+function drawParts(c,t,s,side,vd,lit,list){const P=list||S.parts||[];if(!P.length)return;const has=k=>P.includes(k),top=s.top;
+  if(side){const hw=t.w/2,mx=s.flagX-1;
+    if(has('armor')){const y=-top+Math.max(1,Math.round(t.hh*.5));for(let x=-hw+3;x<hw-6;x+=4){c.fillStyle='#8d97a3';c.fillRect(x,y,3,2);c.fillStyle='#d5dde6';c.fillRect(x,y,3,1)}}
+    if(has('chaser')){c.fillStyle='#1b1b1b';c.fillRect(hw-3,-top-2,6,2);c.fillStyle='#6b6b6b';c.fillRect(hw-3,-top-3,3,1)}
+    if(has('mermaid')){c.fillStyle='#3fb08f';c.fillRect(hw-1,-top+2,2,2);c.fillStyle='#ffcf3a';c.fillRect(hw,-top-1,2,3);c.fillStyle='#f3c9a0';c.fillRect(hw+1,-top-3,2,2);c.fillStyle='#c4412b';c.fillRect(hw+1,-top-4,2,1)}
+    if(has('lantern')){const y=-top-(t.castle?Math.max(3,Math.round(t.hh*.45))+1:0)-6;c.fillStyle='#3a2412';c.fillRect(-hw,y+3,1,4);c.fillStyle=lit?'#ffe27a':'#e0a83a';c.fillRect(-hw-1,y,3,3);c.fillStyle='#5b3014';c.fillRect(-hw-1,y-1,3,1)}
+    if(has('emblem')){const y=-top-Math.round(t.mh*.55);c.fillStyle='#c4412b';c.fillRect(mx-2,y-2,5,5);c.fillStyle='#ffcf3a';c.fillRect(mx-1,y-1,3,3);c.fillStyle='#c4412b';c.fillRect(mx,y,1,1)}
+    if(has('nest')){const y=s.flagY+5;c.fillStyle='#5b3014';c.fillRect(mx-2,y,6,3);c.fillStyle='#9a6430';c.fillRect(mx-2,y,6,1)}
+  }else{const hw=s.hw;
+    if(has('armor')){c.fillStyle='#8d97a3';c.fillRect(-hw,-top+2,2,3);c.fillRect(hw-2,-top+2,2,3)}
+    if(has('emblem')){const y=-top-Math.round(t.mh*.55);c.fillStyle='#c4412b';c.fillRect(-2,y-2,5,5);c.fillStyle='#ffcf3a';c.fillRect(-1,y-1,3,3)}
+    if(has('nest')){const y=s.flagY+5;c.fillStyle='#5b3014';c.fillRect(-3,y,7,3);c.fillStyle='#9a6430';c.fillRect(-3,y,7,1)}
+    if(vd==='f'){if(has('mermaid')){c.fillStyle='#ffcf3a';c.fillRect(-1,-top-1,3,3);c.fillStyle='#f3c9a0';c.fillRect(-1,-top-3,3,2)}if(has('chaser')){c.fillStyle='#1b1b1b';c.fillRect(-1,-top+1,3,2)}}
+    else if(has('lantern')){c.fillStyle=lit?'#ffe27a':'#e0a83a';c.fillRect(-2,-top-8,4,3)}}}
+function partThumb(cn,pl){const t=SHIPS[Math.max(0,SHIPS.findIndex(q=>q.id===S.hull))],s=getSprite(t,skinObj(),1,false,0),w=100,h=50,tmp=document.createElement('canvas');tmp.width=w;tmp.height=h;
+  const g=tmp.getContext('2d');g.imageSmoothingEnabled=false;const k=Math.min(2,(w-10)/s.c.width,(h-4)/s.c.height);g.translate(w/2,h*.72);g.scale(k,k);g.drawImage(s.c,-s.ax,-s.ay);drawParts(g,t,s,true,'s',false,pl);
+  g.fillStyle='rgba(61,143,193,.8)';g.fillRect(-s.c.width,1,s.c.width*2,s.bot+3);const cg=cn.getContext('2d');cg.imageSmoothingEnabled=false;cg.clearRect(0,0,cn.width,cn.height);cg.drawImage(tmp,0,0,cn.width,cn.height)}
 const HEADS=[{id:'mermaid',n:'حورية',d:'قيمة الكنوز +10%',m:{wood:20,iron:5,canvas:5}},{id:'lion',n:'أسد البحر',d:'ضرر +10%',m:{wood:25,iron:20,canvas:0}},{id:'eagle',n:'نسر',d:'سرعة +10%',m:{wood:15,iron:5,canvas:25}},{id:'dragon',n:'تنين',d:'+12% على الضرر والمتانة والسرعة والكنوز',m:{wood:80,iron:60,canvas:60}}];
 const GOODS=[{id:'dates',n:'تمر',p:12},{id:'incense',n:'بخور',p:40},{id:'spice',n:'توابل',p:90},{id:'cloth',n:'قماش',p:160},{id:'pearlraw',n:'لؤلؤ خام',p:350}];
-const BUILD=[{id:'yard',n:'حوض السفن',d:'كل السفن أرخص 3% لكل مستوى (لين 45%)',base:2e3},{id:'market',n:'سوق اللؤلؤ',d:'دخل ثابت كل 10 ثواني يكبر مع المستوى',base:1500},{id:'light',n:'المنارة',d:'تكشف الخريطة أبعد +20% وتزيد فرصة الكنوز النادرة',base:3e3},{id:'houses',n:'بيوت البحارة',d:'مكافأة الطاقم +10% لكل مستوى',base:2500},{id:'store',n:'المخزن',d:'حمولة التجارة +10 وأرباح الغياب +2 ساعة',base:1800},{id:'powder',n:'مصنع البارود',d:'ضرر المدافع +6% لكل مستوى',base:4e3}];
+const BUILD=[{id:'yard',n:'حوض السفن',d:'شراء السفن الأكبر أرخص 3% لكل مستوى (لين 45%)',base:2e3},{id:'market',n:'سوق اللؤلؤ',d:'دخل ثابت كل 10 ثواني يكبر مع المستوى',base:1500},{id:'light',n:'المنارة',d:'تكشف الخريطة أبعد +20% وتزيد فرصة الكنوز النادرة',base:3e3},{id:'houses',n:'بيوت البحارة',d:'مكافأة الطاقم +10% لكل مستوى',base:2500},{id:'store',n:'المخزن',d:'حمولة التجارة +10 وأرباح الغياب +2 ساعة',base:1800},{id:'powder',n:'مصنع البارود',d:'ضرر المدافع +6% لكل مستوى',base:4e3}];
 const FLAG_PAL=['#1d1b1f','#f4f4f4','#d64532','#2f7fd0','#ffcf3a','#3f9a3a','#8a3fc0','#f08a3a'];
 const FLAG_PRE={skull:[0,0,0,0,0,0,0, 0,0,1,1,1,0,0, 0,0,1,0,1,0,0, 0,0,0,1,0,0,0],palm:[3,3,5,5,5,3,3, 3,5,3,7,3,5,3, 3,3,3,7,3,3,3, 4,4,4,7,4,4,4],moon:[5,5,5,5,5,5,5, 5,5,1,1,5,1,5, 5,1,5,5,5,5,5, 5,5,1,1,5,5,5]};
 const GHOST_SKIN={id:'ghostb',hull:'#5fa8a0',trim:'#2a5a58',sail:'#cffff5',ghost:1};
@@ -1911,7 +2318,7 @@ const T_AGAIN=['قلت لك لا','😑','خلاص لا','لا يعني لا','.
 const T_BYE=['لازم اطلع، يعطيك العافية 👋','بلعب لحالي شوي، باي','gg باي','باي باي','بطلع شوي','ارجع بعدين 👋','يعطيك العافية يا وحش'];
 const T_ASK=['تيم؟','team?','نسوي تيم؟','تيم معك؟','ابي تيم','tm?','تيم ولا لا؟'];
 const T_ON_REJ=['اوكي 😒','براحتك','طيب','😐','ok','خسرت 😂'];
-const T_GG=['ez 😎','gg','😂😂','ارجع اقوى','سوري 😅','باي باي','وين رحت؟ 😂'];
+const T_GG=['ez','gg','😂😂','ارجع اقوى','سوري 😅','باي باي','وين رحت؟ 😂'];
 const T_ME_IN=['انا','انا 👋','me','انا تعال','انا انا'];
 const pick=a=>a[Math.floor(rnd()*a.length)];
 let killFeedT=0;
@@ -1946,12 +2353,12 @@ let boss=null,bossT=160,lastSeason=-1,lastFest=null,extT=0,incT=10,capBotT=10,em
 function off(id){return (S.officers[id]||{}).lv||0}
 function bl(id){return S.built[id]||0}
 function masteryLv(ti){return Math.min(20,Math.floor(Math.sqrt((S.mastery[SHIPS[ti].id]||0)/50)))}
-function headMul(k){return S.head===k?1.1:S.head==='dragon'?1.12:1}
-function myDmgMul(ti){return (1+.08*off('gunner'))*(1+.06*bl('powder'))*headMul('lion')*(1+.03*masteryLv(ti))*(volleyT>0?2:1)}
-function myHpMul(ti){return (S.pet==='turtle'?1.1:1)*(1+.04*off('cook'))*(1+.03*masteryLv(ti))*(S.head==='dragon'?1.12:1)}
-function mySpdMul(){return (windT>0?2:1)*(S.form==='arrow'?1.15:1)*(1+.03*off('nav'))*headMul('eagle')}
-function myRngMul(){return S.form==='crescent'?1.15:1}
-function myTreasureMul(){return headMul('mermaid')*(S.pet==='monkey'?1.05:1)*(festival()?2:1)}
+function headMul(k){return 1}
+function myDmgMul(ti){return (1+.08*off('gunner'))*(1+.06*bl('powder'))*(hasP('chaser')?1.1:1)*(1+.03*masteryLv(ti))*(volleyT>0?2:1)}
+function myHpMul(ti){return (S.pet==='turtle'?1.1:1)*(1+.04*off('cook'))*(1+.03*masteryLv(ti))*(hasP('armor')?1.12:1)}
+function mySpdMul(){return (windT>0?2:1)*(S.form==='arrow'?1.15:1)*(1+.03*off('nav'))*(hasP('emblem')?1.08:1)}
+function myRngMul(){return hasP('nest')?1.08:1}
+function myTreasureMul(){return (hasP('mermaid')?1.1:1)*(S.pet==='monkey'?1.05:1)*(festival()?2:1)}
 function shipDiscount(){return 1-Math.min(.45,.03*bl('yard'))}
 function dmgTakenMul(e){return e.cap===me?(shieldT>0?.25:1)*(S.form==='ring'?.85:1):1}
 function cargoCap(){return 10+5*Math.floor(Math.sqrt(me?me.crew:0))+10*bl('store')}
@@ -1969,7 +2376,7 @@ function isMate(c){if(!me||!c||c===me||!c.team)return false;const g=grp.get(me.t
 function mates(){return caps.filter(c=>c.bot&&c.alive&&isMate(c))}
 function seasonScore(c){return c===me?S.season.score:(c.ss||0)}
 function seasonList(){return caps.filter(c=>c.alive&&c.ships.length&&(c.bot||started)).sort((a,b)=>seasonScore(b)-seasonScore(a))}
-function weekId(){const d=new Date(),t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),day=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-day);const y=new Date(Date.UTC(t.getUTCFullYear(),0,1));return t.getUTCFullYear()+'-'+Math.ceil(((t-y)/864e5+1)/7)}
+function weekId(){const d=new Date(nowT()),t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),day=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-day);const y=new Date(Date.UTC(t.getUTCFullYear(),0,1));return t.getUTCFullYear()+'-'+Math.ceil(((t-y)/864e5+1)/7)}
 function isleCount(t){let n=0;for(const v of capMap.values())if(v.owner===t)n++;return n}
 function rr(g,x,y,w,h,r){g.beginPath();g.moveTo(x+r,y);g.arcTo(x+w,y,x+w,y+h,r);g.arcTo(x+w,y+h,x,y+h,r);g.arcTo(x,y+h,x,y,r);g.arcTo(x,y,x+w,y,r);g.closePath()}
 
@@ -2019,7 +2426,7 @@ function spotsNear(x,y){const out=[],a=Math.round(x/SPOT),b=Math.round(y/SPOT);f
 function spotReady(s){return (spotUsed.get(s.key)||0)<time}
 
 /* ---- damage numbers ---- */
-function dmgNum(e,d,src){if(S.q==='low'||!started)return;e.dacc=(e.dacc||0)+d;if(e.dnT&&e.dnT>time)return;e.dnT=time+.3;const v=e.dacc;e.dacc=0;if(v<.5)return;
+function dmgNum(e,d,src){if(S.q==='low'||!started||S.dmgNums===false)return;e.dacc=(e.dacc||0)+d;if(e.dnT&&e.dnT>time)return;e.dnT=time+.3;const v=e.dacc;e.dacc=0;if(v<.5)return;
   const x=e.x-camX,y=e.y-camY;if(x<-20||y<-20||x>LW+20||y>LH+20)return;
   texts.push({x:e.x+(rnd()-.5)*10,y:e.y-SHIPS[e.ti].hh-4,t:fmt(v),life:.8,col:e.cap===me?'#ff8a7a':(volleyT>0&&src===me?'#ffe066':'#ffffff'),sm:1})}
 
@@ -2037,7 +2444,26 @@ function addXp(ti,n){const id=SHIPS[ti].id,b=masteryLv(ti);S.mastery[id]=(S.mast
 function tmapMake(){const a=rnd()*TAU,d=1300+rnd()*1600;let tx=me.x+Math.cos(a)*d,ty=me.y+Math.sin(a)*d;if(Math.hypot(tx,ty)<SAFE_R+300){tx*=2.2;ty*=2.2}
   for(const s of islandsNear(tx,ty,10))if(Math.hypot(tx-s.x,ty-s.y)<s.r+40)tx+=s.r+90;
   S.tmap={x:tx,y:ty};toast('لقيت خريطة كنز! علامة X على الخريطة والسهم يدلّك');sfx('chime')}
-function tmapDrop(k){if(S.tmap||k<3)return;if(rnd()<(k===4?.1:.02))tmapMake()}
+const bottles=[];let bottleT=40;
+function spawnBottle(x,y){if(bottles.length>=2)return;bottles.push({x,y,t:100,seed:rnd()*9})}
+function tmapDrop(k,x,y){if(S.tmap||k<3||bottles.length)return;if(rnd()<(k===4?.12:.03)){const a=rnd()*TAU;spawnBottle(x+Math.cos(a)*40,y+Math.sin(a)*25)}}
+function bottleTick(dt){if(!started)return;const f=me.ships[0];
+  bottleT-=dt;if(bottleT<=0){bottleT=60+rnd()*70;if(!S.tmap&&!bottles.length&&f){const a=rnd()*TAU,d=220+rnd()*200;spawnBottle(f.x+Math.cos(a)*d,f.y+Math.sin(a)*d*.7)}}
+  for(let i=bottles.length-1;i>=0;i--){const b=bottles[i];b.t-=dt;b.x+=Math.sin(time*.4+b.seed)*3*dt;if(b.t<=0){bottles.splice(i,1);continue}
+    if(f&&Math.hypot(f.x-b.x,f.y-b.y)<SHIPS[f.ti].w*.5+10){bottles.splice(i,1);if(!S.tmap){tmapMake();toast('لقيت قارورة زجاج! جواها خريطة كنز — علامة X على الخريطة')}else earn(50*zoneMult(1),b.x,b.y-8,'#cfefff',2);for(let j=0;j<8;j++)parts.push({x:b.x,y:b.y,vx:(rnd()-.5)*50,vy:-rnd()*40,life:.5,max:.5,c:'#dff6ff'})}}}
+function drawBottle(c,b){const x=Math.round(b.x-camX),y=Math.round(b.y-camY+Math.sin(time*2.4+b.seed)*1.2);if(x<-20||y<-20||x>LW+20||y>LH+20)return;
+  const tl=Math.sin(time*1.3+b.seed)>0?1:0;
+  c.fillStyle='rgba(0,18,44,.25)';c.beginPath();c.ellipse(x,y+2,8,2.5,0,0,TAU);c.fill();
+  c.save();c.translate(x,y);c.rotate(-.5+tl*.08);
+  c.fillStyle='rgba(205,240,255,.45)';c.fillRect(-4,-5,9,10);c.fillRect(-3,-6,7,1);c.fillRect(-3,5,7,1);
+  c.fillRect(5,-2,3,4);
+  c.fillStyle='#8a5a2a';c.fillRect(8,-2,2,4);c.fillStyle='#b07a3a';c.fillRect(8,-2,1,1);
+  c.fillStyle='#f3dfa8';c.fillRect(-2,-3,5,6);c.fillStyle='#d9bd7a';c.fillRect(-2,-3,5,1);c.fillRect(-2,2,5,1);c.fillStyle='#c4412b';c.fillRect(0,-3,1,6);
+  c.fillStyle='rgba(255,255,255,.85)';c.fillRect(-3,-5,4,1);c.fillRect(-4,-4,1,3);
+  c.strokeStyle='rgba(255,255,255,.55)';c.lineWidth=1;c.strokeRect(-4.5,-5.5,10,11);
+  c.restore();
+  c.fillStyle='rgba(46,132,192,.55)';c.fillRect(x-8,y+2,16,3);c.fillStyle='rgba(255,255,255,.6)';c.fillRect(x-6+Math.round(Math.sin(time*4)*1),y+2,4,1);c.fillRect(x+3,y+2,3,1);
+  if(Math.sin(time*3+b.seed)>.85){c.fillStyle='#ffffff';c.fillRect(x-2,y-9,1,3);c.fillRect(x-3,y-8,3,1)}}
 function dig(){const z=zoneAt(S.tmap.x,S.tmap.y),x=S.tmap.x,y=S.tmap.y;S.tmap=null;S.digs++;earn(900*zoneMult(z)*globalMult(),x,y-20,'#ffcf3a',4);
   for(let j=0;j<10;j++)treasures.push({x:x+(rnd()-.5)*70,y:y+(rnd()-.5)*40,k:j%3?4:3,ph:rnd()*9});rollCodex(4,x,y,true);toast('انتشلت الكنز الغارق من قاع البحر!');sfx('chime');FX.shake=3}
 
@@ -2053,7 +2479,7 @@ function cycleForm(){}
 function say(c,t){c.bubble={t,until:time+3.4}}
 function toggleChat(){const m=$('#chatMenu');m.hidden=!m.hidden;if(!m.hidden)renderChat()}
 function renderChat(){if(!started)return;const nb=caps.filter(c=>c.bot&&c.alive&&c.ships.length).map(c=>[c,Math.hypot(c.x-me.x,c.y-me.y)]).filter(a=>a[1]<1200).sort((a,b)=>a[1]-b[1]).slice(0,6);
-  $('#teamList').innerHTML=nb.length?nb.map(([c])=>{const m=isMate(c);return `<button data-tm="${c.id}" class="${m?'mate':''}" ${m?'disabled':''}><span class="nm">${esc(c.name)}</span><span class="pw">⚔ ${fmt(c.power)}</span><span class="go">${m?'معك 🤝':'اطلب تيم'}</span></button>`}).join(''):'<div class="empty">ما فيه أحد قريب منك… أبحر شوي</div>'}
+  $('#teamList').innerHTML=nb.length?nb.map(([c])=>{const m=isMate(c);return `<button data-tm="${c.id}" class="${m?'mate':''}" ${m?'disabled':''}><span class="nm">${esc(c.name)}</span><span class="pw">${ic('sword')} ${fmt(c.power)}</span><span class="go">${m?'معك':'اطلب تيم'}</span></button>`}).join(''):'<div class="empty">ما فيه أحد قريب منك… أبحر شوي</div>'}
 function chatLine(c,t){say(c,t);feed(`<span class="ch${isMate(c)?' mate':''}"><b>${esc(c.name)}</b>: ${esc(t)}</span>`)}
 const TEAMCD=new Map();let teamReqBot=null,teamReqT=0,botAskT=60,gchatT=14,ffT=0,bbT=30;
 function teamAccept(b){const r=me.power/Math.max(1,b.power);let p=r>=1.2?.75:r>=.8?.55:r>=.5?.3:.1;
@@ -2081,17 +2507,25 @@ function requestTeam(b){if(!b||!b.alive||!started)return;$('#chatMenu').hidden=t
     if(rnd()<teamAccept(b)){chatLine(b,pick(T_YES));joinTeam(b)}else chatLine(b,pick(T_NO))},2000+rnd()*7000)}
 function joinTeam(b){if(!b.alive||mates().length>=3)return;const g=grp.get(me.team)!==undefined?grp.get(me.team):'G'+me.id;grp.set(me.team,g);grp.set(b.team,g);
   b.mateT=time+180+rnd()*300;b.ai.t=0;if(b.ai.target===me)b.ai.target=null;S.teamMax=Math.max(S.teamMax||0,mates().length);
-  toast(`${b.name} صار معك في التيم 🤝`);feed(`<b>${esc(b.name)}</b> انضم لتيمك`);sfx('chime');updateLB()}
+  toast(`${b.name} صار معك في التيم`);feed(`<b>${esc(b.name)}</b> انضم لتيمك`);sfx('chime');updateLB()}
 function leaveTeam(b,msg){if(msg)chatLine(b,msg);grp.delete(b.team);if(!mates().length)grp.delete(me.team);feed(`<b>${esc(b.name)}</b> طلع من التيم`);updateLB()}
-function showTeamReq(b){teamReqBot=b;teamReqT=12;$('#trName').textContent=b.name;$('#trPow').textContent='⚔ '+fmt(b.power);$('#teamReq').hidden=false;sfx('coin')}
+function showTeamReq(b){teamReqBot=b;teamReqT=12;$('#trName').textContent=b.name;$('#trPow').textContent='القوة '+fmt(b.power);$('#teamReq').hidden=false;sfx('coin')}
 function hideTeamReq(){teamReqBot=null;$('#teamReq').hidden=true}
-function teamTick(dt){
+let popT=3;
+function popTick(dt){popT-=dt;if(popT>0)return;popT=5;const f=me.ships[0];if(!f||inSafe(f))return;
+  const z=zoneAt(f.x,f.y),want=5+Math.min(z,6),near=caps.filter(c=>c.bot&&c.alive&&Math.hypot(c.x-f.x,c.y-f.y)<1900).length;if(near>=want)return;
+  const far=caps.filter(c=>c.bot&&c.alive&&!isMate(c)&&c!==wantedCap&&Math.hypot(c.x-f.x,c.y-f.y)>3800);if(!far.length)return;
+  const old=pick(far);caps=caps.filter(c=>c!==old);grp.delete(old.team);usedNames.delete(old.name);
+  const b=makeBot(false,{z});const a=rnd()*TAU,d=1000+rnd()*700;let x=f.x+Math.cos(a)*d,y=f.y+Math.sin(a)*d;
+  if(Math.hypot(x,y)<SAFE_R+150){x=f.x-Math.cos(a)*d;y=f.y-Math.sin(a)*d}
+  b.x=x;b.y=y;for(const s of b.ships){s.x=x;s.y=y}b.ai.tx=f.x;b.ai.ty=f.y;caps.push(b)}
+function teamTick(dt){popTick(dt);
   for(const m of mates()){if(time>m.mateT||Math.hypot(m.x-me.x,m.y-me.y)>3500)leaveTeam(m,time>m.mateT?pick(T_BYE):null)}
   if(teamReqBot){teamReqT-=dt;if(teamReqT<=0||!teamReqBot.alive)hideTeamReq()}
   botAskT-=dt;if(botAskT<=0){botAskT=55+rnd()*80;
-    if(!teamReqBot&&mates().length<3&&!inSafe(me)){const c=caps.filter(b=>b.bot&&b.alive&&b.ships.length&&!isMate(b)&&grp.get(b.team)===undefined&&b.ai.target!==me&&b.power<me.power*1.3&&b.power>me.power*.25&&Math.hypot(b.x-me.x,b.y-me.y)<800);
+    if(S.teamReqOn!==false&&!teamReqBot&&mates().length<3&&!inSafe(me)){const c=caps.filter(b=>b.bot&&b.alive&&b.ships.length&&!isMate(b)&&grp.get(b.team)===undefined&&b.ai.target!==me&&b.power<me.power*1.3&&b.power>me.power*.25&&Math.hypot(b.x-me.x,b.y-me.y)<800);
       if(c.length){const b=pick(c);chatLine(b,pick(T_ASK));showTeamReq(b)}}}
-  gchatT-=dt;if(gchatT<=0){gchatT=14+rnd()*24;const all=caps.filter(b=>b.bot&&b.alive);if(all.length){const b=pick(all);if(Math.hypot(b.x-me.x,b.y-me.y)<900)chatLine(b,pick(BOT_CHAT));else feed(`<span class="ch"><b>${esc(b.name)}</b>: ${esc(pick(BOT_CHAT))}</span>`)}}
+  gchatT-=dt;if(gchatT<=0){gchatT=14+rnd()*24;const all=S.gchat===false?[]:caps.filter(b=>b.bot&&b.alive);if(all.length){const b=pick(all);if(Math.hypot(b.x-me.x,b.y-me.y)<900)chatLine(b,pick(BOT_CHAT));else feed(`<span class="ch"><b>${esc(b.name)}</b>: ${esc(pick(BOT_CHAT))}</span>`)}}
   // bot-bot teams (they stop fighting each other for a while)
   bbT-=dt;if(bbT<=0){bbT=25+rnd()*30;const fr=caps.filter(b=>b.bot&&b.alive&&grp.get(b.team)===undefined);
     for(const a of fr){if(rnd()<.7)continue;const o=fr.find(q=>q!==a&&grp.get(q.team)===undefined&&Math.hypot(q.x-a.x,q.y-a.y)<500&&q.power<a.power*1.5&&a.power<q.power*1.5);if(o){const g='B'+a.id;grp.set(a.team,g);grp.set(o.team,g);a.bgT=o.bgT=time+120+rnd()*200;break}}
@@ -2115,7 +2549,7 @@ function spawnBoss(kind){const z=zoneAt(me.x,me.y);if(!kind){if(z<2||inSafe(me))
   else{const ents=[],hp=base*12,g=npcEnt({team:'boss',boss:'ghost',x,y,ti:8,hp,maxhp:hp,z:zz,dmg:dmgM(L)*.17,cannons:10,rng:300,sp:42,orbit:rnd()<.5?1:-1,big:3.2,br:66});ents.push(g);npcs.push(g);
     for(let i=0;i<3;i++){const h2=base*2.2,e=npcEnt({team:'boss',boss:'ghost',x:x+(rnd()-.5)*300,y:y+(rnd()-.5)*180,ti:8,hp:h2,maxhp:h2,z:zz,dmg:dmgM(L)*.24,cannons:3,rng:190,sp:58,orbit:rnd()<.5?1:-1});ents.push(e);npcs.push(e)}
     boss={kind,ents,name:'سفينة الأشباح',z:zz,forced}}
-  toast(`ظهر ${boss.name}! تحتاج تيم عشان تطيّحه`);feed(`⚠ ظهر <b>${boss.name}</b> في المنطقة ${zz}`);sfx('horn');sfx('thunder');FX.shake=3}
+  toast(`ظهر ${boss.name}! تحتاج تيم عشان تطيّحه`);feed(`${ic('warn')} ظهر <b>${boss.name}</b> في المنطقة ${zz}`);sfx('horn');sfx('thunder');FX.shake=3}
 function bossTick(dt){
   if(boss){
     if(boss.kind==='ghost'&&!night()&&!boss.forced){for(const e of boss.ents){const i=npcs.indexOf(e);if(i>=0)npcs.splice(i,1)}toast('اختفت سفينة الأشباح مع الفجر');boss=null;return}
@@ -2200,11 +2634,11 @@ function exploreTick(){const R=600*(1+.2*bl('light')),E=500,cx=Math.floor(me.x/E
 
 /* ---- achievements & tutorial ---- */
 function achReward(a){return 300*Math.pow(a.r,2.2)*zoneMult(Math.max(1,S.maxZone))}
-function achTick(){for(const a of ACH){if(S.achv[a.id])continue;let ok=false;try{ok=a.f()}catch(e){}
+function achTick(){return;for(const a of ACH){if(S.achv[a.id])continue;let ok=false;try{ok=a.f()}catch(e){}
   if(ok){S.achv[a.id]=true;earn(achReward(a));if(a.skin&&!S.skins.includes(a.skin))S.skins.push(a.skin);toast(`إنجاز جديد: ${a.n}${a.skin?' · انفتح شكل جديد':''}`);sfx('chime');feed(`<b>${esc(me.name)}</b> حقق إنجاز <b>${a.n}</b>`);return}}}
-const TUT=['حرّك سفينتك: اسحب بالماوس أو بإصبعك، أو استخدم WASD','التقط 5 كنوز من البحر','ارسُ في جزيرة واشترِ تطوير لسفينتك (E أو زر الرسو)','جرّب مهارة: اضغط 1 أو زر الرشقة 💥','اطلب تيم من لاعب قريب (زر 💬)'];
+const TUT=['حرّك سفينتك: اسحب بالماوس أو بإصبعك، أو استخدم WASD','التقط 5 كنوز من البحر','ارسُ في جزيرة واشترِ تطوير لسفينتك (E أو زر الرسو)','جرّب مهارة: اضغط 1 أو زر الرشقة','اطلب تيم من لاعب قريب (زر التيم)'];
 function startTut(){S.tut=0;tutFlag.skill=false;tutFlag.dock=false;tutBase={x:me.x,y:me.y,col:S.collected,ships:upgN()};tutFlag.team=false;showTut()}
-function showTut(){const el=$('#tut');if(S.tut>=5||!tutBase){el.hidden=true;return}el.hidden=false;$('#tutTxt').textContent=`${S.tut+1}/5 · ${TUT[S.tut]}`}
+function showTut(){const el=$('#tut');if(S.tut>=5||!tutBase||S.tips===false){el.hidden=true;return}el.hidden=false;$('#tutTxt').textContent=`${S.tut+1}/5 · ${TUT[S.tut]}`}
 function tutTick(){if(!tutBase||S.tut>=5)return;let done=false;
   switch(S.tut){case 0:done=Math.hypot(me.x-tutBase.x,me.y-tutBase.y)>150;break;case 1:done=S.collected-tutBase.col>=5;break;case 2:done=upgN()>tutBase.ships;break;case 3:done=tutFlag.skill;break;case 4:done=!!tutFlag.team;break}
   if(done){S.tut++;sfx('coin');tutBase.col=S.collected;tutBase.ships=upgN();if(S.tut>=5){earn(500*globalMult());toast('خلصت التعليمات! هذي 500 كوينز هدية');tutBase=null}showTut()}}
@@ -2236,6 +2670,7 @@ function extDrawUnder(c){
       if(ready){c.fillStyle='#f2c2b1';for(let i=0;i<4;i++)c.fillRect(x-10+i*6,y-1+(i%2)*2,2,1);c.fillStyle='rgba(255,255,255,.75)';const bb=(time*12+sp.x)%10;c.fillRect(x-2+Math.round(Math.sin(time*5)*2),y-Math.round(bb),1,1);c.fillRect(x+4,y-Math.round((bb+5)%10),1,1)}}
     else if(ready){for(let i=0;i<5;i++){const a=time*1.6+i*1.26,fx=x+Math.cos(a)*10,fy=y+Math.sin(a)*4;c.fillStyle='rgba(10,30,50,.5)';c.fillRect(Math.round(fx-1),Math.round(fy),3,1);c.fillRect(Math.round(fx+(Math.sin(a)>0?-2:2)),Math.round(fy),1,1)}
       const r=(time*8)%14;c.strokeStyle=`rgba(255,255,255,${(.4*(1-r/14)).toFixed(2)})`;c.beginPath();c.ellipse(x,y,r,r*.45,0,0,TAU);c.stroke()}}
+  for(const b of bottles)drawBottle(c,b);
   if(S.tmap){const x=Math.round(S.tmap.x-camX),y=Math.round(S.tmap.y-camY);if(x>-20&&y>-20&&x<LW+20&&y<LH+20){c.fillStyle='rgba(0,0,0,.25)';c.beginPath();c.ellipse(x,y+1,9,3,0,0,TAU);c.fill();
     c.fillStyle=Math.sin(time*6)>0?'#ff4a3a':'#c4412b';for(let i=-4;i<=4;i++){c.fillRect(x+i,y+Math.round(i*.5),2,1);c.fillRect(x+i,y-Math.round(i*.5),2,1)}}}
   for(const s of nearList){const st=capMap.get(s.id);if(!st||!st.owner)continue;const x=Math.round(s.x-camX+s.r*.3),y=Math.round(s.y-camY-s.r*.38);c.fillStyle='#3d2410';c.fillRect(x,y-16,1,17);
@@ -2309,7 +2744,7 @@ function actTick(){const el=$('#actBtn'),f=me.ships[0];if(!f||MG.on||anyModal())
   if(S.tmap&&Math.hypot(f.x-S.tmap.x,f.y-S.tmap.y)<34)m='dig';
   else for(const s of spotsNear(f.x,f.y)){if(spotReady(s)&&Math.hypot(f.x-s.x,f.y-s.y)<38){m=s.type;sp=s;break}}
   actMode=m;actSpot=sp;if(!m){el.hidden=true;return}el.hidden=false;
-  const tx=(m==='dig'?'انتشل الكنز ⚓':m==='pearl'?'غُص على اللؤلؤ':'ارمِ السنارة')+' (Q)';if(el.textContent!==tx)el.textContent=tx}
+  const tx=(m==='dig'?'انتشل الكنز':m==='pearl'?'غُص على اللؤلؤ':'ارمِ السنارة')+' (Q)';if(el.textContent!==tx)el.textContent=tx}
 function doAct(){if(!actMode)return;if(actMode==='dig')dig();else startMG(actMode,actSpot)}
 
 /* ---- per-frame & periodic ---- */
@@ -2319,7 +2754,7 @@ function extFrame(dt){
 function extUpdate(dt){
   for(const k in SKc)SKc[k]=Math.max(0,SKc[k]-dt);windT=Math.max(0,windT-dt);shieldT=Math.max(0,shieldT-dt);volleyT=Math.max(0,volleyT-dt);
   if(windT>0&&rnd()<dt*25)for(const s of me.ships.slice(0,10))parts.push({x:s.x-(s.fx||1)*SHIPS[s.ti].w*.5,y:s.y-SHIPS[s.ti].hh-rnd()*10,vx:-(s.fx||1)*90,vy:0,life:.3,max:.3,c:'#ffffff'});
-  bossTick(dt);lifeTick(dt);capTick(dt);actTick();teamTick(dt);
+  bossTick(dt);lifeTick(dt);capTick(dt);actTick();teamTick(dt);bottleTick(dt);
   const se=seasonIdx();if(se!==lastSeason){if(lastSeason!==-1)toast(`بدأ ${SEASONS[se]}! الجزر لبست ألوان جديدة`);lastSeason=se;islCache.forEach(v=>{if(v)v.spr=null})}
   const fe=festival();if(fe!==lastFest){if(lastFest!==null&&fe){toast('مهرجان البحر! كل الكنوز ×2 اليوم');sfx('horn')}lastFest=fe}
   extT-=dt;if(extT<=0){extT=.5;exploreTick();tutTick();achTick();
@@ -2356,7 +2791,7 @@ const SCALE=[146.83,155.56,185,196,220,233.08,261.63,293.66,311.13,369.99,392,44
 function musicInit(){if(!AU.c||MU.g)return;const c=AU.c;MU.g=c.createGain();MU.g.gain.value=0;MU.g.connect(AU.m);
   const d1=c.createOscillator(),d2=c.createOscillator(),dg=c.createGain();d1.frequency.value=73.42;d2.frequency.value=110;d2.type='triangle';dg.gain.value=.04;
   const lf=c.createOscillator(),lg=c.createGain();lf.frequency.value=.1;lg.gain.value=.02;lf.connect(lg);lg.connect(dg.gain);d1.connect(dg);d2.connect(dg);dg.connect(MU.g);d1.start();d2.start();lf.start();musicVol()}
-function musicVol(){if(MU.g)MU.g.gain.setTargetAtTime(S.music?S.mvol*.5:0,AU.c.currentTime,.3)}
+function musicVol(){if(MU.g&&AU.c)MU.g.gain.setTargetAtTime(S.music?S.mvol*.5:0,AU.c.currentTime,.3)}
 function pluck(t,f,v){const c=AU.c,o1=c.createOscillator(),o2=c.createOscillator(),lp=c.createBiquadFilter(),g=c.createGain();o1.type='sawtooth';o2.type='triangle';o1.frequency.value=f;o2.frequency.value=f*1.004;
   lp.type='lowpass';lp.frequency.setValueAtTime(2400,t);lp.frequency.exponentialRampToValueAtTime(500,t+.35);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.006);g.gain.exponentialRampToValueAtTime(.0001,t+.9);
   o1.connect(lp);o2.connect(lp);lp.connect(g);g.connect(MU.g);o1.start(t);o2.start(t);o1.stop(t+1);o2.stop(t+1)}
@@ -2372,16 +2807,23 @@ function musicTick(){if(!AU.c||!started)return;if(!MU.g)musicInit();if(!S.music|
 /* ---- book tabs ---- */
 function goodPrice(isl,g,gi){const z=zoneAt(isl.x,isl.y),h=hash(Math.round(isl.x/100)+gi*7,Math.round(isl.y/100)+S.day*13,41);return g.p*(.55+h*.9)*Math.pow(zoneMult(z),.35)}
 function extRender(b){const T=bookTab,isl=bookIsl;
+  if(T==='own'&&isl){const own=ownsIsl(isl.id),z=zoneAt(isl.x,isl.y),c=islPrice(isl);
+    b.innerHTML=`<div class="owncard ${own?'on':''}"><canvas width="240" height="240" id="islPrev"></canvas><div><h3>${isl.name}${own?' '+ic('crown'):''}</h3><p class="note" style="margin:4px 0 10px">المنطقة ${z} · ${own?'هذي جزيرتك':'جزيرة حرّة'}</p>
+      <ul class="perks"><li>${ic('shield')} دائرة منطقة آمنة حولها — ما فيه قتال داخلها</li><li>${ic('anchor')} تبدأ منها لما تدخل اللعبة</li><li>${ic('heart')} إذا غرقت ترجع لأقرب جزيرة لك</li><li>${ic('star')} علمك يرفرف فوقها</li></ul>
+      ${own?`<button class="buy" disabled>${ic('check')} ملكك${S.spawnIsl===isl.id?' · نقطة انطلاقك':''}</button>`:`<button class="buy" data-buyisl="1" ${S.coins<c?'disabled':''}><i class="coin"></i>${fmt(c)} · اشترِ الجزيرة</button>`}
+      <p class="note">${(S.myIsl||[]).length?`جزرك: ${S.myIsl.map(i=>i.name).join('، ')}`:'ما عندك جزر للحين — كل جزيرة تشتريها يزيد سعر اللي بعدها.'}</p></div></div>`;
+    const cv=$('#islPrev');if(cv){const g=cv.getContext('2d'),sp=islandSprite(isl);g.imageSmoothingEnabled=false;g.fillStyle='#2f7fc0';g.fillRect(0,0,240,240);const k=Math.min(2.4,220/sp.width);g.drawImage(sp,(240-sp.width*k)/2,(240-sp.height*k)/2,sp.width*k,sp.height*k)}
+    return true}
   if(T==='yard'){const cur=SHIPS.findIndex(t=>t.id===S.hull);
     b.innerHTML=`<p class="note" style="margin:0 0 8px">${isl?'عندك سفينة وحدة بس — كل ما كبّرتها زادت مدافعها ومداها ومتانتها. السفن اللي اشتريتها قبل تقدر ترجع لها ببلاش.':'تشتري السفن وتبدّل بينها لما ترسي في أي جزيرة. هنا تقدر تشوف وش ينتظرك.'}</p><div class="yard">`+SHIPS.map((t,i)=>{const own=S.hulls.includes(t.id),on=i===cur,lock=!own&&i>=S.unl,c=shipCost(i);
       let btn;if(on)btn='<button class="buy" disabled>سفينتك الحين</button>';else if(own)btn=`<button class="buy" data-hull="${i}" ${isl?'':'disabled'}>${isl?'اركبها':'ارسُ عشان تبدّل'}</button>`;
       else if(lock)btn=`<button class="buy" disabled>اشترِ ${SHIPS[i-1].name} أول</button>`;else btn=`<button class="buy" data-hull="${i}" ${(!isl||S.coins<c)?'disabled':''}><i class="coin"></i>${fmt(c)}</button>`;
-      return `<div class="card ${on?'on':''} ${lock?'lock':''} ${t.legend?'leg':''}"><canvas width="200" height="100" data-yd="${i}"></canvas><h4>${t.name}<span class="pix">${own?'✓ عندك':''}</span></h4><div class="st"><span>ركاب<b>${t.crew}</b></span><span>مدافع<b>${t.cannons}</b></span><span>مدى<b>${t.range}</b></span><span>متانة<b>${t.hp}</b></span></div>${t.legend?`<div class="lg">أسطوري: ${t.lname}</div>`:''}${btn}</div>`}).join('')+'</div>';
+      return `<div class="card ${on?'on':''} ${lock?'lock':''} ${t.legend?'leg':''}"><canvas width="200" height="100" data-yd="${i}"></canvas><h4>${t.name}<span class="pix">${own?ic('check')+' عندك':''}</span></h4><div class="st"><span>ركاب<b>${t.crew}</b></span><span>مدافع<b>${t.cannons}</b></span><span>مدى<b>${t.range}</b></span><span>متانة<b>${t.hp}</b></span></div>${t.legend?`<div class="lg">أسطوري: ${t.lname}</div>`:''}${btn}</div>`}).join('')+'</div>';
     b.querySelectorAll('canvas[data-yd]').forEach(cn=>shipThumb(cn,SHIPS[+cn.dataset.yd],skinObj(),2));return true}
-  if(T==='base'){b.innerHTML='<p class="note" style="margin:0 0 8px">هذي جزيرتك. كل مبنى تبنيه يطلع عليها ويعطيك ميزة دائمة.</p><div class="grid">'+BUILD.map(x=>{const l=bl(x.id),cost=x.base*Math.pow(2.1,l);
-    return `<div class="card"><h4>${x.n}<span class="pix">مستوى ${l}</span></h4><p>${x.d}</p><button class="buy" data-build="${x.id}" ${S.coins<cost?'disabled':''}><i class="coin"></i>${l?'طوّر ':'ابنِ '}${fmt(cost)}</button></div>`}).join('')+'</div>';return true}
+  if(T==='base'){b.innerHTML='<p class="note" style="margin:0 0 8px">هذي جزيرتك. المباني هنا تعطيك ميزات دائمة — تطوير السفينة نفسها في تبويب «ورشة التطوير».</p><div class="grid">'+BUILD.map(x=>{const l=bl(x.id),cost=x.base*Math.pow(2.1,l);
+    return `<div class="card"><h4>${x.n}<span class="pix">مستوى ${l}</span></h4><p>${x.d}</p><button class="buy" data-build="${x.id}" ${S.coins<cost?'disabled':''}><i class="coin"></i>${l?'طوّر ':'شيّد '}${fmt(cost)}</button></div>`}).join('')+'</div>';return true}
   if(T==='market'){const used=cargoUsed(),cap=cargoCap();
-    b.innerHTML=`<div class="card" style="margin-bottom:10px"><h4>الحمولة<span class="pix">${used}/${cap}</span></h4><p>اشترِ رخيص من جزيرة وبِعه غالي في ثانية. الأسعار تتغير كل يوم، وكل جزيرة لها أسعارها. إذا غرق أسطولك كامل تضيع الحمولة.</p></div><div class="grid">`+
+    b.innerHTML=`<div class="card" style="margin-bottom:10px"><h4>الحمولة<span class="pix">${used}/${cap}</span></h4><p>اشترِ رخيص من جزيرة وبِعه غالي في ثانية. الأسعار تتغير كل يوم، وكل جزيرة لها أسعارها. إذا غرقت سفينتك تضيع الحمولة.</p></div><div class="grid">`+
     GOODS.map((g,gi)=>{const p=goodPrice(isl,g,gi),h=S.cargo[g.id]||{q:0,c:0},avg=h.q?h.c/h.q:0,cls=h.q?(p*.96>avg?'up':'down'):'';
       return `<div class="card"><h4>${g.n}<span class="pix">${fmt(p,1)}</span></h4><p>معك ${h.q}${h.q?` · متوسط شرائك ${fmt(avg,1)}`:''}</p><div class="row2"><button class="btn" data-buyg="${gi}" data-n="1">+1</button><button class="btn" data-buyg="${gi}" data-n="10">+10</button><button class="btn alt ${cls}" data-sellg="${gi}" ${h.q?'':'disabled'}>بِع الكل${h.q?' '+fmt(p*.96*h.q):''}</button></div></div>`}).join('')+'</div>';return true}
   if(T==='contract'){const cur=S.contract;let html='';
@@ -2394,13 +2836,14 @@ function extRender(b){const T=bookTab,isl=bookIsl;
     html+='<div class="page"><span>حيوان السفينة</span><small>واحد يرافقك على سفينة القيادة</small></div><div class="grid">'+PETS.map(p=>{const own=S.pets.includes(p.id),on=S.pet===p.id;
       return `<div class="card ${on?'on':''}"><canvas class="pet" width="24" height="24" data-pet="${p.id}"></canvas><h4>${p.n}</h4><p>${p.d}</p>${own?`<button class="buy" data-petuse="${p.id}" ${on?'disabled':''}>${on?'معك':'خذه معك'}</button>`:`<button class="buy" data-petbuy="${p.id}" ${S.coins<p.cost?'disabled':''}><i class="coin"></i>${fmt(p.cost)}</button>`}</div>`}).join('')+'</div>';
     b.innerHTML=html;b.querySelectorAll('canvas[data-pet]').forEach(cn=>drawPetIcon(cn,cn.dataset.pet));return true}
-  if(T==='craft'){const m=S.mats;b.innerHTML=`<div class="card" style="margin-bottom:10px"><h4>المواد</h4><div class="stats"><span>خشب</span><span class="pix">${m.wood}</span><span>حديد</span><span class="pix">${m.iron}</span><span>قماش أشرعة</span><span class="pix">${m.canvas}</span></div><p>تجمعها من حطام السفن اللي تغرق قريب منك ومن كنوز الزعماء.</p></div><div class="grid">`+
-    HEADS.map(h=>{const own=S.heads.includes(h.id),on=S.head===h.id,can=Object.entries(h.m).every(([k,v])=>m[k]>=v);
-      return `<div class="card ${on?'on':''}"><h4>${h.n}${on?'<span class="pix">مركّب</span>':''}</h4><p>تمثال المقدمة: ${h.d}</p><p class="pix">خشب ${h.m.wood} · حديد ${h.m.iron} · قماش ${h.m.canvas}</p>${own?`<button class="buy" data-headuse="${h.id}" ${on?'disabled':''}>${on?'مركّب':'ركّبه'}</button>`:`<button class="buy" data-headmake="${h.id}" ${can?'':'disabled'}>اصنعه</button>`}</div>`}).join('')+'</div>';return true}
+  if(T==='craft'){const m=S.mats;b.innerHTML=`<div class="card" style="margin-bottom:12px"><h4>المواد</h4><div class="stats"><span>خشب</span><span class="pix">${m.wood}</span><span>حديد</span><span class="pix">${m.iron}</span><span>قماش أشرعة</span><span class="pix">${m.canvas}</span></div><p>تجمعها من حطام السفن اللي تغرق قريب منك ومن كنوز الزعماء. كل قطعة تصنعها تتركب على سفينتك وتبان عليها، وتقدر تصنعها كلها.</p></div><div class="grid">`+
+    PARTS.map(p=>{const own=hasP(p.id),cst=partCost(p),can=Object.entries(p.m).every(([k,v])=>m[k]>=v)&&S.coins>=cst;
+      return `<div class="card ${own?'on':''}"><canvas class="sk" width="200" height="100" data-pt="${p.id}"></canvas><h4>${p.n}${own?'<span class="pix">'+ic('check')+' مركّب</span>':''}</h4><p>${p.d}</p><p class="pix">خشب ${p.m.wood} · حديد ${p.m.iron} · قماش ${p.m.canvas}</p>${own?'<button class="buy" disabled>مركّب على سفينتك</button>':`<button class="buy" data-partmake="${p.id}" ${can?'':'disabled'}><i class="coin"></i>${fmt(cst)} · اصنعه</button>`}</div>`}).join('')+'</div>';
+    b.querySelectorAll('canvas[data-pt]').forEach(cn=>partThumb(cn,[...new Set([...(S.parts||[]),cn.dataset.pt])]));return true}
   if(T==='flag'){if(!flagDraft)flagDraft=S.flag?[...S.flag]:Array(28).fill(-1);
-    b.innerHTML=`<p class="note" style="margin:0 0 8px">ارسم علم أسطولك (7×4). اختر لون واضغط على المربعات. العلم يرفرف فوق كل سفنك.</p><div class="flagEd"><div class="fgrid">${flagDraft.map((v,i)=>`<button data-fc="${i}" style="${v>=0?'background:'+FLAG_PAL[v]:''}" aria-label="مربع ${i+1}"></button>`).join('')}</div><div class="fpal">${FLAG_PAL.map((c,i)=>`<button data-fp="${i}" class="${flagPen===i?'on':''}" style="background:${c}" aria-label="لون ${i+1}"></button>`).join('')}<button data-fp="-1" class="er ${flagPen===-1?'on':''}">ممحاة</button></div></div>
+    b.innerHTML=`<p class="note" style="margin:0 0 8px">ارسم علم سفينتك (7×4). اختر لون واضغط على المربعات. العلم يرفرف فوق سفينتك.</p><div class="flagEd"><div class="fgrid">${flagDraft.map((v,i)=>`<button data-fc="${i}" style="${v>=0?'background:'+FLAG_PAL[v]:''}" aria-label="مربع ${i+1}"></button>`).join('')}</div><div class="fpal">${FLAG_PAL.map((c,i)=>`<button data-fp="${i}" class="${flagPen===i?'on':''}" style="background:${c}" aria-label="لون ${i+1}"></button>`).join('')}<button data-fp="-1" class="er ${flagPen===-1?'on':''}">ممحاة</button></div></div>
     <div class="row2" style="margin-top:12px"><button class="btn" data-fsave="1">احفظ العلم</button><button class="btn alt" data-freset="1">رجّع علم الفريق</button><button class="btn alt" data-fpre="skull">جمجمة</button><button class="btn alt" data-fpre="palm">نخلة</button><button class="btn alt" data-fpre="moon">هلال</button></div>`;return true}
-  if(T==='achv'){b.innerHTML='<div class="grid">'+ACH.map(a=>{const d=!!S.achv[a.id];return `<div class="card ${d?'on':''}"><h4>${a.n}${d?'<span class="pix">✓</span>':''}</h4><p>${a.d}${a.skin?' · يفتح شكل':''}</p><div class="fx">${d?'منجز':'<i class="coin"></i> '+fmt(achReward(a))}</div></div>`}).join('')+'</div>';return true}
+  if(T==='achv'){b.innerHTML='<div class="grid">'+ACH.map(a=>{const d=!!S.achv[a.id];return `<div class="card ${d?'on':''}"><h4>${a.n}${d?'<span class="pix">'+ic('check')+'</span>':''}</h4><p>${a.d}${a.skin?' · يفتح شكل':''}</p><div class="fx">${d?'منجز':'<i class="coin"></i> '+fmt(achReward(a))}</div></div>`}).join('')+'</div>';return true}
   if(T==='set'){b.innerHTML=`<div class="set">
     <label for="volIn">الصوت العام <input type="range" id="volIn" min="0" max="100" value="${Math.round(S.vol*100)}"></label>
     <label>كتم كل الصوت <button class="sw" data-tgl="mute" aria-pressed="${!!S.mute}" aria-label="كتم"></button></label>
@@ -2423,6 +2866,7 @@ function extRender(b){const T=bookTab,isl=bookIsl;
     $('#volIn').addEventListener('input',e=>{S.vol=e.target.value/100;setVol()});$('#mvolIn').addEventListener('input',e=>{S.mvol=e.target.value/100;musicVol()});$('#qIn').addEventListener('change',e=>{S.q=e.target.value});return true}
   return false}
 function extBookClick(t){const d=t.dataset;saveT=Math.min(saveT,.4);
+  if(d.buyisl){buyIsland(bookIsl);renderBook();return true}
   if(d.hull!==undefined){const i=+d.hull;if(!bookIsl)return true;if(!buyShip(i))toast('ما عندك كوينز كفاية');renderBook();return true}
   if(d.build){const x=BUILD.find(q=>q.id===d.build),cost=x.base*Math.pow(2.1,bl(x.id));if(S.coins<cost)return true;S.coins-=cost;S.built[x.id]=bl(x.id)+1;const h=islandCell(0,0);h.spr=null;sfx('chime');toast(`${x.n} صار مستوى ${S.built[x.id]}`);sideDirty=true;renderBook();return true}
   if(d.buyg!==undefined){const g=GOODS[+d.buyg],p=goodPrice(bookIsl,g,+d.buyg)*1.04,n=Math.min(+d.n,cargoCap()-cargoUsed(),Math.floor(S.coins/p));
@@ -2435,6 +2879,8 @@ function extBookClick(t){const d=t.dataset;saveT=Math.min(saveT,.4);
     if(st)st.lv++;else S.officers[o.id]={lv:1,name:OFF_NAMES[Math.floor(rnd()*OFF_NAMES.length)]};sfx('chime');if(o.id==='cook')rebuildFleet(me);renderBook();return true}
   if(d.petbuy){const p=PETS.find(q=>q.id===d.petbuy);if(S.coins<p.cost)return true;S.coins-=p.cost;S.pets.push(p.id);S.pet=p.id;rebuildFleet(me);sfx('chime');renderBook();return true}
   if(d.petuse){S.pet=d.petuse;rebuildFleet(me);renderBook();return true}
+  if(d.partmake){const p=PARTS.find(q=>q.id===d.partmake),cst=partCost(p);if(hasP(p.id)||S.coins<cst||!Object.entries(p.m).every(([k,v])=>S.mats[k]>=v))return true;
+    for(const [k,v] of Object.entries(p.m))S.mats[k]-=v;S.coins-=cst;S.parts=[...(S.parts||[]),p.id];rebuildFleet(me);sfx('chime');notify(`صنعت ${p.n} وتركّب على سفينتك`,'repair');renderBook();return true}
   if(d.headmake){const h=HEADS.find(q=>q.id===d.headmake);if(!Object.entries(h.m).every(([k,v])=>S.mats[k]>=v))return true;for(const [k,v] of Object.entries(h.m))S.mats[k]-=v;S.heads.push(h.id);S.head=h.id;rebuildFleet(me);sfx('chime');toast(`صنعت تمثال ${h.n} وركّبته`);renderBook();return true}
   if(d.headuse){S.head=d.headuse;rebuildFleet(me);renderBook();return true}
   if(d.fc!==undefined){flagDraft[+d.fc]=flagPen;renderBook();return true}
@@ -2490,10 +2936,13 @@ function loadCode(code){try{code=String(code).trim();if(!code.startsWith('SFN1.'
 initBots();
 showLogin();updateLB();
 let lastT=performance.now(),zoomT=0;
+let fpsN=0,fpsT=0;
 function loop(now){
   const dt=Math.min(.05,(now-lastT)/1000);lastT=now;time+=dt;
+  if(S.fps){fpsN++;fpsT+=dt;if(fpsT>=.5){$('#fps').textContent=Math.round(fpsN/fpsT)+' FPS';fpsN=0;fpsT=0}}
+  extraTick(dt);
   if(!paused)update(dt);
-  render(dt);
+  render(dt);drawHurtDir();
   if(zmT>0){zmT-=dt;if(zmT<=0)$('#zoomLbl').hidden=true}
   extFrame(dt);
   if(coinBump>0){coinBump-=dt;$('#coinBox').classList.toggle('bump',coinBump>0)}
@@ -2505,6 +2954,76 @@ function loop(now){
   zoomT-=dt;if(zoomT<=0){zoomT=.05;const tg=wantPX();if(Math.abs(tg-PX)>.01)resize(Math.abs(tg-PX)<=.125?tg:PX+Math.sign(tg-PX)*.125)}
   requestAnimationFrame(loop);
 }
+/* ================= settings (App-Store style) ================= */
+const SET_DEF={svol:1,shake:true,dmgNums:true,tags:true,fps:false,lefty:false,haptic:true,autoZoom:true,lang:'ar',tips:true,teamReqOn:true,gchat:true,killfeed:true,capRem:true};
+for(const k in SET_DEF)if(S[k]===undefined)S[k]=SET_DEF[k];
+const VERSION='1.0.0';
+const SET_SECS=[['account','user','الحساب'],['audio','sound','الصوت'],['graphics','eye','الرسوميات'],['controls','pad','التحكم'],['lang','globe','اللغة'],['notif','bell','الإشعارات'],['about','info','الدعم وحول اللعبة']];
+let setSec='account',wipeArm=0;
+function openSettings(sec){if(sec)setSec=sec;$('#settings').hidden=false;renderSettings()}
+const sRow=(l,c,d)=>`<div class="srow"><div class="sl"><b>${l}</b>${d?`<small>${d}</small>`:''}</div><div class="sc">${c}</div></div>`;
+const sTog=k=>`<button class="sw" data-st="${k}" aria-pressed="${!!S[k]}" aria-label="تبديل"></button>`;
+const sSl=k=>`<input type="range" min="0" max="100" value="${Math.round((S[k]??1)*100)}" data-sr="${k}"><span class="pix sv">${Math.round((S[k]??1)*100)}</span>`;
+const sSeg=(k,o)=>`<div class="seg">${o.map(([v,l])=>`<button data-ss="${k}" data-v="${v}" aria-pressed="${S[k]===v}">${l}</button>`).join('')}</div>`;
+function renderSettings(){
+  $('#setNav').innerHTML=SET_SECS.map(([k,i,l])=>`<button data-sec="${k}" aria-selected="${k===setSec}">${ic(i)}<span>${l}</span></button>`).join('');
+  const B=$('#setBody');let h='';
+  if(setSec==='account'){const p=me||{power:0};const nm=S.name||'—';
+    h=`<div class="prof">${ic('user','big')}<div><b class="pnm">${esc(nm)}</b><small>${titleOf(p.power||0)} · القوة ${fmt(p.power||0)} · أبعد منطقة ${S.maxZone}</small></div></div>
+    <div class="sgrp"><h5>الملف الشخصي</h5>${sRow('اسم القبطان',`<input type="text" id="setName" maxlength="16" value="${esc(S.name||'')}"><button class="btn" data-sa="rename">حفظ</button>`)}
+    ${sRow('حفظ التقدم',`<span class="tag ${CLOUD.ref?'ok':''}">${CLOUD.ref?'متصل بحسابك':'على هذا الجهاز'}</span>`,CLOUD.ref?'تقدمك ينحفظ تلقائياً في حسابك ويرجع لك من أي جهاز.':'انسخ كود الحفظ عشان تنقل تقدمك لجهاز ثاني.')}</div>
+    <div class="sgrp"><h5>نقل التقدم</h5>${sRow('كود الحفظ',`<button class="btn alt" data-sa="copysave">انسخ الكود</button>`)}
+      <div class="srow col"><textarea id="setCode" rows="2" placeholder="الصق كود الحفظ هنا"></textarea><button class="btn alt" data-sa="loadsave">استرجع من الكود</button></div></div>
+    <div class="sgrp"><h5>إحصائياتك</h5><div class="stats">
+      <span>مجموع الكوينز</span><span class="pix">${fmt(S.earned)}</span><span>الكنوز الملتقطة</span><span class="pix">${fmt(S.collected)}</span>
+      <span>سفن أغرقتها</span><span class="pix">${fmt(S.kills)}</span><span>زعماء</span><span class="pix">${S.bossKills}</span><span>مطلوبين قبضت عليهم</span><span class="pix">${S.bounties}</span>
+      <span>غوص / صيد</span><span class="pix">${S.dives} / ${S.fish}</span><span>صفقات تجارة</span><span class="pix">${S.trades}</span><span>جزر مكتشفة</span><span class="pix">${S.islFound.length}</span>
+      <span>كنوز منتشلة</span><span class="pix">${S.digs}</span><span>مرات الغرق</span><span class="pix">${fmt(S.lost)}</span><span>أطول سلسلة إغراق</span><span class="pix">${S.bestStreak||0}</span></div></div>
+    <div class="sgrp danger"><h5>منطقة الخطر</h5>${sRow('حذف كل التقدم',`<button class="btn danger" data-sa="wipe">${wipeArm>Date.now()?'متأكد؟ اضغط مرة ثانية':'حذف'}</button>`,'يمسح فلوسك وسفنك وتطويراتك من هذا الجهاز ومن حسابك. ما ينفع ترجعه.')}</div>`}
+  else if(setSec==='audio')h=`<div class="sgrp"><h5>مستوى الصوت</h5>${sRow('الصوت العام',sSl('vol'))}${sRow('المؤثرات',sSl('svol'),'المدافع والموج والكنوز')}${sRow('الموسيقى',sSl('mvol'))}</div>
+    <div class="sgrp">${sRow('تشغيل الموسيقى',sTog('music'))}${sRow('كتم كل الصوت',sTog('mute'))}${sRow('جرّب الصوت',`<button class="btn alt" data-sa="testsnd">${ic('sound')} تشغيل</button>`,'إذا ما سمعت شي على الجوال، تأكد إن صوت الجهاز مرفوع')}</div>`;
+  else if(setSec==='graphics')h=`<div class="sgrp"><h5>الأداء</h5>${sRow('جودة الرسوميات',sSeg('q',[['high','عالية'],['low','خفيفة']]),'خفيفة = أسرع على الأجهزة الضعيفة')}${sRow('عداد الإطارات FPS',sTog('fps'))}</div>
+    <div class="sgrp"><h5>العرض</h5>${sRow('اهتزاز الشاشة',sTog('shake'))}${sRow('أرقام الضرر',sTog('dmgNums'))}${sRow('أسماء اللاعبين فوق السفن',sTog('tags'))}${sRow('وضع عمى الألوان',sTog('cb'))}</div>`;
+  else if(setSec==='controls')h=`<div class="sgrp"><h5>اللعب</h5>${sRow('وضع اليد اليسرى',sTog('lefty'),'ينقل المهارات والأزرار لليسار')}${sRow('الاهتزاز',sTog('haptic'),'الجوال يهتز لما تنضرب سفينتك')}${sRow('زوم تلقائي',sTog('autoZoom'),'الكاميرا تبعد وتقرب حسب حجم سفينتك والمعركة')}${sRow('التعليمات',`<button class="btn alt" data-sa="tut">أعد التعليمات</button>`)}</div>
+    <div class="sgrp"><h5>الكيبورد</h5><div class="keys"><span><kbd>W A S D</kbd> الحركة</span><span><kbd>1-4</kbd> المهارات</span><span><kbd>E</kbd> الرسو</span><span><kbd>Q</kbd> غوص / صيد / انتشال</span><span><kbd>T</kbd> الدردشة والتيم</span><span><kbd>M</kbd> الخريطة</span><span><kbd>+ −</kbd> الزوم</span><span><kbd>Esc</kbd> إغلاق</span></div></div>`;
+  else if(setSec==='lang')h=`<div class="sgrp"><h5>لغة اللعبة</h5><div class="langs"><button data-ss="lang" data-v="ar" aria-pressed="${S.lang==='ar'}"><b>العربية</b><small>Arabic</small></button><button data-ss="lang" data-v="en" aria-pressed="${S.lang==='en'}"><b>English</b><small>الإنجليزية</small></button></div></div>`;
+  else if(setSec==='notif')h=`<div class="sgrp"><h5>داخل اللعبة</h5>${sRow('طلبات التيم من اللاعبين',sTog('teamReqOn'))}${sRow('الدردشة العامة',sTog('gchat'))}${sRow('أخبار المعارك',sTog('killfeed'),'مين أغرق مين')}${sRow('تذكير حد التطوير',sTog('capRem'))}${sRow('نصائح التعليمات',sTog('tips'))}</div>`;
+  else h=`<div class="about"><div class="logo">sfn.io</div><div class="ver">الإصدار ${VERSION}</div></div>
+    <div class="sgrp"><h5>الدعم</h5>${sRow('مشكلة أو اقتراح؟','<span class="tag">قريباً</span>','بيتوفر نموذج تواصل داخل اللعبة مع نسخة المتجر')}${sRow('إعادة ضبط الإعدادات',`<button class="btn alt" data-sa="resetset">إعادة الضبط</button>`,'ترجع كل الإعدادات لوضعها الأصلي بدون ما يتأثر تقدمك')}</div>
+    <div class="sgrp"><h5>قانوني</h5><details><summary>سياسة الخصوصية</summary><p>اللعبة تحفظ اسمك وتقدمك على جهازك، وفي حسابك إذا كان الحفظ السحابي مفعّل. ما نجمع بيانات شخصية ثانية ولا نشاركها مع أحد. تقدر تحذف كل بياناتك من «الحساب ← حذف كل التقدم».</p></details>
+      <details><summary>شروط الاستخدام</summary><p>اللعبة للترفيه. يمنع استخدام أسماء مسيئة أو التلاعب باللعبة. الكوينز والعناصر داخل اللعبة افتراضية وما لها قيمة مالية.</p></details>
+      <details><summary>الخطوط والمكتبات</summary><p>خط Changa و Tajawal (رخصة SIL Open Font). كل الرسومات والأصوات مصنوعة داخل اللعبة.</p></details></div>`;
+  B.innerHTML=h;B.scrollTop=0;
+}
+function trNode(n){if(n.nodeType===3){const v=n.nodeValue;if(!/[\u0600-\u06FF]/.test(v))return;n.__ar=v;const t=L(v);n.__en=t;if(t!==v)n.nodeValue=t}
+  else if(n.nodeType===1){if(n.tagName==='SCRIPT'||n.tagName==='STYLE')return;for(const a of ['aria-label','placeholder','title']){const v=n.getAttribute(a);if(v&&/[\u0600-\u06FF]/.test(v)){n.setAttribute('data-ar-'+a,v);n.setAttribute(a,L(v))}}if(n.tagName!=='TEXTAREA'&&n.tagName!=='INPUT')for(const c of n.childNodes)trNode(c)}}
+let trObs=null;
+function applyLang(){const en=S.lang==='en';window.__lang=en?'en':'ar';document.documentElement.lang=en?'en':'ar';document.documentElement.classList.toggle('en',en);trCache.clear();
+  if(en){trNode(document.body);if(!trObs){trObs=new MutationObserver(ms=>{if(S.lang!=='en')return;for(const m of ms){if(m.type==='characterData')trNode(m.target);else m.addedNodes.forEach(trNode)}});trObs.observe(document.body,{childList:true,subtree:true,characterData:true})}}
+  else{const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode()))if(n.__ar!==undefined&&n.nodeValue===n.__en)n.nodeValue=n.__ar;
+    document.querySelectorAll('[data-ar-aria-label],[data-ar-placeholder],[data-ar-title]').forEach(el=>{for(const a of ['aria-label','placeholder','title']){const v=el.getAttribute('data-ar-'+a);if(v)el.setAttribute(a,v)}})}
+  if(!$('#book').hidden)renderBook();updateLB()}
+function applySettings(){setVol();musicVol&&musicVol();applyCB();document.body.classList.toggle('lefty',!!S.lefty);$('#fps').hidden=!S.fps;applyLang();saveT=Math.min(saveT,.5)}
+$('#settings').addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;const d=t.dataset;
+  if(d.sec){setSec=d.sec;renderSettings();return}
+  if(d.st){S[d.st]=!S[d.st];t.setAttribute('aria-pressed',!!S[d.st]);applySettings();return}
+  if(d.ss){S[d.ss]=d.v;applySettings();renderSettings();return}
+  if(d.sa==='rename'){const v=$('#setName').value.trim().slice(0,16);if(v.length<2){toast('الاسم لازم يكون حرفين أو أكثر');return}S.name=v;if(me)me.name=v;toast('تغيّر اسمك');updateLB();saveT=.2;renderSettings()}
+  else if(d.sa==='copysave'){const code=saveCode();const ta=$('#setCode');ta.value=code;ta.select();try{navigator.clipboard.writeText(code).then(()=>toast('انتسخ الكود'),()=>toast('انسخ الكود من المربع'))}catch(er){toast('انسخ الكود من المربع')}}
+  else if(d.sa==='loadsave'){if(loadCode($('#setCode').value)){closeAll();toast('رجع تقدمك من الكود!')}else toast('الكود غلط أو ناقص')}
+  else if(d.sa==='testsnd'){unlockAudio();sfx('coin');setTimeout(()=>sfx('cannon',100),250)}
+  else if(d.sa==='tut'){closeAll();if(started)startTut()}
+  else if(d.sa==='resetset'){for(const k in SET_DEF)S[k]=SET_DEF[k];S.vol=.7;S.mvol=.5;S.music=true;S.mute=false;S.q='high';S.cb=false;applySettings();renderSettings();toast('رجعت الإعدادات للأصل')}
+  else if(d.sa==='wipe'){if(wipeArm>Date.now()){wipeAll()}else{wipeArm=Date.now()+4000;renderSettings()}}});
+$('#settings').addEventListener('input',e=>{const k=e.target.dataset.sr;if(!k)return;S[k]=e.target.value/100;const sv=e.target.nextElementSibling;if(sv)sv.textContent=e.target.value;setVol();musicVol();saveT=Math.min(saveT,.5)});
+function wipeAll(){const keepSet={};for(const k of [...Object.keys(SET_DEF),'vol','mvol','music','mute','q','cb'])keepSet[k]=S[k];
+  S=Object.assign(fresh(),keepSet);try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}try{cloudFlush&&cloudFlush(true)}catch(e){}
+  closeAll();if(me){caps=caps.filter(c=>c!==me);me=null}started=false;showLogin();toast('انحذف تقدمك. بداية جديدة!')}
+$('#setBtn').addEventListener('click',()=>openSettings());
+$('#lgSet').addEventListener('click',()=>openSettings());
+
+try{applySettings()}catch(e){}
+$('#settings').addEventListener('click',e=>{if(e.target.id==='settings'||e.target.closest('[data-close]'))closeAll()});
 requestAnimationFrame(loop);
 function flushNow(){save();cloudFlush()}
 addEventListener('visibilitychange',()=>{if(document.hidden)flushNow()});
@@ -2513,5 +3032,6 @@ setInterval(()=>{if(started)cloudFlush()},5000);
 })();
 </script>
 
+<script>if('serviceWorker' in navigator&&location.protocol==='https:')addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script>
 </body>
 </html>
